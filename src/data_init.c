@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/17 17:30:57 by gpeyre           ###   ########.fr       */
+/*   Created: 2024/04/17 17:08:37 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/04/17 17:38:34 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../include/cub3d.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-
-# define BUFFER_SIZE 42
-
-typedef struct s_data
+int	count_line_map(char *file)
 {
-	char **scene;
-}				t_data;
+	int		fd;
+	int		line_nb;
+	char	*line;
 
-/* data_init.c */
-int		count_line_map(char *file);
+	fd = open(file, O_RDONLY);
+	line_nb = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		if (!ft_isalpha(*line) || *line != '\n')
+			line_nb++;
+		free(line);
+	}
+	close(fd);
+	return (line_nb);
+}
 
-/* error.c */
-void	check_error_file(int argc, char **argv);
+/* char	**extract_map(char *file)
+{
 
-/* get_next_line */
-char	*get_next_line(int fd);
-
-#endif
+} */

@@ -21,6 +21,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 
 SRCS = src/cub3d.c \
+		src/data_init.c \
 		src/error.c \
 		src/get_next_line.c \
 
