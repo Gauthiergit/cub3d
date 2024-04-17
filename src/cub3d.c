@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubd.c                                             :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 11:38:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/17 11:38:41 by gpeyre           ###   ########.fr       */
+/*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/04/17 15:06:34 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "../include/cub3d.h"
 
-int main()
+int	main(int argc, char **argv)
 {
+	// t_data	data;
 
+	check_error_file(argc, argv);
 }

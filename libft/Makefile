@@ -39,7 +39,7 @@ $(NAME): $(OBJ)
 #Commande qui cr�e libft.a
 
 %.o: %.c #% signifit tout les fichiers ...
-		$(CC) $(CFLAGS) -I. -o $@ -c $?
+		@$(CC) $(CFLAGS) -I. -o $@ -c $?
 #On presice ici comment les fichiers .c sont compil�s pour donner les .o dans OBJ
 #-I va r�cup�rer le header chez "libft.h"
 #-o $@ fait r�f�rence aux %.o de la cible
