@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/17 15:36:11 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/18 15:12:22 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,32 @@ void	check_error_file(int argc, char **argv)
 	if (fd == -1)
 		print_error("File not found or empty");
 	close(fd);
+}
+
+int	is_valid_cara(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n')
+		{
+			if (!ft_strchr("01NSEW ", map[i][j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	check_error_map(t_data *data)
+{
+	if (is_valid_cara(data->scene))
+		print_error("Caractere allowed are '10NSEW and space'");
+	if (check_walls(data->scene))
+		print_error("The map isn't closed");
 }

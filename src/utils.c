@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/18 15:05:10 by gpeyre           ###   ########.fr       */
+/*   Created: 2024/04/18 15:04:33 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/04/18 15:06:23 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+void	clear_tab(char **tab)
 {
-	t_data	data;
+	int	i;
 
-	check_error_file(argc, argv);
-	data.scene = extract_map(argv[1]);
-	int	i = 0;
-	while (data.scene[i])
+	i = 0;
+	while (tab[i])
 	{
-		printf("%s\n", data.scene[i]);
+		free(tab[i]);
 		i++;
 	}
-	clear_tab(data.scene);
-	return (0);
+	free(tab);
+	tab = NULL;
+}
+
+size_t	count_line_tab(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }

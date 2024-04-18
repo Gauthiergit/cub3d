@@ -22,8 +22,10 @@ RM = rm -f
 
 SRCS = src/cub3d.c \
 		src/data_init.c \
+		src/error_2.c \
 		src/error.c \
 		src/get_next_line.c \
+		src/utils.c
 
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))
 
