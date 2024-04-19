@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/18 16:05:53 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/19 19:07:59 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@
 typedef struct s_data
 {
 	char 	**scene;
-	int		i_start;
-	int		i_end;
+	size_t	lgst_line;
+	int		line_nb;
 }				t_data;
 
 /* data_init.c */
-int		count_line_map(char *file);
-char	**extract_map(char *file);
+void		count_line_map(t_data *data, char *file);
+void	extract_map(t_data *data, char *file);
 
 /* error_2.c */
-int		check_walls(char **map);
+int		check_walls(t_data *data);
+void	find_lgst_line(t_data *data, char *file);
 
 /* error.c */
 void	check_error_file(int argc, char **argv);
+void	check_error_map(t_data *data);
 
 /* get_next_line.c */
 char	*get_next_line(int fd);

@@ -6,11 +6,12 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:08:37 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/18 14:43:52 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/19 19:24:34 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
 int	is_map(char *line)
 {
 	if (ft_isalpha(line[0]) && ft_isalpha(line[1]))
@@ -22,39 +23,32 @@ int	is_map(char *line)
 	return (1);
 }
 
-int	count_line_map(char *file)
+void	count_line_map(t_data *data, char *file)
 {
 	int		fd;
-	int		line_nb;
 	char	*line;
 
+	data->line_nb = 0;
 	fd = open(file, O_RDONLY);
-	line_nb = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break;
 		if (is_map(line))
-			line_nb++;
+			data->line_nb++;
 		free(line);
 	}
 	close(fd);
-	return (line_nb);
 }
 
-char	**extract_map(char *file)
+void	find_lgst_line(t_data *data, char *file)
 {
 	int		fd;
-	int		len;
-	char	**map;
 	char	*line;
-	int		i;
+	size_t	len_cur_line;
 
-	len = count_line_map(file);
-	map = (char **)malloc((len + 1) * sizeof(char *));
-	if (!map)
-		return (NULL);
+	data->lgst_line = 0;
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	while (!is_map(line))
@@ -62,17 +56,65 @@ char	**extract_map(char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	i = 0;
 	while (1)
 	{
 		if (line == NULL)
 			break;
-		map[i] = ft_strdup(line);
-		i++;
+		len_cur_line = ft_strlen(line);
+		if (data->lgst_line < len_cur_line)
+			data->lgst_line = len_cur_line;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	map[i] = 0;
-	return (map);
+}
+
+void	fill_in_map(t_data *data, int *fd, char *cur_line)
+{
+	int		i;
+	size_t	j;
+	char	*line;
+
+	i = 0;
+	line = ft_strdup(cur_line);
+	while (i < data->line_nb)
+	{
+		if (line == NULL)
+			break;
+		data->scene[i] = ft_calloc(data->lgst_line + 1, sizeof(char));
+		j = 0;
+		while (j < ft_strlen(line))
+		{
+			data->scene[i][j] = line[j];
+			if (data->scene[i][j] == '\n')
+				data->scene[i][j] = '\0';
+			j++;
+		}
+		i++;
+		free(line);
+		line = get_next_line(*fd);
+	}
+	data->scene[i] = NULL;
+}
+
+void	extract_map(t_data *data, char *file)
+{
+	int		fd;
+	char	*line;
+
+	count_line_map(data, file);
+	find_lgst_line(data, file);
+	data->scene = (char **)malloc((data->line_nb + 1) * sizeof(char *));
+	if (!data->scene)
+		return ;
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	while (!is_map(line))
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	fill_in_map(data, &fd, line);
+	free(line);
+	close(fd);
 }
