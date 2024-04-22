@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/19 19:07:59 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/22 10:53:31 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_data
 	char 	**scene;
 	size_t	lgst_line;
 	int		line_nb;
+	void	*north_texture;
+	void 	*south_texture;
+	void	*west_texture;
+	void	*east_texture;
 }				t_data;
 
 /* data_init.c */
