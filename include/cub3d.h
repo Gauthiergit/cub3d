@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 12:50:35 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:15:37 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,38 @@
 # include "../libft/libft.h"
 
 # define BUFFER_SIZE 42
+# define H_WALL 64.00
+# define W_WALL 64.00
+# define H_CAM 32.00
+
+typedef struct s_place
+{
+	size_t			x;
+	size_t			y;
+	char			dir;
+}					t_place;
 
 typedef struct s_data
 {
-	char 	**scene;
-	size_t	lgst_line;
-	int		line_nb;
-	int		NO;
-	int		SO;
-	int		WE;
-	int		EA;
-	void	*north_air;
-	void 	*south_fire;
-	void	*west_water;
-	void	*east_earth;
+	char 		**scene;
+	size_t		lgst_line;
+	int			line_nb;
+	int			NO;
+	int			SO;
+	int			WE;
+	int			EA;
+	void		*north_air;
+	void 		*south_fire;
+	void		*west_water;
+	void		*east_earth;
+	t_place		cam;
 }				t_data;
 
 /* data_init.c */
+void	data_init(t_data *data, char **argv);
+void	find_cam(t_data *data);
+
+/* map_init.c */
 int		is_map(char *line);
 void	count_line_map(t_data *data, char *file);
 void	find_lgst_line(t_data *data, char *file);

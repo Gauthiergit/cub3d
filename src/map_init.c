@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_init.c                                        :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 17:08:37 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 11:41:28 by gdetourn         ###   ########.fr       */
+/*   Created: 2024/04/22 16:10:28 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/04/22 16:14:24 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	count_line_map(t_data *data, char *file)
 	int		fd;
 	char	*line;
 
-	data->line_nb = 0;
 	fd = open(file, O_RDONLY);
 	while (1)
 	{
@@ -48,7 +47,6 @@ void	find_lgst_line(t_data *data, char *file)
 	char	*line;
 	size_t	len_cur_line;
 
-	data->lgst_line = 0;
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	while (!is_map(line))

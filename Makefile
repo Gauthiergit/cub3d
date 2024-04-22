@@ -4,7 +4,7 @@ GREEN = \033[92m
 BLUE = \033[94m
 
 
-NAME = cub3d
+NAME = cub3D
 
 DIR_OBJ = obj/
 
@@ -22,9 +22,11 @@ RM = rm -f
 
 SRCS = src/cub3d.c \
 		src/data_init.c \
+		src/display.c \
 		src/error_2.c \
 		src/error.c \
 		src/get_next_line.c \
+		src/map_init.c \
 		src/utils.c
 
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))

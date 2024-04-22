@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 18:14:36 by gpeyre           ###   ########.fr       */
+/*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/04/22 18:14:14 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+float	perceived_height(t_data *data)
 {
-	t_data	data;
+	float	p_height;
 
-	check_error_file(argc, argv);
-	data_init(&data, argv);
-	check_error_map(&data);
-	clear_tab(data.scene);
-	return (0);
+	p_height = 0;
+	
 }
+
+float	dist_wall(t_data *data)
+{
+	float	d_wall;
+	int		x;
+	int		y;
+
+	d_wall = 0;
+	x = data->cam.x;
+	y = data->cam.y;
+	if (data->cam.dir == 'N')
+	{
+		while (data->scene[y][x] == '0')
+		{
+			d_wall += 64;
+			y--;
+		}
+	}
+}
+//Pas bon trouver comment faire autrement 
