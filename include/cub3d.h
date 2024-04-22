@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 10:53:31 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/22 12:50:35 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,21 @@ typedef struct s_data
 	char 	**scene;
 	size_t	lgst_line;
 	int		line_nb;
-	void	*north_texture;
-	void 	*south_texture;
-	void	*west_texture;
-	void	*east_texture;
+	int		NO;
+	int		SO;
+	int		WE;
+	int		EA;
+	void	*north_air;
+	void 	*south_fire;
+	void	*west_water;
+	void	*east_earth;
 }				t_data;
 
 /* data_init.c */
-void		count_line_map(t_data *data, char *file);
+int		is_map(char *line);
+void	count_line_map(t_data *data, char *file);
+void	find_lgst_line(t_data *data, char *file);
+void	fill_in_map(t_data *data, int fd, char *cur_line);
 void	extract_map(t_data *data, char *file);
 
 /* error_2.c */

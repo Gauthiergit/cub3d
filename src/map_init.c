@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:08:37 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/19 19:24:34 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:41:28 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	find_lgst_line(t_data *data, char *file)
 	close(fd);
 }
 
-void	fill_in_map(t_data *data, int *fd, char *cur_line)
+void	fill_in_map(t_data *data, int fd, char *cur_line)
 {
 	int		i;
 	size_t	j;
@@ -92,7 +92,7 @@ void	fill_in_map(t_data *data, int *fd, char *cur_line)
 		}
 		i++;
 		free(line);
-		line = get_next_line(*fd);
+		line = get_next_line(fd);//*fd
 	}
 	data->scene[i] = NULL;
 }
@@ -114,7 +114,7 @@ void	extract_map(t_data *data, char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	fill_in_map(data, &fd, line);
+	fill_in_map(data, fd, line);
 	free(line);
 	close(fd);
 }

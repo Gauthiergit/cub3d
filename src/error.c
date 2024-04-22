@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 11:19:21 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/22 12:03:24 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_error_file(int argc, char **argv)
 	close(fd);
 }
 
-int	is_valid_cara(char **map)
+int	is_valid_char(char **map)
 {
 	int	i;
 	int	j;
@@ -56,7 +56,7 @@ int	is_valid_cara(char **map)
 
 void	check_error_map(t_data *data)
 {
-	if (is_valid_cara(data->scene))
+	if (is_valid_char(data->scene))
 		print_error("Character allowed are '10NSEW and space'");
 	if (check_walls(data))
 		print_error("The map isn't closed");
