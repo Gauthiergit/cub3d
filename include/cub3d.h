@@ -3,26 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 17:15:37 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/23 15:48:15 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
+# include <X11/Xlib.h>
+# include <X11/keysym.h>
 
 # define BUFFER_SIZE 42
 # define H_WALL 64.00
 # define W_WALL 64.00
 # define H_CAM 32.00
+# define ESC 65307
+
+// screen
+
+# define SCREEN_HEIGHT 			1000
+# define SCREEN_WIDTH 			1500
 
 typedef struct s_place
 {
@@ -31,8 +39,24 @@ typedef struct s_place
 	char			dir;
 }					t_place;
 
+typedef struct s_img
+{
+	int			height;
+	int			width;
+	char		*north_air;
+	char 		*south_fire;
+	char		*west_water;
+	char		*east_earth;
+	void		*img_north_air;
+	void 		*img_south_fire;
+	void		*img_west_water;
+	void		*img_east_earth;
+}					t_img;
+
 typedef struct s_data
 {
+	void		*mlx;
+	void 		*win;
 	char 		**scene;
 	size_t		lgst_line;
 	int			line_nb;
@@ -40,16 +64,35 @@ typedef struct s_data
 	int			SO;
 	int			WE;
 	int			EA;
-	void		*north_air;
-	void 		*south_fire;
-	void		*west_water;
-	void		*east_earth;
+	int			F;
+	int			C;
+	t_img		*img;
 	t_place		cam;
 }				t_data;
+
+/* cub3d.c */
+int		on_destroy(t_data *data);
+int		on_keypress(int keysym, t_data *data);
 
 /* data_init.c */
 void	data_init(t_data *data, char **argv);
 void	find_cam(t_data *data);
+
+/* error_2.c */
+int		check_walls(t_data *data);
+void	find_lgst_line(t_data *data, char *file);
+
+/* error.c */
+void	print_error(const char *error);
+void	check_error_file(int argc, char **argv);
+int		is_valid_char(char **map);
+void	check_error_map(t_data *data);
+
+/* exit.c */
+void	ft_destroy_images(t_data *data);
+
+/* get_next_line.c */
+char	*get_next_line(int fd);
 
 /* map_init.c */
 int		is_map(char *line);
@@ -58,16 +101,12 @@ void	find_lgst_line(t_data *data, char *file);
 void	fill_in_map(t_data *data, int fd, char *cur_line);
 void	extract_map(t_data *data, char *file);
 
-/* error_2.c */
-int		check_walls(t_data *data);
-void	find_lgst_line(t_data *data, char *file);
-
-/* error.c */
-void	check_error_file(int argc, char **argv);
-void	check_error_map(t_data *data);
-
-/* get_next_line.c */
-char	*get_next_line(int fd);
+/* textures_init.c */
+int		valid_colors(t_data *data, char *line);
+void	valid_texture_WE(t_data *data, char *line, char *path);
+int		valid_texture_NS(t_data *data, char *line);
+int		check_scene_infos(t_data *data, char *file);
+void	extract_textures(t_data *data, char *file);
 
 /* utils.c */
 void	clear_tab(char **tab);

@@ -25,8 +25,10 @@ SRCS = src/cub3d.c \
 		src/display.c \
 		src/error_2.c \
 		src/error.c \
+		src/exit.c \
 		src/get_next_line.c \
 		src/map_init.c \
+		src/textures_init.c \
 		src/utils.c
 
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))

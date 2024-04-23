@@ -1,41 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/23 15:34:57 by gdetourn         ###   ########.fr       */
+/*   Created: 2024/04/23 15:20:48 by gdetourn          #+#    #+#             */
+/*   Updated: 2024/04/23 15:27:59 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* float	perceived_height(t_data *data)
+void	ft_destroy_images(t_data *data)
 {
-	float	p_height;
-
-	p_height = 0;
-	
+	mlx_destroy_image(data->mlx, data->img->img_north_air);
+	mlx_destroy_image(data->mlx, data->img->img_south_fire);
+	mlx_destroy_image(data->mlx, data->img->img_west_water);
+	mlx_destroy_image(data->mlx, data->img->img_east_earth);
+	free(data->img);
 }
-
-float	dist_wall(t_data *data)
-{
-	float	d_wall;
-	int		x;
-	int		y;
-
-	d_wall = 0;
-	x = data->cam.x;
-	y = data->cam.y;
-	if (data->cam.dir == 'N')
-	{
-		while (data->scene[y][x] == '0')
-		{
-			d_wall += 64;
-			y--;
-		}
-	}
-} */
-//Pas bon trouver comment faire autrement 
