@@ -3,19 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 16:21:39 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:07:44 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	find_cam(t_data *data)
+void	init_angle(t_data *data, char dir)
 {
-	int	y;
-	int	x;
+	if (dir == 'N')
+		data->player.angle = M_PI / 2;
+	else if (dir == 'S')
+		data->player.angle = -M_PI / 2;
+	else if (dir == 'W')
+		data->player.angle = M_PI;
+	else if (dir == 'E')
+		data->player.angle = 0;
+}
+
+void	init_player(t_data *data)
+{
+	int 	y;
+	int		x;
+	char	dir;
 
 	y = 0;
 	while (data->scene[y])
@@ -25,28 +37,18 @@ void	find_cam(t_data *data)
 		{
 			if (ft_strchr("NSEW", data->scene[y][x]))
 			{
-				data->cam.x = x;
-				data->cam.y = y;
-				data->cam.dir = data->scene[y][x];
+				data->player.map_x = x;
+				data->player.map_y = y;
+				data->player.px_x = x * SQUARE_SIZE + SQUARE_SIZE / 2;
+				data->player.px_y = y * SQUARE_SIZE + SQUARE_SIZE / 2;
+				data->player.fov_rd = (FOV * M_PI) / 180;
+				dir = data->scene[y][x];
 			}
 			x++;
 		}
 		y++;
 	}
-}
-
-void	extract_textures(t_data *data, char *file)
-{
-	if (check_scene_infos(data, file))
-		print_error("Scene infos not correct");
-	data->img->img_north_air = mlx_xpm_file_to_image(data->mlx,
-			data->img->north_air, &(data->img->width), &(data->img->height));
-	data->img->img_south_fire = mlx_xpm_file_to_image(data->mlx,
-			data->img->south_fire, &(data->img->width), &(data->img->height));
-	data->img->img_west_water = mlx_xpm_file_to_image(data->mlx,
-			data->img->west_water, &(data->img->width), &(data->img->height));
-	data->img->img_east_earth = mlx_xpm_file_to_image(data->mlx,
-			data->img->east_earth, &(data->img->width), &(data->img->height));
+	init_angle(data, dir);
 }
 
 void	data_init(t_data *data, char **argv)
@@ -72,6 +74,7 @@ void	data_init(t_data *data, char **argv)
 	data->img->west_water = NULL;
 	data->img->east_earth = NULL;
 	extract_map(data, argv[1]);
-	find_cam(data);
+	init_player(data);
 	extract_textures(data, argv[1]);
+	data->ray_ngl = 0.0000;
 }

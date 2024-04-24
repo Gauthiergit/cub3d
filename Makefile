@@ -40,7 +40,7 @@ $(NAME): $(OBJ)
 		@echo "$(BOLD)$(BLUE)Compiling minilibx...$(RESET_COLOR)"
 		make -C ./minilibx-linux
 		@echo "$(BOLD)$(BLUE)Compiling project...$(RESET_COLOR)"
-		@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(LIBMLX) -lXext -lX11
+		@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(LIBMLX) -lXext -lX11 -lm
 		@echo "$(BOLD)$(GREEN)Compiling finished$(RESET_COLOR)"
 
 $(DIR_OBJ):

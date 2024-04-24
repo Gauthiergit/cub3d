@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 16:23:54 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:04:38 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 
 # define BUFFER_SIZE 42
-# define H_WALL 64.00
-# define W_WALL 64.00
-# define H_CAM 32.00
+# define SQUARE_SIZE 64
+# define FOV 60
+# define H_CAM 32
 # define ESC 65307
 
 // screen
@@ -32,12 +33,15 @@
 # define SCREEN_HEIGHT 			1000
 # define SCREEN_WIDTH 			1500
 
-typedef struct s_place
+typedef struct s_player
 {
-	size_t			x;
-	size_t			y;
-	char			dir;
-}					t_place;
+	size_t			map_x;
+	size_t			map_y;
+	int				px_x;
+	int				px_y;
+	double			angle;
+	float			fov_rd;
+}					t_player;
 
 typedef struct s_img
 {
@@ -55,21 +59,20 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	void			*mlx;
-	void 			*win;
-	char 			**scene;
-	size_t			lgst_line;
-	int				line_nb;
-	unsigned long	floor_hex;
-	unsigned long	ceiling_hex;
-	int				NO;
-	int				SO;
-	int				WE;
-	int				EA;
-	int				F;
-	int				C;
-	t_img			*img;
-	t_place			cam;
+	void		*mlx;
+	void 		*win;
+	char 		**scene;
+	size_t		lgst_line;
+	int			line_nb;
+	int			NO;
+	int			SO;
+	int			WE;
+	int			EA;
+	int			F;
+	int			C;
+	t_img		*img;
+	t_player	player;
+	double 		ray_ngl;
 }				t_data;
 
 /* cub3d.c */
@@ -77,9 +80,9 @@ int		on_destroy(t_data *data);
 int		on_keypress(int keysym, t_data *data);
 
 /* data_init.c */
-void	find_cam(t_data *data);
-void	extract_textures(t_data *data, char *file);
 void	data_init(t_data *data, char **argv);
+void	init_player(t_data *data);
+void	extract_textures(t_data *data, char *file);
 
 /* error_2.c */
 int		check_walls(t_data *data);
