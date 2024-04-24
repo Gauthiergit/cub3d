@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 18:04:38 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/24 18:13:27 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,22 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	void		*mlx;
-	void 		*win;
-	char 		**scene;
-	size_t		lgst_line;
-	int			line_nb;
-	int			NO;
-	int			SO;
-	int			WE;
-	int			EA;
-	int			F;
-	int			C;
-	t_img		*img;
-	t_player	player;
-	double 		ray_ngl;
+	void			*mlx;
+	void 			*win;
+	char 			**scene;
+	size_t			lgst_line;
+	int				line_nb;
+	int				NO;
+	int				SO;
+	int				WE;
+	int				EA;
+	int				F;
+	int				C;
+	t_img			*img;
+	t_player		player;
+	double 			ray_ngl;
+	unsigned long	floor_hex;
+	unsigned long	ceiling_hex;
 }				t_data;
 
 /* cub3d.c */

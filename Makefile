@@ -34,7 +34,7 @@ SRCS = src/cub3d.c \
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))
 
 $(NAME): $(OBJ)
-		@clear
+		# @clear
 		@echo "$(BOLD)$(BLUE)Compiling libft...$(RESET_COLOR)"
 		make -C ./libft
 		@echo "$(BOLD)$(BLUE)Compiling minilibx...$(RESET_COLOR)"
