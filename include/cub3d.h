@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 18:13:27 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/24 18:21:49 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,19 @@ typedef struct s_img
 {
 	int			height;
 	int			width;
-	char		*north_air;
+	void		*pt_img;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	int			*address;
+	/* char		*north_air;
 	char 		*south_fire;
 	char		*west_water;
 	char		*east_earth;
 	void		*img_north_air;
 	void 		*img_south_fire;
 	void		*img_west_water;
-	void		*img_east_earth;
+	void		*img_east_earth; */
 }					t_img;
 
 typedef struct s_data
@@ -64,17 +69,19 @@ typedef struct s_data
 	char 			**scene;
 	size_t			lgst_line;
 	int				line_nb;
+	unsigned long	floor_hex;
+	unsigned long	ceiling_hex;
+	char			**text_tab;
 	int				NO;
 	int				SO;
 	int				WE;
 	int				EA;
 	int				F;
 	int				C;
-	t_img			*img;
+	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
+	t_img			img[4];
 	t_player		player;
 	double 			ray_ngl;
-	unsigned long	floor_hex;
-	unsigned long	ceiling_hex;
 }				t_data;
 
 /* cub3d.c */
@@ -97,7 +104,7 @@ int		is_valid_char(char **map);
 void	check_error_map(t_data *data);
 
 /* exit.c */
-void	ft_destroy_images(t_data *data);
+//void	ft_destroy_images(t_data *data);
 
 /* get_next_line.c */
 char	*get_next_line(int fd);

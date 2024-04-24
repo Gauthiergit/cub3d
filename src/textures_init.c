@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/24 16:24:25 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:47:43 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ int	valid_texture_we(t_data *data, char *line, char **path_tab)
 	if (line[0] == 'W' && line[1] == 'E')
 	{
 		data->WE++;
-		data->img->west_water = path_tab[1];
+		data->text_tab[2] = ft_strdup(path_tab[1]);
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
 		data->EA++;
-		data->img->east_earth = path_tab[1];
+		data->text_tab[3] = ft_strdup(path_tab[1]);
 	}
+	clear_tab(path_tab);
 	return (0);
 }
 
@@ -89,19 +90,18 @@ int	valid_texture_ns(t_data *data, char *line)
 		if (line[0] == 'N' && line[1] == 'O')
 		{
 			data->NO++;
-			data->img->north_air = path_tab[1];
-			return (0);
+			data->text_tab[0] = ft_strdup(path_tab[1]);
+			return (clear_tab(path_tab), 0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{
 			data->SO++;
-			data->img->south_fire = path_tab[1];
-			return (0);
+			data->text_tab[1] = ft_strdup(path_tab[1]);
+			return (clear_tab(path_tab), 0);
 		}
 		else if ((line[0] == 'W' && line[1] == 'E')
 			|| (line[0] == 'E' && line[1] == 'A'))
 			return (valid_texture_we(data, line, path_tab));
-		clear_tab(path_tab);
 	}
 	else if (line[0] == 'F' || line[0] == 'C' || line[0] == '\n')
 		return (valid_colors(data, line));
@@ -114,6 +114,10 @@ int	check_scene_infos(t_data *data, char *file)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
+	line = NULL;
+	data->text_tab = ft_calloc(sizeof(char *), 5);
+	if (!data->text_tab)
+		return (1);
 	while (data->NO != 1 || data->SO != 1 || data->WE != 1 || data->EA != 1
 		|| data->F != 1 || data->C != 1)
 	{
@@ -121,14 +125,16 @@ int	check_scene_infos(t_data *data, char *file)
 		if (valid_texture_ns(data, line) == 1)
 		{
 			free(line);
+			clear_tab(data->text_tab);
 			return (1);
 		}
 		free(line);
 	}
 	close(fd);
-	if (data->img->north_air == NULL || data->img->south_fire == NULL
-		|| data->img->west_water == NULL || data->img->east_earth == NULL
-		|| data->F != 1 || data->C != 1)
+	if (ft_tab_size(data->text_tab) != 4 || data->F != 1 || data->C != 1)
 		return (1);
 	return (0);
 }
+
+/*data->img->north_air == NULL || data->img->south_fire == NULL
+		|| data->img->west_water == NULL || data->img->east_earth == NULL*/

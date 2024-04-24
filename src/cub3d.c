@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 17:01:15 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/24 18:18:50 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*should return an int but exit(0) is required to quit the program properly*/
 int	on_destroy(t_data *data)
 {
-	ft_destroy_images(data);
+	//ft_destroy_images(data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
@@ -55,11 +55,11 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
+	data_init(&data, argv);
+	check_error_map(&data);
 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	if (!data.win)
 		return (free(data.mlx), 1);
-	data_init(&data, argv);
-	check_error_map(&data);
 	mlx_hook(data.win, KeyRelease, KeyReleaseMask, &on_keypress, &data);
 	//mlx_loop_hook(data.mlx, game, &data);
 	mlx_hook(data.win, 17, 0, &on_destroy, &data);
