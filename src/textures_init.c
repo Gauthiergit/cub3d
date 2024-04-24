@@ -6,11 +6,36 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/23 15:54:01 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:24:25 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	convert_colors(t_data *data, char **color_tab, char c)
+{
+	unsigned long	tmp;
+	int				red;
+	int				green;
+	int				blue;
+
+	red = 0;
+	green = 0;
+	blue = 0;
+	red = ft_atoi(color_tab[0]);
+	green = ft_atoi(color_tab[1]);
+	blue = ft_atoi(color_tab[2]);
+	if (c == 'F')
+	{
+		tmp = ((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff);
+		data->floor_hex = tmp;
+	}
+	if (c == 'C')
+	{
+		tmp = ((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff);
+		data->ceiling_hex = tmp;
+	}
+}
 
 int	valid_colors(t_data *data, char *line)
 {
@@ -33,52 +58,52 @@ int	valid_colors(t_data *data, char *line)
 			data->F++;
 		else if (line[0] == 'C')
 			data->C++;
+		convert_colors(data, color_tab, line[0]);
 		clear_tab(color_tab);
 	}
 	return (0);
 }
 
-void	valid_texture_WE(t_data *data, char *line, char *path)
+int	valid_texture_we(t_data *data, char *line, char **path_tab)
 {
 	if (line[0] == 'W' && line[1] == 'E')
 	{
 		data->WE++;
-		data->img->west_water = path;
+		data->img->west_water = path_tab[1];
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
 		data->EA++;
-		data->img->east_earth = path;
+		data->img->east_earth = path_tab[1];
 	}
+	return (0);
 }
 
-int		valid_texture_NS(t_data *data, char *line)
+int	valid_texture_ns(t_data *data, char *line)
 {
-	char	*path;
-	int		fd;
+	char	**path_tab;
 
 	if (line[2] == ' ' && line[3] == '.')
 	{
-		path = ft_strchr(line, '.');
-		fd = open(path, O_RDONLY);
-		if (fd == -1)
-			return (1);
+		path_tab = ft_split(line, ' ');
 		if (line[0] == 'N' && line[1] == 'O')
 		{
 			data->NO++;
-			data->img->north_air = path;
+			data->img->north_air = path_tab[1];
+			return (0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{
 			data->SO++;
-			data->img->south_fire = path;
+			data->img->south_fire = path_tab[1];
+			return (0);
 		}
 		else if ((line[0] == 'W' && line[1] == 'E')
-				|| (line[0] == 'E' && line[1] == 'A'))
-			valid_texture_WE(data, line, path);
-		close(fd);
+			|| (line[0] == 'E' && line[1] == 'A'))
+			return (valid_texture_we(data, line, path_tab));
+		clear_tab(path_tab);
 	}
-	else if  (line[0] == 'F' || line[0] == 'C' || line[0] == '\n')
+	else if (line[0] == 'F' || line[0] == 'C' || line[0] == '\n')
 		return (valid_colors(data, line));
 	return (1);
 }
@@ -89,32 +114,21 @@ int	check_scene_infos(t_data *data, char *file)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	line = get_next_line(fd);
-	while (!valid_texture_NS(data, line))
+	while (data->NO != 1 || data->SO != 1 || data->WE != 1 || data->EA != 1
+		|| data->F != 1 || data->C != 1)
 	{
-		free(line);
 		line = get_next_line(fd);
+		if (valid_texture_ns(data, line) == 1)
+		{
+			free(line);
+			return (1);
+		}
+		free(line);
 	}
-	free(line);
 	close(fd);
-	printf("NO = %d SO = %d WE = %d EA = %d F = %d C = %d\n", data->NO,
-		data->SO, data->WE, data->EA, data->F, data->C);
-	if (data->NO != 1 && data->SO != 1 && data->WE != 1 && data->EA != 1
-		&& data->F != 1 && data->C != 1)
+	if (data->img->north_air == NULL || data->img->south_fire == NULL
+		|| data->img->west_water == NULL || data->img->east_earth == NULL
+		|| data->F != 1 || data->C != 1)
 		return (1);
 	return (0);
-}
-
-void	extract_textures(t_data *data, char *file)
-{
-	if (check_scene_infos(data, file))
-		print_error("Scene infos not correct");
-	data->img->img_north_air = mlx_xpm_file_to_image(data->mlx,
-			data->img->north_air, &(data->img->width), &(data->img->height));
-	data->img->img_south_fire = mlx_xpm_file_to_image(data->mlx,
-			data->img->south_fire, &(data->img->width), &(data->img->height));
-	data->img->img_west_water = mlx_xpm_file_to_image(data->mlx,
-			data->img->west_water, &(data->img->width), &(data->img->height));
-	data->img->img_east_earth = mlx_xpm_file_to_image(data->mlx,
-			data->img->east_earth, &(data->img->width), &(data->img->height));
 }

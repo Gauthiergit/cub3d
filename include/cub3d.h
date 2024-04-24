@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/23 15:48:15 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:23:54 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,21 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	void		*mlx;
-	void 		*win;
-	char 		**scene;
-	size_t		lgst_line;
-	int			line_nb;
-	int			NO;
-	int			SO;
-	int			WE;
-	int			EA;
-	int			F;
-	int			C;
-	t_img		*img;
-	t_place		cam;
+	void			*mlx;
+	void 			*win;
+	char 			**scene;
+	size_t			lgst_line;
+	int				line_nb;
+	unsigned long	floor_hex;
+	unsigned long	ceiling_hex;
+	int				NO;
+	int				SO;
+	int				WE;
+	int				EA;
+	int				F;
+	int				C;
+	t_img			*img;
+	t_place			cam;
 }				t_data;
 
 /* cub3d.c */
@@ -75,8 +77,9 @@ int		on_destroy(t_data *data);
 int		on_keypress(int keysym, t_data *data);
 
 /* data_init.c */
-void	data_init(t_data *data, char **argv);
 void	find_cam(t_data *data);
+void	extract_textures(t_data *data, char *file);
+void	data_init(t_data *data, char **argv);
 
 /* error_2.c */
 int		check_walls(t_data *data);
@@ -102,13 +105,14 @@ void	fill_in_map(t_data *data, int fd, char *cur_line);
 void	extract_map(t_data *data, char *file);
 
 /* textures_init.c */
+void	convert_colors(t_data *data, char **color_tab, char c);
 int		valid_colors(t_data *data, char *line);
-void	valid_texture_WE(t_data *data, char *line, char *path);
-int		valid_texture_NS(t_data *data, char *line);
+int		valid_texture_we(t_data *data, char *line, char **path_tab);
+int		valid_texture_ns(t_data *data, char *line);
 int		check_scene_infos(t_data *data, char *file);
-void	extract_textures(t_data *data, char *file);
 
 /* utils.c */
+int		ft_tab_size(char **tab);
 void	clear_tab(char **tab);
 size_t	count_line_tab(char **tab);
 

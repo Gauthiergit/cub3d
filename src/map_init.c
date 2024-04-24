@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:28 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 16:14:24 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/24 16:22:51 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	count_line_map(t_data *data, char *file)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
+			break ;
 		if (is_map(line))
 			data->line_nb++;
 		free(line);
@@ -57,7 +57,7 @@ void	find_lgst_line(t_data *data, char *file)
 	while (1)
 	{
 		if (line == NULL)
-			break;
+			break ;
 		len_cur_line = ft_strlen(line);
 		if (data->lgst_line < len_cur_line)
 			data->lgst_line = len_cur_line;
@@ -78,7 +78,7 @@ void	fill_in_map(t_data *data, int fd, char *cur_line)
 	while (i < data->line_nb)
 	{
 		if (line == NULL)
-			break;
+			break ;
 		data->scene[i] = ft_calloc(data->lgst_line + 1, sizeof(char));
 		j = 0;
 		while (j < ft_strlen(line))

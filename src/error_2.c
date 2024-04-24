@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:08:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 11:18:08 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/24 16:22:05 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	first_last_line(t_data *data, size_t cur_line)
 
 int	other_line(t_data *data, size_t cur_line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (data->scene[cur_line][0] == '0')
@@ -55,7 +55,6 @@ int	other_line(t_data *data, size_t cur_line)
 	}
 	return (0);
 }
-
 
 int	check_walls(t_data *data)
 {
