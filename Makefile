@@ -73,6 +73,7 @@ clean:
 fclean: clean
 		@rm -rf $(NAME)
 		@make fclean -sC libft
+		@echo "\n"
 		@echo "$(BOLD)$(GREEN)🧹🧼     Cleaning finished     🧼🧹$(RESET_COLOR)"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/24 17:47:43 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:38:01 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ int	valid_texture_we(t_data *data, char *line, char **path_tab)
 	if (line[0] == 'W' && line[1] == 'E')
 	{
 		data->WE++;
-		data->text_tab[2] = ft_strdup(path_tab[1]);
+		data->text_tab[2] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
 		data->EA++;
-		data->text_tab[3] = ft_strdup(path_tab[1]);
+		data->text_tab[3] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
 	}
 	clear_tab(path_tab);
 	return (0);
@@ -90,13 +90,13 @@ int	valid_texture_ns(t_data *data, char *line)
 		if (line[0] == 'N' && line[1] == 'O')
 		{
 			data->NO++;
-			data->text_tab[0] = ft_strdup(path_tab[1]);
+			data->text_tab[0] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
 			return (clear_tab(path_tab), 0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{
 			data->SO++;
-			data->text_tab[1] = ft_strdup(path_tab[1]);
+			data->text_tab[1] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
 			return (clear_tab(path_tab), 0);
 		}
 		else if ((line[0] == 'W' && line[1] == 'E')

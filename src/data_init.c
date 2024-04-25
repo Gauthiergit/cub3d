@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 18:22:25 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:43:00 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	ft_fill_wall_array(t_data *data, int i)
 		x = 0;
 		while (x < data->img[i].width)
 		{
-			data->wall[i][data->img[i].height * (y + x)] = \
-				(data->img[i].address[data->img[i].height * (y + x)]);
+			data->wall[i][data->img[i].height * y + x] = \
+				(data->img[i].address[data->img[i].height * y + x]);
 			x++;
 		}
 		y++;
@@ -82,9 +82,8 @@ void	extract_textures(t_data *data, char *file)
 		data->img[i].pt_img = mlx_xpm_file_to_image(data->mlx, \
 						data->text_tab[i], &(data->img[i].width), \
 						&(data->img[i].height));
-		printf("i = %d, data->img[i].pt_img = %p\n", i, data->img[i].pt_img);
 		if (!data->img[i].pt_img)
-			print_error("Fail to load texture ici");
+			print_error("Fail to load texture");
 		data->img[i].address = (int *)mlx_get_data_addr(data->img[i].pt_img, \
 						&data->img[i].bits_per_pixel, &data->img[i].size_line, \
 						&data->img[i].endian);
