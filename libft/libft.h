@@ -60,7 +60,7 @@ int		ft_isascii(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
-char	*ft_strdup(const char *src);
+char	*ft_strdup(char *src);
 char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);

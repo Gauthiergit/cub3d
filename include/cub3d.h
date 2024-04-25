@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/25 10:26:50 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:24:51 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	extract_map(t_data *data, char *file);
 /* textures_init.c */
 void	convert_colors(t_data *data, char **color_tab, char c);
 int		valid_colors(t_data *data, char *line);
-int		valid_texture_we(t_data *data, char *line, char **path_tab);
+int		valid_texture_we(t_data *data, char *line, char *dup);
 int		valid_texture_ns(t_data *data, char *line);
 int		check_scene_infos(t_data *data, char *file);
 

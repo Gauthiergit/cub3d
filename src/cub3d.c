@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 18:18:50 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:28:12 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	on_destroy(t_data *data)
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
+	clear_tab(data->text_tab);
 	free(data->mlx);
 	exit(0);
 	return (0);

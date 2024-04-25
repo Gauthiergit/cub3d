@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/25 16:43:00 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:28:54 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	extract_textures(t_data *data, char *file)
 
 void	data_init(t_data *data, char **argv)
 {
-	t_img	*img;
+	// t_img	*img;
 
 	data->lgst_line = 0;
 	data->line_nb = 0;
@@ -116,9 +116,9 @@ void	data_init(t_data *data, char **argv)
 	data->EA = 0;
 	data->F = 0;
 	data->C = 0;
-	img = calloc(1, sizeof(t_img));
+	/* img = calloc(1, sizeof(t_img));
 	if (!img)
-		exit(1);
+		exit(1); */
 	//data->img = img;
 	int	i = 0;
 	while (i < 4)

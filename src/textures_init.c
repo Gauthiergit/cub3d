@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/25 15:38:01 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:26:40 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,44 +64,46 @@ int	valid_colors(t_data *data, char *line)
 	return (0);
 }
 
-int	valid_texture_we(t_data *data, char *line, char **path_tab)
+int	valid_texture_we(t_data *data, char *line, char *dup)
 {
 	if (line[0] == 'W' && line[1] == 'E')
 	{
 		data->WE++;
-		data->text_tab[2] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
+		data->text_tab[2] = ft_strtrim(dup, "\n");
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
 		data->EA++;
-		data->text_tab[3] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
+		data->text_tab[3] = ft_strtrim(dup, "\n");
 	}
-	clear_tab(path_tab);
+	free(dup);
 	return (0);
 }
 
 int	valid_texture_ns(t_data *data, char *line)
 {
 	char	**path_tab;
+	char	*dup;
 
 	if (line[2] == ' ' && line[3] == '.')
 	{
 		path_tab = ft_split(line, ' ');
+		dup = ft_strdup(path_tab[1]);
 		if (line[0] == 'N' && line[1] == 'O')
 		{
 			data->NO++;
-			data->text_tab[0] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
-			return (clear_tab(path_tab), 0);
+			data->text_tab[0] = ft_strtrim(dup, "\n");
+			return (free(dup), clear_tab(path_tab), 0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{
 			data->SO++;
-			data->text_tab[1] = ft_strtrim(ft_strdup(path_tab[1]), "\n");
-			return (clear_tab(path_tab), 0);
+			data->text_tab[1] = ft_strtrim(dup, "\n");
+			return (free(dup), clear_tab(path_tab), 0);
 		}
 		else if ((line[0] == 'W' && line[1] == 'E')
 			|| (line[0] == 'E' && line[1] == 'A'))
-			return (valid_texture_we(data, line, path_tab));
+			return (clear_tab(path_tab), valid_texture_we(data, line, dup));
 	}
 	else if (line[0] == 'F' || line[0] == 'C' || line[0] == '\n')
 		return (valid_colors(data, line));
