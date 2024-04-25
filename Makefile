@@ -1,26 +1,29 @@
-RESET_COLOR = \033[0m
-BOLD = \033[1m
-GREEN = \033[92m
-BLUE = \033[94m
+# Program name
+NAME    = cub3D
 
-
-NAME = cub3D
+# Compiler options
+CC      = cc 
+CFLAGS  = -Wall -Wextra -Werror -g
 
 DIR_OBJ = obj/
 
 DIR_SRC = src/
 
-LIBFT = libft/libft.a
+# Libft
+LIBFT   = libft/libft.a
 
-LIBMLX = minilibx-linux/libmlx.a
+# MinilibX
+LIBMLX  = minilibx-linux/libmlx.a
 
-CC = cc 
+# Colors
+RESET_COLOR = \033[0m
+BOLD = \033[1m
+GREEN = \033[92m
+BLUE = \033[94m
 
-CFLAGS = -Wall -Wextra -Werror -g
+# Cub3D files
 
-RM = rm -f
-
-SRCS = src/cub3d.c \
+SRCS  = src/cub3d.c \
 		src/data_init.c \
 		src/display.c \
 		src/error_2.c \
@@ -33,15 +36,25 @@ SRCS = src/cub3d.c \
 
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))
 
+# Compiling Libft, Mlx and project
 $(NAME): $(OBJ)
-		# @clear
-		@echo "$(BOLD)$(BLUE)Compiling libft...$(RESET_COLOR)"
-		make -C ./libft
-		@echo "$(BOLD)$(BLUE)Compiling minilibx...$(RESET_COLOR)"
-		make -C ./minilibx-linux
-		@echo "$(BOLD)$(BLUE)Compiling project...$(RESET_COLOR)"
+		@echo "$(BOLD)$(BLUE)		   _____      _    ____  _____ $(RESET_COLOR)" 
+		@echo "$(BOLD)$(BLUE)		  / ____|    | |  |___ \|  __ \ $(RESET_COLOR)"
+		@echo "$(BOLD)$(BLUE)		 | |    _   _| |__  __) | |  | |$(RESET_COLOR)"
+		@echo "$(BOLD)$(BLUE)		 | |   | | | | '_ \|__ <| |  | |$(RESET_COLOR)"
+		@echo "$(BOLD)$(BLUE)		 | |___| |_| | |_) |__) | |__| |$(RESET_COLOR)"
+		@echo "$(BOLD)$(BLUE)		  \_____\__,_|_.__/____/|_____/ $(RESET_COLOR)"
+		@echo "\n"
+		@echo "$(BOLD)$(BLUE)🛠️ 🚧     Compiling Libft...     🚧🛠️$(RESET_COLOR)"
+		@make -sC ./libft
+		@echo "\n"
+		@echo "$(BOLD)$(BLUE)🛠️ 🚧     Compiling MiniLibX...     🚧🛠️$(RESET_COLOR)"
+		@make -sC ./minilibx-linux
+		@echo "\n"
+		@echo "$(BOLD)$(BLUE)🛠️ 🚧     Compiling project...     🚧🛠️$(RESET_COLOR)"
+		@echo "\n"
 		@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(LIBMLX) -lXext -lX11 -lm
-		@echo "$(BOLD)$(GREEN)Compiling finished$(RESET_COLOR)"
+		@echo "$(BOLD)$(GREEN)🧊🎮🧟    Cub3D ready to use    🧟🎮🧊$(RESET_COLOR)"
 
 $(DIR_OBJ):
 	@mkdir -p $(DIR_OBJ)
@@ -52,14 +65,16 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c | $(DIR_OBJ)
 all: $(NAME)
 
 clean:
-		@echo "$(BOLD)$(BLUE)Cleaning...$(RESET_COLOR)"
-		make clean -C libft
-		make clean -C minilibx-linux
-		rm -rf $(DIR_OBJ)
+		@echo "$(BOLD)$(BLUE)🧹🧼     Cleaning .o Libft's & MiniLibX's files...     🧼🧹$(RESET_COLOR)"
+		@make clean -sC libft
+		@make clean -sC minilibx-linux
+		@rm -rf $(DIR_OBJ)
 
 fclean: clean
-		$(RM) $(NAME)
-		make fclean -C libft
-		@echo "$(BOLD)$(GREEN)Cleaning finished$(RESET_COLOR)"
+		@rm -rf $(NAME)
+		@make fclean -sC libft
+		@echo "$(BOLD)$(GREEN)🧹🧼     Cleaning finished     🧼🧹$(RESET_COLOR)"
 
-re: fclean all 
+re: fclean all
+
+.PHONY: all clean fclean re bonus

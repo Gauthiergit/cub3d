@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 18:21:49 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:26:50 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+# include <string.h>
+# include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
