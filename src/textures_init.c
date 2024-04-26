@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/25 17:26:40 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:54:17 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,14 @@ int	valid_texture_ns(t_data *data, char *line)
 	char	**path_tab;
 	char	*dup;
 
-	if (line[2] == ' ' && line[3] == '.')
+	if (line[0] != '\n' && line[2] == ' ' && line[3] == '.')
 	{
 		path_tab = ft_split(line, ' ');
 		dup = ft_strdup(path_tab[1]);
 		if (line[0] == 'N' && line[1] == 'O')
 		{
-			data->NO++;
 			data->text_tab[0] = ft_strtrim(dup, "\n");
-			return (free(dup), clear_tab(path_tab), 0);
+			return (data->NO++, free(dup), clear_tab(path_tab), 0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{

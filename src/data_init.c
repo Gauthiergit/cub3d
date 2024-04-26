@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/25 18:39:00 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/26 11:27:53 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_angle(t_data *data, char dir)
 
 void	init_player(t_data *data)
 {
-	int 	y;
+	int		y;
 	int		x;
 	char	dir;
 
@@ -57,13 +57,13 @@ void	ft_fill_wall_array(t_data *data, int i)
 	int	y;
 
 	y = 0;
-	while (y < data->img[i].height)
+	while (y < data->img_t[i].height)
 	{
 		x = 0;
-		while (x < data->img[i].width)
+		while (x < data->img_t[i].width)
 		{
-			data->wall[i][data->img[i].height * y + x] = \
-				(data->img[i].address[data->img[i].height * y + x]);
+			data->wall[i][data->img_t[i].height * y + x] = \
+				(data->img_t[i].address[data->img_t[i].height * y + x]);
 			x++;
 		}
 		y++;
@@ -79,34 +79,24 @@ void	extract_textures(t_data *data, char *file)
 		print_error("Scene infos not correct");
 	while (i < 4)
 	{
-		data->img[i].pt_img = mlx_xpm_file_to_image(data->mlx, \
-						data->text_tab[i], &(data->img[i].width), \
-						&(data->img[i].height));
-		if (!data->img[i].pt_img)
+		data->img_t[i].pt_img = mlx_xpm_file_to_image(data->mlx, \
+						data->text_tab[i], &(data->img_t[i].width), \
+						&(data->img_t[i].height));
+		if (!data->img_t[i].pt_img)
 			print_error("Fail to load texture");
-		data->img[i].address = (int *)mlx_get_data_addr(data->img[i].pt_img, \
-						&data->img[i].bits_per_pixel, &data->img[i].size_line, \
-						&data->img[i].endian);
-		if (!data->img[i].address)
+		data->img_t[i].address = (int *)mlx_get_data_addr(data->img_t[i].pt_img, \
+						&data->img_t[i].bits_per_pixel, &data->img_t[i].size_line, \
+						&data->img_t[i].endian);
+		if (!data->img_t[i].address)
 			print_error("Fail to load texture");
 		ft_fill_wall_array(data, i);
-		mlx_destroy_image(data->mlx, data->img[i].pt_img);
+		mlx_destroy_image(data->mlx, data->img_t[i].pt_img);
 		i++;
 	}
 }
-	/* data->img->img_north_air = mlx_xpm_file_to_image(data->mlx,
-			data->img->north_air, &(data->img->width), &(data->img->height));
-	data->img->img_south_fire = mlx_xpm_file_to_image(data->mlx,
-			data->img->south_fire, &(data->img->width), &(data->img->height));
-	data->img->img_west_water = mlx_xpm_file_to_image(data->mlx,
-			data->img->west_water, &(data->img->width), &(data->img->height));
-	data->img->img_east_earth = mlx_xpm_file_to_image(data->mlx,
-			data->img->east_earth, &(data->img->width), &(data->img->height)); */
 
 void	data_init(t_data *data, char **argv)
 {
-	// t_img	*img;
-
 	data->lgst_line = 0;
 	data->line_nb = 0;
 	data->text_tab = NULL;
@@ -116,22 +106,6 @@ void	data_init(t_data *data, char **argv)
 	data->EA = 0;
 	data->F = 0;
 	data->C = 0;
-	/* img = calloc(1, sizeof(t_img));
-	if (!img)
-		exit(1); */
-	//data->img = img;
-	int	i = 0;
-	while (i < 4)
-	{
-		data->img[i].height = 64;
-		data->img[i].width = 64;
-		data->img[i].address = 0;
-		i++;
-	}
-	/* data->img->north_air = NULL;
-	data->img->south_fire = NULL;
-	data->img->west_water = NULL;
-	data->img->east_earth = NULL; */
 	extract_map(data, argv[1]);
 	init_player(data);
 	extract_textures(data, argv[1]);

@@ -3,8 +3,8 @@ SO ./texture/south_fire.xpm
 WE ./texture/west_water.xpm
 EA ./texture/east_earth.xpm
 
-F 220,100,0
-C 225,30,0
+C 150,255,255
+F 112,141,35
 
 111     11111  111111111111111111
         1000111100110000111100001

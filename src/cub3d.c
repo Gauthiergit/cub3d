@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/25 17:28:12 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:24:31 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,34 @@ int	on_keypress(int keysym, t_data *data)
 		printf("Don't want to play anymore?\n");
 		on_destroy(data);
 	}
-	/* else if (keysym == A || keysym == 65361)
+	/*  else if (keysym == LEFT)
+		ft_move(data, &(data->pos_p), ROT_LEFT);
+	 else if (keysym == RIGHT)
+		ft_move(data, &(data->pos_p), ROT_RIGHT);
+	else if (keysym == A)
 		ft_move(data, &(data->pos_p), LEFT);
-	else if (keysym == D || keysym == 65363)
+	else if (keysym == D)
 		ft_move(data, &(data->pos_p), RIGHT);
-	else if (keysym == S || keysym == 65364)
+	else if (keysym == S)// || keysym == 65364)
 		ft_move(data, &(data->pos_p), DOWN);
-	else if (keysym == W || keysym == 65362)
+	else if (keysym == W)// || keysym == 65362)
 		ft_move(data, &(data->pos_p), UP); */
 	return (0);
 }
 
-/* int	game()
+int	game(t_data *data)
 {
-
-} */
+	data->img_s.pt_img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	data->img_s.address = mlx_get_data_addr(data->img_s.pt_img, \
+						&data->img_s.bits_per_pixel, &data->img_s.size_line, \
+						&data->img_s.endian);
+	put_floor(data);
+	put_ceiling(data);
+	// ft_raycast(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
+	mlx_destroy_image(data->mlx, data->img_s.pt_img);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -61,8 +74,8 @@ int	main(int argc, char **argv)
 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	if (!data.win)
 		return (free(data.mlx), 1);
+	mlx_loop_hook(data.mlx, game, &data);
 	mlx_hook(data.win, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-	//mlx_loop_hook(data.mlx, game, &data);
 	mlx_hook(data.win, 17, 0, &on_destroy, &data);
 	mlx_loop(data.mlx);
 	return (0);

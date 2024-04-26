@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/25 17:24:51 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:17:38 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@
 # define FOV 60
 # define H_CAM 32
 # define ESC 65307
+# define RIGHT 65363
+# define LEFT 65361
 
-// screen
+/*screen*/
 
 # define SCREEN_HEIGHT 			1000
 # define SCREEN_WIDTH 			1500
@@ -45,24 +47,49 @@ typedef struct s_player
 	float			fov_rd;
 }					t_player;
 
-typedef struct s_img
+/* typedef struct s_point
 {
+	double		x;
+	double		y;
+}				t_point;
+
+typedef struct s_vector
+{
+	t_point		position;
+	t_point		direction;
+	t_point		plane;
+}				t_vector; */
+
+/*texture struct*/
+
+typedef struct s_img_t
+{
+	void		*pt_img;
+	int			*address;
 	int			height;
 	int			width;
-	void		*pt_img;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	int			*address;
+}					t_img_t;
 	/* char		*north_air;
 	char 		*south_fire;
 	char		*west_water;
-	char		*east_earth;
-	void		*img_north_air;
-	void 		*img_south_fire;
-	void		*img_west_water;
-	void		*img_east_earth; */
-}					t_img;
+	char		*east_earth;*/
+
+/*screen struct*/
+
+typedef struct s_img_s
+{
+	void		*pt_img;
+	char		*address;
+	int			height;
+	int			width;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+}				t_img_s;
+
 
 typedef struct s_data
 {
@@ -81,7 +108,8 @@ typedef struct s_data
 	int				F;
 	int				C;
 	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
-	t_img			img[4];
+	t_img_t			img_t[4];
+	t_img_s			img_s;
 	t_player		player;
 	double 			ray_ngl;
 }				t_data;
@@ -89,6 +117,7 @@ typedef struct s_data
 /* cub3d.c */
 int		on_destroy(t_data *data);
 int		on_keypress(int keysym, t_data *data);
+int		game(t_data *data);
 
 /* data_init.c */
 void	data_init(t_data *data, char **argv);
@@ -110,6 +139,10 @@ void	check_error_map(t_data *data);
 
 /* get_next_line.c */
 char	*get_next_line(int fd);
+
+/* img_to_create */
+void    put_ceiling(t_data *data);
+void    put_floor(t_data *data);
 
 /* map_init.c */
 int		is_map(char *line);

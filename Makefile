@@ -30,6 +30,7 @@ SRCS  = src/cub3d.c \
 		src/error.c \
 		src/exit.c \
 		src/get_next_line.c \
+		src/img_to_create.c \
 		src/map_init.c \
 		src/textures_init.c \
 		src/utils.c
