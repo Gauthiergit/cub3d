@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 14:24:31 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:33:32 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	game(t_data *data)
 						&data->img_s.endian);
 	put_floor(data);
 	put_ceiling(data);
-	// ft_raycast(data);
+	//raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img_s.pt_img);
 	return (0);

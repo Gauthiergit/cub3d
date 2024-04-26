@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:18:03 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/26 16:28:45 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void	data_init(t_data *data, char **argv)
 	extract_map(data, argv[1]);
 	init_player(data);
 	extract_textures(data, argv[1]);
-	data->ray_ngl = 0.0000;
+	data->ray.ray_ngl = 0.0000;
 }

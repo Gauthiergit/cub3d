@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:11:35 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/26 16:32:36 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ double	get_dist_h_inter(t_data *data, float angle)
 	y_step = SQUARE_SIZE;
 	x_step = SQUARE_SIZE / tan(angle);
 	h_y = floor(data->player.px_y / SQUARE_SIZE) * SQUARE_SIZE;
-	dir_step_first(data->ray_ngl, &h_y, &y_step, 1);
+	dir_step_first(data->ray.ray_ngl, &h_y, &y_step, 1);
 	if (h_y < data->player.px_y)
 		h_x = data->player.px_x + (data->player.px_y - h_y) / tan(angle);
 	else
 		h_x = data->player.px_x + (h_y - data->player.px_y) / tan(angle);
-	dir_step_second(data->ray_ngl, &x_step, 1);
+	dir_step_second(data->ray.ray_ngl, &x_step, 1);
 	while (!wall_hit(data, h_x, h_y))
 	{
 		h_x += x_step;
@@ -73,23 +73,22 @@ double	get_dist_v_inter(t_data *data, float angle)
 	float	v_y;
 	float	x_step;
 	float	y_step;
-	int		pixel;
 
 	x_step = SQUARE_SIZE;
 	y_step = SQUARE_SIZE / tan(angle);
 	v_x = floor(data->player.px_x / SQUARE_SIZE) * SQUARE_SIZE;
-	dir_step_fisrt(data->ray_ngl, &v_x, &x_step, 0);
+	dir_step_first(data->ray.ray_ngl, &v_x, &x_step, 0);
 	if (v_x < data->player.px_x)
 		v_y = data->player.px_y + (data->player.px_x - v_x) / tan(angle);
 	else
 		v_y = data->player.px_y + (v_x - data->player.px_x) / tan(angle);
-	dir_step_second(data->ray_ngl, &y_step, 0);
-	while (!wall_hit(data, h_x, h_y))
+	dir_step_second(data->ray.ray_ngl, &y_step, 0);
+	while (!wall_hit(data, v_x, v_y))
 	{
-		h_x += x_step;
-		h_y += y_step;
+		v_x += x_step;
+		v_y += y_step;
 	}
-	return (dist_ray(data, h_x, h_y));
+	return (dist_ray(data, v_x, v_y));
 }
 
 void	raycasting(t_data *data)
