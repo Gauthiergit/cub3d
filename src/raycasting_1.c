@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:32:36 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:35:15 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	raycasting(t_data *data)
 			data->ray.distance = dist_h_inter;
 		else
 			data->ray.distance = dist_v_inter;
+		//fonction qui va affichr ma colonne ici
 		data->ray.ray_ngl += (data->player.fov_rd / SCREEN_WIDTH);
 		ray++;
 	}
