@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 14:17:38 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:17:36 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,18 @@ typedef struct s_player
 	double			angle;
 	float			fov_rd;
 }					t_player;
+
+typedef struct s_ray
+{
+ double	ray_ngl;
+ double	distance;
+}				t_ray;
+
+typedef struct s_ray
+{
+ double	ray_ngl;
+ double	distance;
+}				t_ray;
 
 /* typedef struct s_point
 {
@@ -111,7 +123,7 @@ typedef struct s_data
 	t_img_t			img_t[4];
 	t_img_s			img_s;
 	t_player		player;
-	double 			ray_ngl;
+	t_ray			ray;
 }				t_data;
 
 /* cub3d.c */
@@ -150,6 +162,17 @@ void	count_line_map(t_data *data, char *file);
 void	find_lgst_line(t_data *data, char *file);
 void	fill_in_map(t_data *data, int fd, char *cur_line);
 void	extract_map(t_data *data, char *file);
+
+/* raycasting_1.c */
+int		wall_hit(t_data *data, float x, float y);
+double 	dist_ray(t_data *data, float x, float y);
+double	get_dist_h_inter(t_data *data, float angle);
+double	get_dist_v_inter(t_data *data, float angle);
+void	raycasting(t_data *data);
+
+/* raycasting_2.c */
+void	dir_step_first(float angle, float *inter, float *step, int is_horizon);
+void	dir_step_second(float angle, float *step, int is_horizon);
 
 /* textures_init.c */
 void	convert_colors(t_data *data, char **color_tab, char c);

@@ -32,6 +32,8 @@ SRCS  = src/cub3d.c \
 		src/get_next_line.c \
 		src/img_to_create.c \
 		src/map_init.c \
+		src/raycasting_1.c \
+		src/raycasting_2.c \
 		src/textures_init.c \
 		src/utils.c
 

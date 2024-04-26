@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 11:27:53 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:18:03 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	init_angle(t_data *data, char dir)
 {
 	if (dir == 'N')
-		data->player.angle = 3 * M_PI / 2;
-	else if (dir == 'S')
 		data->player.angle = M_PI / 2;
+	else if (dir == 'S')
+		data->player.angle = 3 * M_PI / 2;
 	else if (dir == 'W')
 		data->player.angle = M_PI;
 	else if (dir == 'E')
