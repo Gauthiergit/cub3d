@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/29 15:52:49 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:43:24 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_init_minimap(t_data *data)
 	if (!mnmap)
 		exit(1);
 	data->mnmap = mnmap;
-	data->mnmap->height = SQUARE_SIZE;
-	data->mnmap->width = SQUARE_SIZE;
+	data->mnmap->height = SCREEN_HEIGHT / 30;
+	data->mnmap->width = SCREEN_WIDTH / 30;
 	data->mnmap->wall = "./texture/wall.xpm";
 	data->mnmap->space = "./texture/space.xpm";
 	data->mnmap->img_wall = mlx_xpm_file_to_image(data->mlx, data->mnmap->wall,
@@ -55,7 +55,7 @@ void	ft_print_minimap(t_data *data)
 				|| data->scene[pos.y][pos.x] == 'S'
 				|| data->scene[pos.y][pos.x] == 'W'
 				|| data->scene[pos.y][pos.x] == 'E')
-				mlx_pixel_put(data->mlx, data->win, pos.x, pos.y, 0xffff00);
+				ft_pixel(data, 0xffff00, pos.x, pos.y);
 			pos.x++;
 		}
 		pos.y++;

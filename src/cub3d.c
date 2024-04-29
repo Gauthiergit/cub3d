@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/29 16:03:18 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:40:07 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,9 @@ int	game(t_data *data)
 	data->img_s.address = mlx_get_data_addr(data->img_s.pt_img, \
 						&data->img_s.bits_per_pixel, &data->img_s.size_line, \
 						&data->img_s.endian);
-	ft_print_minimap(data);
-	put_floor(data);
-	put_ceiling(data);
+	put_ceiling_and_floor(data);
 	//raycasting(data);
+	ft_print_minimap(data);
 	//ft_movements(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img_s.pt_img);

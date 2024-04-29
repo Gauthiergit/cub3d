@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/29 15:37:52 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:28:35 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,8 +175,8 @@ void	check_error_map(t_data *data);
 char	*get_next_line(int fd);
 
 /* img_to_create */
-void    put_ceiling(t_data *data);
-void    put_floor(t_data *data);
+void	ft_pixel(t_data *data, int color, int i, int j);
+void	put_ceiling_and_floor(t_data *data);
 
 /* map_init.c */
 int		is_map(char *line);
