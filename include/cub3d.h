@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/29 17:28:35 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:41:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 /*screen*/
 
-# define SCREEN_HEIGHT 			1000
-# define SCREEN_WIDTH 			1500
+# define SCREEN_HEIGHT 			600
+# define SCREEN_WIDTH 			800
 
 typedef struct s_player
 {
