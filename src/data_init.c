@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:28:45 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:39:07 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ void	extract_textures(t_data *data, char *file)
 
 void	data_init(t_data *data, char **argv)
 {
+	int	i;
+
+	i = 0;
 	data->lgst_line = 0;
 	data->line_nb = 0;
 	data->text_tab = NULL;
@@ -108,6 +111,12 @@ void	data_init(t_data *data, char **argv)
 	data->C = 0;
 	extract_map(data, argv[1]);
 	init_player(data);
+	while (i < 4)
+	{
+		data->img_t[i].width = SQUARE_SIZE;
+		data->img_t[i].height = SQUARE_SIZE;
+		i++;
+	}
 	extract_textures(data, argv[1]);
 	data->ray.ray_ngl = 0.0000;
 }

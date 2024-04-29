@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:33:32 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:03:18 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,30 @@
 int	on_destroy(t_data *data)
 {
 	//ft_destroy_images(data);
+	mlx_destroy_image(data->mlx, data->mnmap->img_space);
+	mlx_destroy_image(data->mlx, data->mnmap->img_wall);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
 	clear_tab(data->text_tab);
 	free(data->mlx);
 	exit(0);
+	return (0);
+}
+int	on_keyrelease(int keysym, t_data *data)
+{
+	if (keysym == LEFT)
+		data->key.left = 0;
+	else if (keysym == RIGHT)
+		data->key.right = 0;
+	else if (keysym == A)
+		data->key.a = 0;
+	else if (keysym == D)
+		data->key.d = 0;
+	else if (keysym == S)// || keysym == 65364)
+		data->key.s = 0;
+	else if (keysym == W)// || keysym == 65362)
+		data->key.w = 0;
 	return (0);
 }
 
@@ -32,18 +50,18 @@ int	on_keypress(int keysym, t_data *data)
 		printf("Don't want to play anymore?\n");
 		on_destroy(data);
 	}
-	/*  else if (keysym == LEFT)
-		ft_move(data, &(data->pos_p), ROT_LEFT);
-	 else if (keysym == RIGHT)
-		ft_move(data, &(data->pos_p), ROT_RIGHT);
+	else if (keysym == LEFT)
+		data->key.left = 1;
+	else if (keysym == RIGHT)
+		data->key.right = 1;
 	else if (keysym == A)
-		ft_move(data, &(data->pos_p), LEFT);
+		data->key.a = 1;
 	else if (keysym == D)
-		ft_move(data, &(data->pos_p), RIGHT);
+		data->key.d = 1;
 	else if (keysym == S)// || keysym == 65364)
-		ft_move(data, &(data->pos_p), DOWN);
+		data->key.s = 1;
 	else if (keysym == W)// || keysym == 65362)
-		ft_move(data, &(data->pos_p), UP); */
+		data->key.w = 1;
 	return (0);
 }
 
@@ -53,9 +71,11 @@ int	game(t_data *data)
 	data->img_s.address = mlx_get_data_addr(data->img_s.pt_img, \
 						&data->img_s.bits_per_pixel, &data->img_s.size_line, \
 						&data->img_s.endian);
+	ft_print_minimap(data);
 	put_floor(data);
 	put_ceiling(data);
 	//raycasting(data);
+	//ft_movements(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img_s.pt_img);
 	return (0);
@@ -75,7 +95,8 @@ int	main(int argc, char **argv)
 	if (!data.win)
 		return (free(data.mlx), 1);
 	mlx_loop_hook(data.mlx, game, &data);
-	mlx_hook(data.win, KeyRelease, KeyReleaseMask, &on_keypress, &data);
+	mlx_hook(data.win, KeyPress, KeyPressMask, &on_keypress, &data);
+	mlx_hook(data.win, KeyRelease, KeyReleaseMask, &on_keyrelease, &data);
 	mlx_hook(data.win, 17, 0, &on_destroy, &data);
 	mlx_loop(data.mlx);
 	return (0);

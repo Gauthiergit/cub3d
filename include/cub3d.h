@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:27:43 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:37:52 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define ESC 65307
 # define RIGHT 65363
 # define LEFT 65361
+# define A 97
+# define D 100
+# define S 115
+# define W 119
 
 /*screen*/
 
@@ -53,13 +57,13 @@ typedef struct s_ray
  double	distance;
 }				t_ray;
 
-/* typedef struct s_point
+typedef struct s_pos
 {
-	double		x;
-	double		y;
-}				t_point;
+	int		x;
+	int		y;
+}				t_pos;
 
-typedef struct s_vector
+/* typedef struct s_vector
 {
 	t_point		position;
 	t_point		direction;
@@ -67,6 +71,26 @@ typedef struct s_vector
 }				t_vector; */
 
 /*texture struct*/
+
+typedef struct s_mnmap
+{
+	int			height;
+	int			width;
+	char		*wall;
+	char		*space;
+	void		*img_wall;
+	void		*img_space;
+}				t_mnmap;
+
+typedef struct s_key
+{
+	int			w;
+	int			s;
+	int			a;
+	int			d;
+	int			right;
+	int			left;
+}				t_key;
 
 typedef struct s_img_t
 {
@@ -116,12 +140,16 @@ typedef struct s_data
 	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
 	t_img_t			img_t[4];
 	t_img_s			img_s;
+	t_mnmap			*mnmap;
+	t_pos			pos;
+	t_key			key;
 	t_player		player;
 	t_ray			ray;
 }				t_data;
 
 /* cub3d.c */
 int		on_destroy(t_data *data);
+int		on_keyrelease(int keysym, t_data *data);
 int		on_keypress(int keysym, t_data *data);
 int		game(t_data *data);
 
@@ -156,6 +184,11 @@ void	count_line_map(t_data *data, char *file);
 void	find_lgst_line(t_data *data, char *file);
 void	fill_in_map(t_data *data, int fd, char *cur_line);
 void	extract_map(t_data *data, char *file);
+
+/* minimap.c */
+void	ft_print_image(t_data *data, void *img, t_pos pos);
+void	ft_init_minimap(t_data *data);
+void	ft_print_minimap(t_data *data);
 
 /* raycasting_1.c */
 int		wall_hit(t_data *data, float x, float y);

@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/26 10:54:17 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:59:52 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int	check_scene_infos(t_data *data, char *file)
 		free(line);
 	}
 	close(fd);
+	get_next_line(42);
 	if (ft_tab_size(data->text_tab) != 4 || data->F != 1 || data->C != 1)
 		return (1);
 	return (0);
