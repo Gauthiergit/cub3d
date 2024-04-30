@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/29 17:40:07 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:49:24 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 int	on_destroy(t_data *data)
 {
 	//ft_destroy_images(data);
-	mlx_destroy_image(data->mlx, data->mnmap->img_space);
-	mlx_destroy_image(data->mlx, data->mnmap->img_wall);
+	/* mlx_destroy_image(data->mlx, data->mnmap->img_space);
+	mlx_destroy_image(data->mlx, data->mnmap->img_wall); */
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
 	clear_tab(data->text_tab);
+	free(data->mnmap);
 	free(data->mlx);
 	exit(0);
 	return (0);
