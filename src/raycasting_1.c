@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/26 16:35:15 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/04/30 17:34:30 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,24 @@ void	raycasting(t_data *data)
 
 	ray = 0;
 	data->ray.ray_ngl = data->player.angle + (data->player.fov_rd / 2);
+	data->ray.ray_ngl = nor_angle(data->ray.ray_ngl);
 	while (ray < SCREEN_WIDTH)
 	{
 		dist_h_inter = get_dist_h_inter(data, data->ray.ray_ngl);
 		dist_v_inter = get_dist_v_inter(data, data->ray.ray_ngl);
 		if (dist_h_inter <= dist_v_inter)
+		{
 			data->ray.distance = dist_h_inter;
+			data->ray.flag = 1;
+		}
 		else
+		{
 			data->ray.distance = dist_v_inter;
-		//fonction qui va affichr ma colonne ici
+			data->ray.flag = 0;
+		}
+		render_wall(data, ray);
 		data->ray.ray_ngl += (data->player.fov_rd / SCREEN_WIDTH);
+		data->ray.ray_ngl = nor_angle(data->ray.ray_ngl);
 		ray++;
 	}
 }

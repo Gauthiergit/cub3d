@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/30 10:31:47 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:49:09 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_ray
 {
  double	ray_ngl;
  double	distance;
+ int	flag;
 }				t_ray;
 
 typedef struct s_pos
@@ -160,6 +161,12 @@ void	data_init(t_data *data, char **argv);
 void	init_player(t_data *data);
 void	extract_textures(t_data *data, char *file);
 
+/* display.c */
+float	nor_angle(float angle);
+int		get_color(t_data *data, int flag);
+void	draw_wall(t_data *data, int ray, int t_pix, int b_pix);
+void	render_wall(t_data *data, int ray);
+
 /* error_2.c */
 int		check_walls(t_data *data);
 void	find_lgst_line(t_data *data, char *file);
@@ -189,6 +196,8 @@ void	extract_map(t_data *data, char *file);
 
 /* minimap.c */
 void	ft_print_image(t_data *data, void *img, t_pos pos);
+void	ft_put_player(t_data *data);
+void	ft_init_player(t_data *data);
 void	ft_init_minimap(t_data *data);
 void	ft_print_minimap(t_data *data);
 
