@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/30 17:49:09 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:04:19 by gwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ typedef struct s_mnmap
 	int			width;
 	int			minixo;
 	int			miniyo;
+	int			mapxb;
+	int			mapyb;
+	int			mapsx;
+	int			mapsy;
 	char		*wall;
 	char		*space;
 	void		*img_wall;
@@ -121,6 +125,8 @@ typedef struct s_img_s
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
+	double		px;
+	double		py;
 }				t_img_s;
 
 
@@ -200,6 +206,11 @@ void	ft_put_player(t_data *data);
 void	ft_init_player(t_data *data);
 void	ft_init_minimap(t_data *data);
 void	ft_print_minimap(t_data *data);
+
+/* minimap_walls.c */
+void	ft_pixel_mnmap(t_data *data, int color);
+void	ft_read_map(t_data *data, int io, int jo);
+void	ft_walls(t_data *data);
 
 /* raycasting_1.c */
 int		wall_hit(t_data *data, float x, float y);

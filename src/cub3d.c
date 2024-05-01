@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/30 17:15:45 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:29:15 by gwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	game(t_data *data)
 						&data->img_s.bits_per_pixel, &data->img_s.size_line, \
 						&data->img_s.endian);
 	put_ceiling_and_floor(data);
-	raycasting(data);
+	//raycasting(data);
 	ft_print_minimap(data);
 	//ft_movements(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);

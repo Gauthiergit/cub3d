@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/30 17:51:28 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:14:55 by gwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_put_player(t_data *data)
 		{
 			if (pow(x - data->player.px_x, 2) + pow(y - data->player.px_y, 2)
 				<= pow(data->player.angle, 2))
-				ft_pixel(data, 0xffff00, y, x);
+				ft_pixel(data, 0x3c00ff, y, x); //Bleu violet player
 			x++;
 		}
 		y++;
@@ -59,6 +59,10 @@ void	ft_init_minimap(t_data *data)
 	data->mnmap->width = SCREEN_WIDTH / 30;
 	data->mnmap->minixo = SCREEN_WIDTH / 40 * 10;
 	data->mnmap->miniyo =  SCREEN_HEIGHT / 40 * 10;
+	data->mnmap->mapxb = data->mnmap->width;
+	data->mnmap->mapyb = data->mnmap->height;
+	data->mnmap->mapsx = 7;
+	data->mnmap->mapsy = data->mnmap->mapsx - 1;
 	/* data->mnmap->img_wall = mlx_xpm_file_to_image(data->mlx, data->mnmap->wall,
 			&(data->mnmap->width), &(data->mnmap->height));
 	data->mnmap->img_space = mlx_xpm_file_to_image(data->mlx, data->mnmap->space,
@@ -78,12 +82,13 @@ void	ft_print_minimap(t_data *data)
 		while (j < data->mnmap->minixo)
 		{
 			if (j % 2 == 0 && i % 2 == 0)
-				ft_pixel(data, 0xffff00, i, j);
+				ft_pixel(data, 0xffff00, i, j); //Jaune
 			j++;
 		}
 		i++;
 	}
 	ft_init_player(data);
+	ft_walls(data);
 	ft_put_player(data);
 }
 
