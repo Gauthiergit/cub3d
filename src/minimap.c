@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/02 15:13:11 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:47:36 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ void	ft_print_minimap(t_data *data)
 		while (j < data->mnmap->minixo)
 		{
 			if (j % 2 == 0 && i % 2 == 0)
-				ft_pixel(data, 0xffff00, i, j); //Jaune
+				ft_pixel(data, 0xffff00, i, j); //Jaune background
 			j++;
 		}
 		i++;
 	}
-	ft_init_player(data);
+	//ft_init_player(data);
 	ft_walls(data);
 	//ft_put_player(data);
 	free(data->mnmap);

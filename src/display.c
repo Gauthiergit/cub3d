@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 15:28:25 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:37:12 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the w
 	int		y;
 
 	get_texture_nb(data, data->ray.flag);
-	step = 1.0 * SQUARE_SIZE / data->line_nb;
-	text_pos = (t_pix - SCREEN_HEIGHT / 2 + data->line_nb / 2) * step;
+	step = 1.0 * SQUARE_SIZE / data->wall_h;
+	text_pos = (t_pix - SCREEN_HEIGHT / 2 + data->wall_h / 2) * step;
 	y = t_pix;
 	ft_get_text_x(data);
 	while (y < b_pix)
 	{
 		data->text_y = (int) text_pos & (SQUARE_SIZE - 1);
-		text_pos += step;
 		data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_x + data->text_y];
+		text_pos += step;
 		if (data->ray.flag == 0)
 			data->color = (data->color >> 1) & 8355711;
 		ft_place_pixel(data, ray, y, data->color);
@@ -96,14 +96,14 @@ float	nor_angle(float angle) // normalize the angle
 
 void	render_wall(t_data *data, int ray) // render the wall
 {
-	double	wall_h;
+	//double	wall_h;
 	double	b_pix;
 	double	t_pix;
 
 	data->ray.distance *= cos(nor_angle(data->ray.ray_ngl - data->player.angle)); // fix the fisheye
-	wall_h = (SQUARE_SIZE / data->ray.distance) * ((SCREEN_WIDTH / 2) / tan(data->player.fov_rd / 2)); // get the wall height
-	b_pix = (SCREEN_HEIGHT / 2) + (wall_h / 2); // get the bottom pixel
-	t_pix = (SCREEN_HEIGHT / 2) - (wall_h / 2); // get the top pixel
+	data->wall_h = (SQUARE_SIZE / data->ray.distance) * ((SCREEN_WIDTH / 2) / tan(data->player.fov_rd / 2)); // get the wall height
+	b_pix = (SCREEN_HEIGHT / 2) + (data->wall_h / 2); // get the bottom pixel
+	t_pix = (SCREEN_HEIGHT / 2) - (data->wall_h / 2); // get the top pixel
 	if (b_pix > SCREEN_HEIGHT) // check the bottom pixel
 		b_pix = SCREEN_HEIGHT;
 	if (t_pix < 0) // check the top pixel

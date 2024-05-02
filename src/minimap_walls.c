@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/02 15:14:03 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:47:59 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_read_map(t_data *data, int io, int jo)
 			ft_pixel_mnmap(data, 0xffffff); //blanc
 		else if (data->scene[io][jo] == 'N' || data->scene[io][jo] == 'S'
 			|| data->scene[io][jo] == 'W' || data->scene[io][jo] == 'E')
-			ft_pixel_mnmap(data, 0xffff00); //jaune
+			ft_pixel_mnmap(data, 0xff0000); //jaune
 		else
 			return ;
 	}

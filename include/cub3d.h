@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 14:47:03 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:56:43 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,8 @@ typedef struct s_data
 	int				text_x;
 	int				text_y;
 	double			cam_x;
-	double			wall_x;	
+	double			wall_x;
+	double			wall_h;
 	char			**text_tab;
 	int				NO;
 	int				SO;
@@ -156,6 +157,9 @@ typedef struct s_data
 	t_player		player;
 	t_ray			ray;
 }				t_data;
+
+/*C 150,255,255
+F 112,141,35*/
 
 /* cub3d.c */
 int		on_destroy(t_data *data);
