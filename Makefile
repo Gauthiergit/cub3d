@@ -37,7 +37,8 @@ SRCS  = src/cub3d.c \
 		src/raycasting_1.c \
 		src/raycasting_2.c \
 		src/textures_init.c \
-		src/utils.c
+		src/utils_1.c \
+		src/utils_2.c
 
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))
 

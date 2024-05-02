@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/01 16:27:38 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/02 13:58:18 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	init_player(t_data *data)
 				data->player.px_y = y * SQUARE_SIZE + SQUARE_SIZE / 2;
 				data->player.fov_rd = (FOV * M_PI) / 180;
 				dir = data->scene[y][x];
-				data->img_s.px = x + 0.5;
-				data->img_s.py = y + 0.5;
+				ft_set_vectors(data, y, x);
 			}
 			x++;
 		}

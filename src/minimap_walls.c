@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/01 17:12:46 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/02 15:14:03 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ void	ft_walls(t_data *data)
 	int	j;
 	int	jo;
 
-	i = -12;
-	while (i < 13)
+	i = -12;//-4
+	while (i < 13)//5
 	{
-		j = -18;
-		io = (int)data->img_s.py + i;
+		j = -18;//-6
+		io = (int)data->pos.y + i;
 		while (j < 7)
 		{
-			jo = (int)data->img_s.px + j;
+			jo = (int)data->pos.x + j;
 			ft_read_map(data, io, jo);
 			j++;
 			data->mnmap->width += data->mnmap->mapsx;

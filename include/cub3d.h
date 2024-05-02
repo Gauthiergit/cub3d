@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 10:47:10 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:47:03 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,9 @@ typedef struct s_ray
 
 typedef struct s_pos
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 }				t_pos;
-
-/* typedef struct s_vector
-{
-	t_point		position;
-	t_point		direction;
-	t_point		plane;
-}				t_vector; */
 
 /*texture struct*/
 
@@ -125,8 +118,6 @@ typedef struct s_img_s
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	double		px;
-	double		py;
 }				t_img_s;
 
 
@@ -139,6 +130,11 @@ typedef struct s_data
 	int				line_nb;
 	unsigned long	floor_hex;
 	unsigned long	ceiling_hex;
+	unsigned long	color;
+	int				text_x;
+	int				text_y;
+	double			cam_x;
+	double			wall_x;	
 	char			**text_tab;
 	int				NO;
 	int				SO;
@@ -146,11 +142,16 @@ typedef struct s_data
 	int				EA;
 	int				F;
 	int				C;
+	int				texture_number;
 	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
 	t_img_t			img_t[4];
 	t_img_s			img_s;
 	t_mnmap			*mnmap;
+	t_pos			map;
 	t_pos			pos;
+	t_pos			dir;
+	t_pos			ray_dir;
+	t_pos			plane;
 	t_key			key;
 	t_player		player;
 	t_ray			ray;
@@ -168,8 +169,11 @@ void	init_player(t_data *data);
 void	extract_textures(t_data *data, char *file);
 
 /* display.c */
-void	render_wall(t_data *data, int ray);
+void	get_texture_nb(t_data *data, int flag);
+void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix);
+void	ft_ray_pos_and_dir(t_data *data, int ray);
 float	nor_angle(float angle);
+void	render_wall(t_data *data, int ray);
 /* int		get_color(t_data *data, int flag);
 void	draw_wall(t_data *data, int ray, int t_pix, int b_pix); */
 
@@ -230,9 +234,16 @@ int		valid_texture_we(t_data *data, char *line, char *dup);
 int		valid_texture_ns(t_data *data, char *line);
 int		check_scene_infos(t_data *data, char *file);
 
-/* utils.c */
+/* utils_1.c */
 int		ft_tab_size(char **tab);
 void	clear_tab(char **tab);
 size_t	count_line_tab(char **tab);
+
+/* utils_2.c */
+void	ft_place_pixel(t_data *data, int ray, int y, int color);
+void	ft_get_text_x(t_data *data);
+void	ft_set_values(t_data *data, double dir_x, double dir_y,
+		double plane_x, double plane_y);
+void	ft_set_vectors(t_data *data, int y, int x);
 
 #endif
