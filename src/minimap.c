@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/01 17:14:55 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/02 10:58:12 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ft_print_minimap(t_data *data)
 	ft_init_player(data);
 	ft_walls(data);
 	ft_put_player(data);
+	free(data->mnmap);
 }
 
 /* void	ft_init_minimap(t_data *data)

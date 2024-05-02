@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/01 16:04:19 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/02 10:47:10 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,10 +168,10 @@ void	init_player(t_data *data);
 void	extract_textures(t_data *data, char *file);
 
 /* display.c */
-float	nor_angle(float angle);
-int		get_color(t_data *data, int flag);
-void	draw_wall(t_data *data, int ray, int t_pix, int b_pix);
 void	render_wall(t_data *data, int ray);
+float	nor_angle(float angle);
+/* int		get_color(t_data *data, int flag);
+void	draw_wall(t_data *data, int ray, int t_pix, int b_pix); */
 
 /* error_2.c */
 int		check_walls(t_data *data);
@@ -220,8 +220,8 @@ double	get_dist_v_inter(t_data *data, float angle);
 void	raycasting(t_data *data);
 
 /* raycasting_2.c */
-void	dir_step_first(float angle, float *inter, float *step, int is_horizon);
-void	dir_step_second(float angle, float *step, int is_horizon);
+int		dir_step_first(float angle, float *inter, float *step, int is_horizon);
+int		dir_step_second(float angle, int is_horizon);
 
 /* textures_init.c */
 void	convert_colors(t_data *data, char **color_tab, char c);

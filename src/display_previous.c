@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disp.c                                             :+:      :+:    :+:   */
+/*   display_previous.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 10:44:07 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:50:52 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+/* #include "../include/cub3d.h"
 
 float nor_angle(float angle) // normalize the angle
 {
@@ -27,16 +27,16 @@ int get_color(t_data *data, int flag) // get the color of the wall
 	if (flag == 0)
 	{
 		if (data->ray.ray_ngl > M_PI / 2 && data->ray.ray_ngl < 3 * (M_PI / 2))
-			return (0x33CC33); // west wall vert
+			return (0xB5B5B5FF); // west wall
 		else
-			return (0xFFFF33); // east wall jaune
+			return (0xB5B5B5FF); // east wall
 	}
 	else
 	{
 		if (data->ray.ray_ngl > 0 && data->ray.ray_ngl < M_PI)
-			return (0x0033FF); // south wall bleu
+			return (0xF5F5F5FF); // south wall
 		else
-			return (0xCC0033); // north wall rouge
+			return (0xF5F5F5FF); // north wall
 	}
 }
 
@@ -68,4 +68,32 @@ void render_wall(t_data *data, int ray) // render the wall
 	if (t_pix < 0) // check the top pixel
 		t_pix = 0;
 	draw_wall(data, ray, t_pix, b_pix); // draw the wall
+} */
+
+/* float	perceived_height(t_data *data)
+{
+	float	p_height;
+
+	p_height = 0;
+	
 }
+
+float	dist_wall(t_data *data)
+{
+	float	d_wall;
+	int		x;
+	int		y;
+
+	d_wall = 0;
+	x = data->cam.x;
+	y = data->cam.y;
+	if (data->cam.dir == 'N')
+	{
+		while (data->scene[y][x] == '0')
+		{
+			d_wall += 64;
+			y--;
+		}
+	}
+} */
+//Pas bon trouver comment faire autrement 
