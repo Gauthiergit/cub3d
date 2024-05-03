@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 11:40:38 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:59:59 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_angle(t_data *data, char dir)
 {
-	if (dir == 'N')
+	if (dir == 'S')
 		data->player.angle = M_PI / 2;
-	else if (dir == 'S')
+	else if (dir == 'N')
 		data->player.angle = 3 * M_PI / 2;
 	else if (dir == 'W')
 		data->player.angle = M_PI;
@@ -28,7 +28,6 @@ void	init_player(t_data *data)
 {
 	int		y;
 	int		x;
-	char	dir;
 
 	y = 0;
 	while (data->scene[y])
@@ -43,14 +42,13 @@ void	init_player(t_data *data)
 				data->player.px_x = x * SQUARE_SIZE + SQUARE_SIZE / 2;
 				data->player.px_y = y * SQUARE_SIZE + SQUARE_SIZE / 2;
 				data->player.fov_rd = (FOV * M_PI) / 180;
-				dir = data->scene[y][x];
+				init_angle(data, data->scene[y][x]);
 				ft_set_vectors(data, y, x);
 			}
 			x++;
 		}
 		y++;
 	}
-	init_angle(data, dir);
 }
 
 void	ft_fill_wall_array(t_data *data, int i)
@@ -78,19 +76,19 @@ void	extract_textures(t_data *data, char *file)
 
 	i = 0;
 	if (check_scene_infos(data, file))
-		print_error("Scene infos not correct");
+		print_error("Scene infos not correct", data);
 	while (i < 4)
 	{
 		data->img_t[i].pt_img = mlx_xpm_file_to_image(data->mlx, \
 						data->text_tab[i], &(data->img_t[i].width), \
 						&(data->img_t[i].height));
 		if (!data->img_t[i].pt_img)
-			print_error("Fail to load texture");
+			print_error("Fail to load texture", data);
 		data->img_t[i].address = (int *)mlx_get_data_addr(data->img_t[i].pt_img, \
 						&data->img_t[i].bits_per_pixel, &data->img_t[i].size_line, \
 						&data->img_t[i].endian);
 		if (!data->img_t[i].address)
-			print_error("Fail to load texture");
+			print_error("Fail to load texture", data);
 		ft_fill_wall_array(data, i);
 		mlx_destroy_image(data->mlx, data->img_t[i].pt_img);
 		i++;

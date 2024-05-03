@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 16:45:01 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:28:31 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	check_error_file(argc, argv);
+	if (check_error_file(argc, argv))
+		exit(1);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);

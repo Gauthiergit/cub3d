@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 16:56:43 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:29:40 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,8 @@ int		check_walls(t_data *data);
 void	find_lgst_line(t_data *data, char *file);
 
 /* error.c */
-void	print_error(const char *error);
-void	check_error_file(int argc, char **argv);
+void	print_error(const char *error, t_data *data);
+int		check_error_file(int argc, char **argv);
 int		is_valid_char(char **map);
 void	check_error_map(t_data *data);
 
