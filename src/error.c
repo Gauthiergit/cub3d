@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/22 12:03:24 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 10:40:23 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,36 @@ int	is_valid_char(char **map)
 	return (0);
 }
 
+int	is_double(char **map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n')
+		{
+			if (ft_strchr("NSEW", map[i][j]))
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
 void	check_error_map(t_data *data)
 {
 	if (is_valid_char(data->scene))
 		print_error("Character allowed are '10NSEW and space'");
+	if (is_double(data->scene) == 0)
+		print_error("There is no player position");
+	if (is_double(data->scene) > 1)
+		print_error("We need only one player position");
 	if (check_walls(data))
 		print_error("The map isn't closed");
 }
