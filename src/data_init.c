@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 13:58:18 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 10:43:21 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,6 @@ void	data_init(t_data *data, char **argv)
 	}
 	extract_textures(data, argv[1]);
 	data->ray.ray_ngl = 0.0000;
+	data->ray.distance = 0.0000;
+	data->ray.flag = 0;
 }
