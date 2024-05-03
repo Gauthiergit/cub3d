@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:02 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 11:47:45 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:45:02 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,4 @@ int	dir_step_second(float angle, int is_horizon)
 	}
 	return (0);
 }
+
