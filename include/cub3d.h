@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 14:29:40 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:31:01 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,10 +203,10 @@ void	put_ceiling_and_floor(t_data *data);
 
 /* map_init.c */
 int		is_map(char *line);
-void	count_line_map(t_data *data, char *file);
+int		count_line_map(t_data *data, char *file);
 void	find_lgst_line(t_data *data, char *file);
 void	fill_in_map(t_data *data, int fd, char *cur_line);
-void	extract_map(t_data *data, char *file);
+int		extract_map(t_data *data, char *file);
 
 /* minimap.c */
 void	ft_print_image(t_data *data, void *img, t_pos pos);

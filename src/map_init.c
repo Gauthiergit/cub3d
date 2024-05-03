@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:28 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 15:00:32 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:38:01 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_map(char *line)
 	return (1);
 }
 
-void	count_line_map(t_data *data, char *file)
+int	count_line_map(t_data *data, char *file)
 {
 	int		fd;
 	char	*line;
@@ -39,6 +39,7 @@ void	count_line_map(t_data *data, char *file)
 		free(line);
 	}
 	close(fd);
+	return (data->line_nb);
 }
 
 void	find_lgst_line(t_data *data, char *file)
@@ -95,25 +96,30 @@ void	fill_in_map(t_data *data, int fd, char *cur_line)
 	data->scene[i] = NULL;
 }
 
-void	extract_map(t_data *data, char *file)
+int	extract_map(t_data *data, char *file)
 {
 	int		fd;
 	char	*line;
 
-	count_line_map(data, file);
-	find_lgst_line(data, file);
-	data->scene = (char **)malloc((data->line_nb + 1) * sizeof(char *));
-	if (!data->scene)
-		return ;
-	fd = open(file, O_RDONLY);
-	line = get_next_line(fd);
-	while (!is_map(line))
+	if (!count_line_map(data, file))
+		data->scene = (char **)ft_calloc(1, sizeof(char *));
+	else
 	{
-		free(line);
+		data->scene = (char **)malloc((data->line_nb + 1) * sizeof(char *));
+		if (!data->scene)
+			return (1);
+		find_lgst_line(data, file);
+		fd = open(file, O_RDONLY);
 		line = get_next_line(fd);
+		while (!is_map(line))
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
+		fill_in_map(data, fd, line);
+		free(line);
+		get_next_line(42);
+		close(fd);
 	}
-	fill_in_map(data, fd, line);
-	free(line);
-	get_next_line(42);
-	close(fd);
+	return (0);
 }
