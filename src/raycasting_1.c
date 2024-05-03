@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_1.c                                        :+:      :+:    :+:   */
+/*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 10:43:11 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:05:47 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	wall_hit(t_data *data, float x, float y)
 {
-	size_t	x_m;
-	int		y_m;
+	int	x_m;
+	int	y_m;
 
 	if (x < 0 || y < 0)
 		return (1);
 	x_m = floor(x / SQUARE_SIZE);
 	y_m = floor(y / SQUARE_SIZE);
-	if (y_m >= data->line_nb || x_m >= ft_strlen(data->scene[y_m]))
+	if (y_m >= data->line_nb || x_m >= (int)ft_strlen(data->scene[y_m]))
 		return (1);
-	else
+	if (data->scene[y_m] && x_m <= (int)ft_strlen(data->scene[y_m]))
 	{
 		if (data->scene[y_m][x_m] == '1')
 			return (1);

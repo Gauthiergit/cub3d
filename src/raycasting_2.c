@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_2.c                                        :+:      :+:    :+:   */
+/*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:02 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/02 10:43:33 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:47:45 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	dir_step_first(float angle, float *inter, float *step, int is_horizon)
 	}
 	else
 	{
-		if (!(angle > M_PI /2 && angle < 3 * M_PI / 2))
+		if (!(angle > (M_PI / 2) && angle < (3 * M_PI / 2)))
 		{
 			*inter += SQUARE_SIZE;
 			return (-1);
@@ -39,7 +39,7 @@ int	dir_step_second(float angle, int is_horizon)
 {
 	if (is_horizon)
 	{
-		if ((angle > M_PI / 2 && angle < 3 * M_PI / 2))
+		if ((angle > (M_PI / 2) && angle < (3 * M_PI / 2)))
 			return (1);
 	}
 	else
