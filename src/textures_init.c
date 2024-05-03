@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/29 13:59:52 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:11:41 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,18 @@ int	valid_texture_we(t_data *data, char *line, char *dup)
 	if (line[0] == 'W' && line[1] == 'E')
 	{
 		data->WE++;
-		data->text_tab[2] = ft_strtrim(dup, "\n");
+		if (data->text_tab[2] == 0)
+			data->text_tab[2] = ft_strtrim(dup, "\n");
+		else
+			free(data->text_tab[2]);
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
 		data->EA++;
-		data->text_tab[3] = ft_strtrim(dup, "\n");
+		if (data->text_tab[3] == 0)
+			data->text_tab[3] = ft_strtrim(dup, "\n");
+		else
+			free(data->text_tab[3]);
 	}
 	free(dup);
 	return (0);
@@ -91,14 +97,19 @@ int	valid_texture_ns(t_data *data, char *line)
 		dup = ft_strdup(path_tab[1]);
 		if (line[0] == 'N' && line[1] == 'O')
 		{
-			data->text_tab[0] = ft_strtrim(dup, "\n");
+			if (data->text_tab[0] == 0)
+				data->text_tab[0] = ft_strtrim(dup, "\n");
+			else
+				free(data->text_tab[0]);
 			return (data->NO++, free(dup), clear_tab(path_tab), 0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{
-			data->SO++;
-			data->text_tab[1] = ft_strtrim(dup, "\n");
-			return (free(dup), clear_tab(path_tab), 0);
+			if (data->text_tab[1] == 0)
+				data->text_tab[1] = ft_strtrim(dup, "\n");
+			else
+				free(data->text_tab[1]);
+			return (data->SO++, free(dup), clear_tab(path_tab), 0);
 		}
 		else if ((line[0] == 'W' && line[1] == 'E')
 			|| (line[0] == 'E' && line[1] == 'A'))
@@ -126,7 +137,7 @@ int	check_scene_infos(t_data *data, char *file)
 		if (valid_texture_ns(data, line) == 1)
 		{
 			free(line);
-			clear_tab(data->text_tab);
+			get_next_line(42);
 			return (1);
 		}
 		free(line);
