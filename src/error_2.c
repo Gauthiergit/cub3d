@@ -6,11 +6,23 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:08:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/04/24 16:22:05 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:17:02 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_free_if_null(t_data *data)
+{
+	if (data->NO == 0)
+		data->text_tab[0] = ft_strdup("Free");
+	if (data->SO == 0)
+		data->text_tab[1] = ft_strdup("Free");
+	if (data->WE == 0)
+		data->text_tab[2] = ft_strdup("Free");
+	if (data->EA == 0)
+		data->text_tab[3] = ft_strdup("Free");
+}
 
 int	first_last_line(t_data *data, size_t cur_line)
 {

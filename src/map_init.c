@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:28 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 15:38:01 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:45:58 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int	count_line_map(t_data *data, char *file)
 		free(line);
 	}
 	close(fd);
+	if (data->line_nb == 0)
+		data->scene = (char **)ft_calloc(1, sizeof(char *));
+	else
+		data->scene = (char **)malloc((data->line_nb + 1) * sizeof(char *));
 	return (data->line_nb);
 }
 
@@ -102,12 +106,9 @@ int	extract_map(t_data *data, char *file)
 	char	*line;
 
 	if (!count_line_map(data, file))
-		data->scene = (char **)ft_calloc(1, sizeof(char *));
+		print_error("Map missing or file empty", data);
 	else
 	{
-		data->scene = (char **)malloc((data->line_nb + 1) * sizeof(char *));
-		if (!data->scene)
-			return (1);
 		find_lgst_line(data, file);
 		fd = open(file, O_RDONLY);
 		line = get_next_line(fd);

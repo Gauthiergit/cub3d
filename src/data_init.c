@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 15:58:14 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:33:50 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void	extract_textures(t_data *data, char *file)
 
 	i = 0;
 	if (check_scene_infos(data, file))
-		print_error("Scene infos are not correct", data);
+	{
+		ft_free_if_null(data);		
+		print_error("Scene details are not correct", data);
+	}
 	while (i < 4)
 	{
 		data->img_t[i].pt_img = mlx_xpm_file_to_image(data->mlx, \

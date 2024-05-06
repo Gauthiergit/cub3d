@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 15:45:26 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:35:06 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	print_error(const char *error, t_data *data)
 	printf("Error\n%s\n", error);
 	//if (data->scene)
 	clear_tab(data->scene);
-	//if (data->text_tab)
-	clear_tab(data->text_tab);
+	if (data->text_tab)
+		clear_tab(data->text_tab);
 	mlx_destroy_display(data->mlx);
 	//if (data->mlx)
 	free(data->mlx);
@@ -96,8 +96,6 @@ void	check_error_map(t_data *data)
 {
 	if (is_valid_char(data->scene) == 'e')
 		print_error("Character allowed are '10NSEW and space'", data);
-	if (is_valid_char(data->scene) == 0)
-		print_error("Map missing or scene empty", data);
 	if (is_double(data->scene) == 0)
 		print_error("There is no player position", data);
 	if (is_double(data->scene) > 1)

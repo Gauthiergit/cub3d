@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 15:31:01 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:17:25 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,13 +182,16 @@ void	render_wall(t_data *data, int ray);
 void	draw_wall(t_data *data, int ray, int t_pix, int b_pix); */
 
 /* error_2.c */
+void	ft_free_if_null(t_data *data);
+int		first_last_line(t_data *data, size_t cur_line);
+int		other_line(t_data *data, size_t cur_line);
 int		check_walls(t_data *data);
-void	find_lgst_line(t_data *data, char *file);
 
 /* error.c */
 void	print_error(const char *error, t_data *data);
 int		check_error_file(int argc, char **argv);
 int		is_valid_char(char **map);
+int		is_double(char **map);
 void	check_error_map(t_data *data);
 
 /* exit.c */
