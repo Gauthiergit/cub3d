@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 13:33:50 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:21:27 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	data_init(t_data *data, char **argv)
 	int	i;
 
 	i = 0;
+	ft_init_keys(data);
 	data->lgst_line = 0;
 	data->line_nb = 0;
 	data->text_tab = NULL;

@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 12:17:25 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:46:05 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,9 @@ typedef struct s_data
 	double			cam_x;
 	double			wall_x;
 	double			wall_h;
+	double			frame_time;
+	double			move_speed;
+	double			rotation_speed;
 	char			**text_tab;
 	int				NO;
 	int				SO;
@@ -222,6 +225,20 @@ void	ft_print_minimap(t_data *data);
 void	ft_pixel_mnmap(t_data *data, int color);
 void	ft_read_map(t_data *data, int io, int jo);
 void	ft_walls(t_data *data);
+
+/* movements_1.c */
+/* void	ft_move_player(t_data *data, double move_x, double move_y);
+void	ft_movements(t_data *data, double move_x, double move_y); */
+void	ft_movements(t_data *data);
+void	ft_move_left(t_data *data);
+void	ft_move_right(t_data *data);
+void	ft_move_backwards(t_data *data);
+void	ft_move_forward(t_data *data);
+
+/* movements_2.c */
+void	ft_rotate_left(t_data *data);
+void	ft_rotate_right(t_data *data);
+void	ft_init_keys(t_data *data);
 
 /* raycasting_1.c */
 int		wall_hit(t_data *data, float x, float y);

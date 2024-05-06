@@ -34,6 +34,8 @@ SRCS  = src/cub3d.c \
 		src/map_init.c \
 		src/minimap.c \
 		src/minimap_walls.c \
+		src/movements_1.c \
+		src/movements_2.c \
 		src/raycasting_1.c \
 		src/raycasting_2.c \
 		src/textures_init.c \
