@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:02:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/06 17:45:51 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:30:57 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ void	ft_move_left(t_data *data)
 	int	x;
 	int	y;
 
-	x = (int)(data->pos.x + data->dir.y * data->move_speed);
-	y = (int)data->pos.y;
+	x = (int)(data->player.px_x + data->dir.y * data->move_speed);
+	y = (int)data->player.px_y;
 	if (data->scene[y][x] != '1')
-		data->pos.x += data->dir.y * data->move_speed;
-	y = (int)(data->pos.y - data->dir.x * data->move_speed);
-	x = (int)data->pos.x;
+		data->player.px_x += data->dir.y * data->move_speed;
+	y = (int)(data->player.px_y - data->dir.x * data->move_speed);
+	x = (int)data->player.px_x;
 	if (data->scene[y][x] != '1')
-		data->pos.y -= data->dir.x * data->move_speed;
+		data->player.px_y -= data->dir.x * data->move_speed;
 }
 
 void	ft_move_right(t_data *data)
@@ -81,14 +81,14 @@ void	ft_move_right(t_data *data)
 	int	x;
 	int	y;
 
-	x = (int)(data->pos.x - data->dir.y * data->move_speed);
-	y = (int)data->pos.y;
+	x = (int)(data->player.px_x - data->dir.y * data->move_speed);
+	y = (int)data->player.px_y;
 	if (data->scene[y][x] != '1')
-		data->pos.x -= data->dir.y * data->move_speed;
-	y = (int)(data->pos.y + data->dir.x * data->move_speed);
-	x = (int)data->pos.x;
+		data->player.px_x -= data->dir.y * data->move_speed;
+	y = (int)(data->player.px_y + data->dir.x * data->move_speed);
+	x = (int)data->player.px_x;
 	if (data->scene[y][x] != '1')
-		data->pos.y += data->dir.x * data->move_speed;
+		data->player.px_y += data->dir.x * data->move_speed;
 }
 
 void	ft_move_backwards(t_data *data)
@@ -96,14 +96,14 @@ void	ft_move_backwards(t_data *data)
 	int	x;
 	int	y;
 
-	x = (int)(data->pos.x - data->dir.x * data->move_speed);
-	y = (int)data->pos.y;
+	x = (int)(data->player.px_x - data->dir.x * data->move_speed);
+	y = (int)data->player.px_y;
 	if (data->scene[y][x] != '1')
-		data->pos.x -= data->dir.x * data->move_speed;
-	y = (int)(data->pos.y - data->dir.y * data->move_speed);
-	x = (int)data->pos.x;
+		data->player.px_x -= data->dir.x * data->move_speed;
+	y = (int)(data->player.px_y - data->dir.y * data->move_speed);
+	x = (int)data->player.px_x;
 	if (data->scene[y][x] != '1')
-		data->pos.y -= data->dir.y * data->move_speed;
+		data->player.px_y -= data->dir.y * data->move_speed;
 }
 
 void	ft_move_forward(t_data *data)
@@ -111,14 +111,20 @@ void	ft_move_forward(t_data *data)
 	int	x;
 	int	y;
 
-	x = (int)(data->pos.x + data->dir.x * data->move_speed);
-	y = (int)data->pos.y;
-	if (data->scene[y][x] != '1')
-		data->pos.x += data->dir.x * data->move_speed;
-	y = (int)(data->pos.y + data->dir.y * data->move_speed);
-	x = (int)data->pos.x;
-	if (data->scene[y][x] != '1')
-		data->pos.y += data->dir.y * data->move_speed;
+	x = (int)(data->player.px_x + data->dir.x * data->move_speed);
+	y = (int)data->player.px_y;
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
+	{
+		data->player.px_x += data->dir.x * data->move_speed;
+		printf("px_x = %d, px_y = %d data->dir.x = %f\n", data->player.px_x, data->player.px_y, data->dir.x);
+	}
+	y = (int)(data->player.px_y + data->dir.y * data->move_speed);
+	x = (int)data->player.px_x;
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
+	{
+		data->player.px_y += data->dir.y * data->move_speed;
+		printf("px_x = %d, px_y = %d\n", data->player.px_x, data->player.px_y);
+	}
 }
 
 void	ft_movements(t_data *data)
