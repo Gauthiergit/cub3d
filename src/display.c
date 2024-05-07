@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/07 16:50:38 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:04:40 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the w
 		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
 	while (t_pix < b_pix)
 	{
-		data->text_y = (int) text_pos_y & (SQUARE_SIZE - 1);
+		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
 		data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_y + data->text_x];
 		text_pos_y += step;
 		if (data->ray.flag == 0)
