@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 17:46:05 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:50:57 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,8 @@ typedef struct s_data
 	int				text_x;
 	int				text_y;
 	double			cam_x;
-	double			wall_x;
+	double			h_x;
+	double			v_y;
 	double			wall_h;
 	double			frame_time;
 	double			move_speed;
@@ -151,8 +152,6 @@ typedef struct s_data
 	t_img_t			img_t[4];
 	t_img_s			img_s;
 	t_mnmap			*mnmap;
-	t_pos			map;
-	t_pos			pos;
 	t_pos			dir;
 	t_pos			ray_dir;
 	t_pos			plane;
@@ -178,11 +177,8 @@ void	extract_textures(t_data *data, char *file);
 /* display.c */
 void	get_texture_nb(t_data *data, int flag);
 void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix);
-void	ft_ray_pos_and_dir(t_data *data, int ray);
 float	nor_angle(float angle);
 void	render_wall(t_data *data, int ray);
-/* int		get_color(t_data *data, int flag);
-void	draw_wall(t_data *data, int ray, int t_pix, int b_pix); */
 
 /* error_2.c */
 void	ft_free_if_null(t_data *data);
@@ -227,8 +223,6 @@ void	ft_read_map(t_data *data, int io, int jo);
 void	ft_walls(t_data *data);
 
 /* movements_1.c */
-/* void	ft_move_player(t_data *data, double move_x, double move_y);
-void	ft_movements(t_data *data, double move_x, double move_y); */
 void	ft_movements(t_data *data);
 void	ft_move_left(t_data *data);
 void	ft_move_right(t_data *data);
@@ -265,7 +259,6 @@ size_t	count_line_tab(char **tab);
 
 /* utils_2.c */
 void	ft_place_pixel(t_data *data, int ray, int y, int color);
-void	ft_get_text_x(t_data *data);
 void	ft_set_values(t_data *data, double dir_x, double dir_y,
 		double plane_x, double plane_y);
 void	ft_set_vectors(t_data *data, int y, int x);

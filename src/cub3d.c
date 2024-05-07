@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 17:46:21 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:53:22 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int	game(t_data *data)
 	raycasting(data);
 	ft_print_minimap(data);
 	ft_movements(data);
-	data->frame_time = 16 / 1000.0;
-	data->move_speed = data->frame_time * 5.0;
-	data->rotation_speed = data->frame_time * 5.0;
+	//data->frame_time = 16 / 1000.0;
+	//data->move_speed = data->frame_time * 5.0;
+	//data->rotation_speed = data->frame_time * 5.0;
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img_s.pt_img);
 	return (0);

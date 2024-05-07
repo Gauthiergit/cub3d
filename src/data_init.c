@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 14:21:27 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:51:39 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_player(t_data *data)
 				data->player.px_y = y * SQUARE_SIZE + SQUARE_SIZE / 2;
 				data->player.fov_rd = (FOV * M_PI) / 180;
 				init_angle(data, data->scene[y][x]);
-				ft_set_vectors(data, y, x);
+				ft_set_vectors(data, y, x);// a revoir (minimap);
 			}
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/02 16:47:59 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:01:34 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	ft_walls(t_data *data)
 	while (i < 13)//5
 	{
 		j = -18;//-6
-		io = (int)data->pos.y + i;
+		io = (int)data->player.map_y + i;
 		while (j < 7)
 		{
-			jo = (int)data->pos.x + j;
+			jo = (int)data->player.map_x + j;
 			ft_read_map(data, io, jo);
 			j++;
 			data->mnmap->width += data->mnmap->mapsx;

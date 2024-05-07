@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/03 17:44:43 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/07 14:49:12 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ double	get_dist_h_inter(t_data *data, float angle)
 		h_x += x_step;
 		h_y += y_step;
 	}
+	data->h_x = h_x;
 	return (dist_ray(data, h_x, h_y));
 }
 
@@ -86,6 +87,7 @@ double	get_dist_v_inter(t_data *data, float angle)
 		v_x += x_step;
 		v_y += y_step;
 	}
+	data->v_y = v_y;
 	return (dist_ray(data, v_x, v_y));
 }
 
