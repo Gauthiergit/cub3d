@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:02:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/07 16:47:45 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:21:07 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	ft_move_left(t_data *data)
 	int	x;
 	int	y;
 
-	x = roundf(data->player.px_x + cos(data->player.angle - M_PI / 2) * 0.6);//data->move_speed);
+	x = roundf(data->player.px_x + cos(data->player.angle - M_PI / 2) * 2.0);//data->move_speed);
 	y = (int)data->player.px_y;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_x = x;
-	y = roundf(data->player.px_y + sin(data->player.angle - M_PI / 2) * 0.6);//data->move_speed);
+	y = roundf(data->player.px_y + sin(data->player.angle - M_PI / 2) * 2.0);//data->move_speed);
 	x = (int)data->player.px_x;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_y = y;
@@ -32,11 +32,11 @@ void	ft_move_right(t_data *data)
 	int	x;
 	int	y;
 
-	x = roundf(data->player.px_x + cos(data->player.angle + M_PI / 2) * 0.6);//data->move_speed);
+	x = roundf(data->player.px_x + cos(data->player.angle + M_PI / 2) * 2.0);//data->move_speed);
 	y = (int)data->player.px_y;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_x = x;
-	y = roundf(data->player.px_y + sin(data->player.angle + M_PI / 2) * 0.6);//data->move_speed);
+	y = roundf(data->player.px_y + sin(data->player.angle + M_PI / 2) * 2.0);//data->move_speed);
 	x = (int)data->player.px_x;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_y = y;
@@ -47,11 +47,11 @@ void	ft_move_backwards(t_data *data)
 	int	x;
 	int	y;
 
-	x = roundf(data->player.px_x + cos(data->player.angle + M_PI) * 0.6);//data->move_speed);
+	x = roundf(data->player.px_x + cos(data->player.angle + M_PI) * 2.0);//data->move_speed);
 	y = (int)data->player.px_y;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_x = x;
-	y = roundf(data->player.px_y + sin(data->player.angle + M_PI) * 0.6);//data->move_speed);
+	y = roundf(data->player.px_y + sin(data->player.angle + M_PI) * 2.0);//data->move_speed);
 	x = (int)data->player.px_x;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_y = y;
@@ -62,11 +62,11 @@ void	ft_move_forward(t_data *data)
 	int	x;
 	int	y;
 
-	x = roundf(data->player.px_x + cos(data->player.angle) * 0.6);//data->move_speed);
+	x = roundf(data->player.px_x + cos(data->player.angle) * 2.0);//data->move_speed);
 	y = (int)data->player.px_y;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_x = x;
-	y = roundf(data->player.px_y + sin(data->player.angle) * 0.6);//data->move_speed);
+	y = roundf(data->player.px_y + sin(data->player.angle) * 2.0);//data->move_speed);
 	x = (int)data->player.px_x;
 	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1')
 		data->player.px_y = y;
