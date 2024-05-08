@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/07 18:04:40 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/08 10:04:51 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,33 @@ void	get_texture_nb(t_data *data, int flag) // get the color of the wall
 	if (flag == 0)
 	{
 		if (data->ray.ray_ngl > M_PI / 2 && data->ray.ray_ngl < 3 * (M_PI / 2))
-			data->texture_number = 2; // west wall vert
+			data->texture_number = 2; // west wall
 		else
-			data->texture_number = 3; // east wall jaune
+			data->texture_number = 3; // east wall
 	}
 	else
 	{
 		if (data->ray.ray_ngl > 0 && data->ray.ray_ngl < M_PI)
-			data->texture_number = 1; // south wall bleu
+			data->texture_number = 1; // south wall 
 		else
-			data->texture_number = 0; // north wall rouge
+			data->texture_number = 0; // north wall 
+	}
+}
+
+void	get_text_x(t_data *data)
+{
+	if (data->ray.flag == 1)
+	{
+		data->text_x = fmodf(data->h_x, SQUARE_SIZE);
+		if (data->texture_number == 1)
+			data->text_x = SQUARE_SIZE - data->text_x;
+	}
+
+	else
+	{
+		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
+		if (data->texture_number == 2)
+			data->text_x = SQUARE_SIZE - data->text_x;
 	}
 }
 
@@ -39,10 +56,7 @@ void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the w
 	get_texture_nb(data, data->ray.flag);
 	step = SQUARE_SIZE / data->wall_h;
 	text_pos_y = (t_pix - SCREEN_HEIGHT / 2 + data->wall_h / 2) * step;
-	if (data->ray.flag == 1)
-		data->text_x = fmodf(data->h_x, SQUARE_SIZE);
-	else
-		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
+	get_text_x(data);
 	while (t_pix < b_pix)
 	{
 		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
