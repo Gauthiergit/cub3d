@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/07 16:50:57 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:55:58 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@
 # define D 100
 # define S 115
 # define W 119
+
+# define D1_PATH "/texture/door_1.xpm"
+# define D2_PATH "/texture/door_2.xpm"
+# define D3_PATH "/texture/door_3.xpm"
+# define D4_PATH "/texture/door_4.xpm"
+# define D5_PATH "/texture/door_5.xpm"
+# define D6_PATH "/texture/door_6.xpm"
 
 /*screen*/
 
@@ -149,6 +156,8 @@ typedef struct s_data
 	int				C;
 	int				texture_number;
 	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
+	int				door[6][SQUARE_SIZE * SQUARE_SIZE];
+	t_img_t			text_door[6];
 	t_img_t			img_t[4];
 	t_img_s			img_s;
 	t_mnmap			*mnmap;
