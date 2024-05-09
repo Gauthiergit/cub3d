@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 13:35:06 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:31:54 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	is_valid_char(char **map)
 		j = 0;
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			if (!ft_strchr("01NSEW ", map[i][j]))
+			if (!ft_strchr("01NSEWD ", map[i][j]))
 				return ('e');
 			else
 				count++;

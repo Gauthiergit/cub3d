@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/07 14:49:12 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:05:18 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ int	wall_hit(t_data *data, float x, float y)
 	if (data->scene[y_m] && x_m <= (int)ft_strlen(data->scene[y_m]))
 	{
 		if (data->scene[y_m][x_m] == '1')
+		{
+			data->ray.is_door = 0;
 			return (1);
+		}
+		else if (data->scene[y_m][x_m] == 'D')
+		{
+			data->ray.is_door = 1;
+			return (1);
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/08 10:04:51 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/09 16:32:43 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,18 @@ void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the w
 	double	step;
 	double	text_pos_y;
 
-	get_texture_nb(data, data->ray.flag);
+	if (!data->ray.is_door)
+		get_texture_nb(data, data->ray.flag);
 	step = SQUARE_SIZE / data->wall_h;
 	text_pos_y = (t_pix - SCREEN_HEIGHT / 2 + data->wall_h / 2) * step;
 	get_text_x(data);
 	while (t_pix < b_pix)
 	{
 		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
-		data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_y + data->text_x];
+		if (!data->ray.is_door)
+			data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_y + data->text_x];
+		else
+			data->color = data->door[0][SQUARE_SIZE * data->text_y + data->text_x];
 		text_pos_y += step;
 		if (data->ray.flag == 0)
 			data->color = (data->color >> 1) & 8355711;

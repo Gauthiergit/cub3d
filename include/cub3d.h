@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/08 15:55:58 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/09 15:34:11 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@
 # define S 115
 # define W 119
 
-# define D1_PATH "/texture/door_1.xpm"
-# define D2_PATH "/texture/door_2.xpm"
-# define D3_PATH "/texture/door_3.xpm"
-# define D4_PATH "/texture/door_4.xpm"
-# define D5_PATH "/texture/door_5.xpm"
-# define D6_PATH "/texture/door_6.xpm"
+/* texture door adresse */
+
+# define D1_PATH "./texture/door_1.xpm"
+# define D2_PATH "./texture/door_2.xpm"
+# define D3_PATH "./texture/door_3.xpm"
+# define D4_PATH "./texture/door_4.xpm"
+# define D5_PATH "./texture/door_5.xpm"
+# define D6_PATH "./texture/door_6.xpm"
 
 /*screen*/
 
@@ -63,6 +65,7 @@ typedef struct s_ray
  double	ray_ngl;
  double	distance;
  int	flag;
+ int	is_door;
 }				t_ray;
 
 typedef struct s_pos
@@ -253,6 +256,12 @@ void	raycasting(t_data *data);
 /* raycasting_2.c */
 int		dir_step_first(float angle, float *inter, float *step, int is_horizon);
 int		dir_step_second(float angle, int is_horizon);
+
+/* texture_init_2.c */
+void	texture_init(t_data *data, char **argv);
+void	extract_text_door(t_data *data);
+void	get_text_door_addr(t_data *data);
+void	fill_door_array(t_data *data, int i);
 
 /* textures_init.c */
 void	convert_colors(t_data *data, char **color_tab, char c);

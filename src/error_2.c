@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:08:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 12:17:02 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:28:45 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	other_line(t_data *data, size_t cur_line)
 	int	i;
 
 	i = 0;
-	if (data->scene[cur_line][0] == '0')
+	if (ft_strchr("0NSEWD", data->scene[cur_line][0]))
 		return (1);
 	while (data->scene[cur_line][i])
 	{
-		if (data->scene[cur_line][i] == '0')
+		if (ft_strchr("0NSEWD", data->scene[cur_line][i]))
 		{
 			if (!data->scene[cur_line][i + 1] || data->scene[cur_line][i + 1] == ' '
 				|| (!data->scene[cur_line][i - 1] || data->scene[cur_line][i - 1] == ' ')
