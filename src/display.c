@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/09 16:32:43 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/11 16:09:32 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_text_x(t_data *data)
 		if (data->texture_number == 1)
 			data->text_x = SQUARE_SIZE - data->text_x;
 	}
-
 	else
 	{
 		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
@@ -48,23 +47,27 @@ void	get_text_x(t_data *data)
 	}
 }
 
+void	get_door_x(t_data *data)
+{
+	if (data->ray.flag == 1)
+		data->text_x = fmodf(data->h_x, SQUARE_SIZE);
+	else
+		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
+}
+
 void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the wall
 {
 	double	step;
 	double	text_pos_y;
 
-	if (!data->ray.is_door)
-		get_texture_nb(data, data->ray.flag);
+	get_texture_nb(data, data->ray.flag);
 	step = SQUARE_SIZE / data->wall_h;
 	text_pos_y = (t_pix - SCREEN_HEIGHT / 2 + data->wall_h / 2) * step;
 	get_text_x(data);
 	while (t_pix < b_pix)
 	{
 		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
-		if (!data->ray.is_door)
-			data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_y + data->text_x];
-		else
-			data->color = data->door[0][SQUARE_SIZE * data->text_y + data->text_x];
+		data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_y + data->text_x];
 		text_pos_y += step;
 		if (data->ray.flag == 0)
 			data->color = (data->color >> 1) & 8355711;
@@ -82,6 +85,26 @@ float	nor_angle(float angle) // normalize the angle
 	return (angle);
 }
 
+void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
+{
+	double	step;
+	double	text_pos_y;
+
+	step = SQUARE_SIZE / data->wall_h;
+	text_pos_y = (t_pix - SCREEN_HEIGHT / 2 + data->wall_h / 2) * step;
+	get_door_x(data);
+	while (t_pix < b_pix)
+	{
+		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
+		data->color = data->door[0][SQUARE_SIZE * data->text_y + data->text_x];
+		text_pos_y += step;
+		if (data->ray.flag == 0)
+			data->color = (data->color >> 1) & 8355711;
+		ft_place_pixel(data, ray, t_pix, data->color);
+		t_pix++;
+	}
+}
+
 void	render_wall(t_data *data, int ray) // render the wall
 {
 	double	b_pix;
@@ -95,5 +118,8 @@ void	render_wall(t_data *data, int ray) // render the wall
 		b_pix = SCREEN_HEIGHT;
 	if (t_pix < 0) // check the top pixel
 		t_pix = 0;
-	draw_wall_stripe(data, ray, t_pix, b_pix); // draw the wall
+	if (data->ray.is_door)
+		draw_door(data, ray, t_pix, b_pix);
+	else
+		draw_wall_stripe(data, ray, t_pix, b_pix); // draw the wall
 }

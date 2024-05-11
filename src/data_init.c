@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/09 14:45:49 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/10 09:18:35 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,6 @@ void	extract_textures(t_data *data, char *file)
 
 void	data_init(t_data *data, char **argv)
 {
-	int	i;
-
-	i = 0;
 	ft_init_keys(data);
 	data->lgst_line = 0;
 	data->line_nb = 0;
