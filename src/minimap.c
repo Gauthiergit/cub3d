@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/06 16:14:12 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:31:17 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	ft_put_player(t_data *data)
 	int	x;
 	int	y;
 
-	y = data->player.px_y - data->player.angle;
-	while (y <= data->player.px_y + data->player.angle)
+	y = data->minipl.px_y - data->minipl.radius;
+	while (y <= data->minipl.px_y + data->minipl.radius)
 	{
-		x = data->player.px_x - data->player.angle;
-		while (x <= data->player.px_x + data->player.angle)
+		x = data->minipl.px_x - data->minipl.radius;
+		while (x <= data->minipl.px_x + data->minipl.radius)
 		{
-			if (pow(x - data->player.px_x, 2) + pow(y - data->player.px_y, 2)
-				<= pow(data->player.angle, 2))
+			if (pow(x - data->minipl.px_x, 2) + pow(y - data->minipl.px_y, 2)
+				<= pow(data->minipl.radius, 2)) // make it blue point, not pixel.
 				ft_pixel(data, 0x3c00ff, y, x); //Bleu violet player
 			x++;
 		}
@@ -40,11 +40,11 @@ void	ft_put_player(t_data *data)
 
 void	ft_init_player(t_data *data)
 {
-	data->player.angle = 4.5;
-	data->player.px_x = data->mnmap->minixo - ((data->mnmap->minixo - data->mnmap->width + 3) / 2);
-	data->player.px_y = data->mnmap->minixo - ((data->mnmap->miniyo - data->mnmap->height + 5) / 2);
-	data->player.map_x = cos(data->player.fov_rd) / 2 - 0.4;
-	data->player.map_y = sin(data->player.fov_rd) / 2;
+	data->minipl.radius = 4;
+	data->minipl.px_x = data->mnmap->minixo - ((data->mnmap->minixo - data->mnmap->width + 3) / 3);
+	data->minipl.px_y = data->mnmap->minixo - ((data->mnmap->miniyo - data->mnmap->height + 5) / 1.3);
+	data->minipl.map_x = cos(data->player.angle) / 2 - 0.4;
+	data->minipl.map_y = sin(data->player.angle) / 2;
 }
 
 void	ft_init_minimap(t_data *data)
@@ -55,18 +55,14 @@ void	ft_init_minimap(t_data *data)
 	if (!mnmap)
 		exit(1);
 	data->mnmap = mnmap;
-	data->mnmap->height = SCREEN_HEIGHT / 30;
 	data->mnmap->width = SCREEN_WIDTH / 30;
+	data->mnmap->height = SCREEN_HEIGHT / 30;
 	data->mnmap->minixo = SCREEN_WIDTH / 40 * 10;
 	data->mnmap->miniyo =  SCREEN_HEIGHT / 40 * 10;
 	data->mnmap->mapxb = data->mnmap->width;
 	data->mnmap->mapyb = data->mnmap->height;
-	data->mnmap->mapsx = 7;//18
+	data->mnmap->mapsx = 18;//7;
 	data->mnmap->mapsy = data->mnmap->mapsx - 1;
-	/* data->mnmap->img_wall = mlx_xpm_file_to_image(data->mlx, data->mnmap->wall,
-			&(data->mnmap->width), &(data->mnmap->height));
-	data->mnmap->img_space = mlx_xpm_file_to_image(data->mlx, data->mnmap->space,
-			&(data->mnmap->width), &(data->mnmap->height)); */
 }
 
 void	ft_print_minimap(t_data *data)
@@ -87,9 +83,9 @@ void	ft_print_minimap(t_data *data)
 		}
 		i++;
 	}
-	//ft_init_player(data);
+	ft_init_player(data);
 	ft_walls(data);
-	// ft_put_player(data);
+	ft_put_player(data);
 	free(data->mnmap);
 }
 

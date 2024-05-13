@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/09 15:34:11 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/13 17:15:30 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ typedef struct s_player
 	double			angle;
 	float			fov_rd;
 }					t_player;
+
+typedef struct s_minipl
+{
+	float			map_x;
+	float			map_y;
+	float			px_x;
+	float			px_y;
+	int				radius;
+}					t_minipl;
 
 typedef struct s_ray
 {
@@ -169,6 +178,7 @@ typedef struct s_data
 	t_pos			plane;
 	t_key			key;
 	t_player		player;
+	t_minipl		minipl;
 	t_ray			ray;
 }				t_data;
 
