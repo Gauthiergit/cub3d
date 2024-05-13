@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/08 14:29:04 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/13 18:12:08 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	game(t_data *data)
 						&data->img_s.endian);
 	put_ceiling_and_floor(data);
 	raycasting(data);
+	raycasting_door(data);
 	ft_print_minimap(data);
 	ft_movements(data);
 	//data->frame_time = 16 / 1000.0;

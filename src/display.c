@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/11 16:09:32 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/13 15:46:22 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	get_text_x(t_data *data)
 	}
 }
 
-void	get_door_x(t_data *data)
+/* void	get_door_x(t_data *data)
 {
 	if (data->ray.flag == 1)
 		data->text_x = fmodf(data->h_x, SQUARE_SIZE);
 	else
 		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
-}
+} */
 
 void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the wall
 {
@@ -85,7 +85,7 @@ float	nor_angle(float angle) // normalize the angle
 	return (angle);
 }
 
-void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
+/* void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
 {
 	double	step;
 	double	text_pos_y;
@@ -103,7 +103,7 @@ void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
 		ft_place_pixel(data, ray, t_pix, data->color);
 		t_pix++;
 	}
-}
+} */
 
 void	render_wall(t_data *data, int ray) // render the wall
 {
@@ -118,8 +118,8 @@ void	render_wall(t_data *data, int ray) // render the wall
 		b_pix = SCREEN_HEIGHT;
 	if (t_pix < 0) // check the top pixel
 		t_pix = 0;
-	if (data->ray.is_door)
-		draw_door(data, ray, t_pix, b_pix);
-	else
-		draw_wall_stripe(data, ray, t_pix, b_pix); // draw the wall
+	// if (data->ray.is_door)
+	// 	draw_door(data, ray, t_pix, b_pix);
+	// else
+	draw_wall_stripe(data, ray, t_pix, b_pix); // draw the wall
 }

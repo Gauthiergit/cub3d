@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 17:15:30 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:18:21 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@
 
 /* texture door adresse */
 
-# define D1_PATH "./texture/door_1.xpm"
-# define D2_PATH "./texture/door_2.xpm"
-# define D3_PATH "./texture/door_3.xpm"
-# define D4_PATH "./texture/door_4.xpm"
-# define D5_PATH "./texture/door_5.xpm"
-# define D6_PATH "./texture/door_6.xpm"
+# define D1_PATH "./texture/exit_c.xpm"
+// # define D2_PATH "./texture/door_2.xpm"
+// # define D3_PATH "./texture/door_3.xpm"
+// # define D4_PATH "./texture/door_4.xpm"
+// # define D5_PATH "./texture/door_5.xpm"
+// # define D6_PATH "./texture/door_6.xpm"
 
 /*screen*/
 
@@ -168,8 +168,8 @@ typedef struct s_data
 	int				C;
 	int				texture_number;
 	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
-	int				door[6][SQUARE_SIZE * SQUARE_SIZE];
-	t_img_t			text_door[6];
+	int				door[1][SQUARE_SIZE * SQUARE_SIZE];
+	t_img_t			text_door[1];
 	t_img_t			img_t[4];
 	t_img_s			img_s;
 	t_mnmap			*mnmap;
@@ -271,7 +271,7 @@ int		dir_step_second(float angle, int is_horizon);
 void	texture_init(t_data *data, char **argv);
 void	extract_text_door(t_data *data);
 void	get_text_door_addr(t_data *data);
-void	fill_door_array(t_data *data, int i);
+void	fill_door_array(t_data *data);
 
 /* textures_init.c */
 void	convert_colors(t_data *data, char **color_tab, char c);
@@ -290,5 +290,9 @@ void	ft_place_pixel(t_data *data, int ray, int y, int color);
 void	ft_set_values(t_data *data, double dir_x, double dir_y,
 		double plane_x, double plane_y);
 void	ft_set_vectors(t_data *data, int y, int x);
+
+
+void	raycasting_door(t_data *data);
+void	render_door(t_data *data, int ray);
 
 #endif

@@ -25,6 +25,7 @@ BLUE = \033[94m
 
 SRCS  = src/cub3d.c \
 		src/data_init.c \
+		src/display_door.c \
 		src/display.c \
 		src/error_2.c \
 		src/error.c \
@@ -38,6 +39,7 @@ SRCS  = src/cub3d.c \
 		src/movements_2.c \
 		src/raycasting_1.c \
 		src/raycasting_2.c \
+		src/raycasting_door.c \
 		src/texture_init_2.c \
 		src/textures_init.c \
 		src/utils_1.c \

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_1.c                                     :+:      :+:    :+:   */
+/*   raycasting_door.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 18:09:27 by gpeyre           ###   ########.fr       */
+/*   Created: 2024/05/13 15:39:02 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/05/13 18:13:24 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	wall_hit(t_data *data, float x, float y)
+int	door_hit(t_data *data, float x, float y)
 {
 	int	x_m;
 	int	y_m;
@@ -27,26 +27,16 @@ int	wall_hit(t_data *data, float x, float y)
 	{
 		if (data->scene[y_m][x_m] == '1')
 			return (1);
-/* 		else if (data->scene[y_m][x_m] == 'D')
+		else if (data->scene[y_m][x_m] == 'D')
 		{
 			data->ray.is_door = 1;
 			return (1);
-		} */
+		}
 	}
 	return (0);
 }
 
-double dist_ray(t_data *data, float x, float y)
-{
-	double	dif_x;
-	double	dif_y;
-
-	dif_x = x - data->player.px_x;
-	dif_y = y - data->player.px_y;
-	return (sqrt(pow(dif_x, 2) + pow(dif_y, 2)));
-}
-
-double	get_dist_h_inter(t_data *data, float angle)
+double	get_dist_h_inter_door(t_data *data, float angle)
 {
 	float	h_x;
 	float	h_y;
@@ -62,7 +52,7 @@ double	get_dist_h_inter(t_data *data, float angle)
 	if ((dir_step_second(angle, 1) && x_step > 0) ||
 		(!dir_step_second(angle, 1) && x_step < 0))
 		x_step *= -1;
-	while (!wall_hit(data, h_x, h_y - pixel))
+	while (!door_hit(data, h_x, h_y - pixel))
 	{
 		h_x += x_step;
 		h_y += y_step;
@@ -71,7 +61,7 @@ double	get_dist_h_inter(t_data *data, float angle)
 	return (dist_ray(data, h_x, h_y));
 }
 
-double	get_dist_v_inter(t_data *data, float angle)
+double	get_dist_v_inter_door(t_data *data, float angle)
 {
 	float	v_x;
 	float	v_y;
@@ -87,7 +77,7 @@ double	get_dist_v_inter(t_data *data, float angle)
 	if ((dir_step_second(angle, 0) && y_step < 0) ||
 		(!dir_step_second(angle, 0) && y_step > 0))
 		y_step *= -1;
-	while (!wall_hit(data, v_x - pixel, v_y))
+	while (!door_hit(data, v_x - pixel, v_y))
 	{
 		v_x += x_step;
 		v_y += y_step;
@@ -96,7 +86,7 @@ double	get_dist_v_inter(t_data *data, float angle)
 	return (dist_ray(data, v_x, v_y));
 }
 
-void	raycasting(t_data *data)
+void	raycasting_door(t_data *data)
 {
 	double	dist_h_inter;
 	double	dist_v_inter;
@@ -106,8 +96,8 @@ void	raycasting(t_data *data)
 	data->ray.ray_ngl = data->player.angle - (data->player.fov_rd / 2);
 	while (ray < SCREEN_WIDTH)
 	{
-		dist_h_inter = get_dist_h_inter(data, data->ray.ray_ngl);
-		dist_v_inter = get_dist_v_inter(data, data->ray.ray_ngl);
+		dist_h_inter = get_dist_h_inter_door(data, data->ray.ray_ngl);
+		dist_v_inter = get_dist_v_inter_door(data, data->ray.ray_ngl);
 		if (dist_h_inter <= dist_v_inter)
 		{
 			data->ray.distance = dist_h_inter;
@@ -118,8 +108,8 @@ void	raycasting(t_data *data)
 			data->ray.distance = dist_v_inter;
 			data->ray.flag = 0;
 		}
-		if (!data->ray.is_door)
-			render_wall(data, ray);
+		if (data->ray.is_door)
+			render_door(data, ray);
 		data->ray.is_door = 0;
 		data->ray.ray_ngl += (data->player.fov_rd / SCREEN_WIDTH);
 		ray++;
