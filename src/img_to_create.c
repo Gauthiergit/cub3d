@@ -6,11 +6,20 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:41:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/04/29 17:28:51 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:15:46 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_place_pixel(t_data *data, int ray, int y, int color)
+{
+	char	*distance;
+
+	distance = data->img_s.address + \
+			(y * data->img_s.size_line + ray * (data->img_s.bits_per_pixel / 8));
+	*(unsigned int *)distance = color;
+}
 
 void	ft_pixel(t_data *data, int color, int i, int j)
 {

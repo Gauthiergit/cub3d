@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 18:18:21 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/14 10:15:27 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ typedef struct s_ray
  int	is_door;
 }				t_ray;
 
-typedef struct s_pos
+/* typedef struct s_pos
 {
 	double		x;
 	double		y;
-}				t_pos;
+}				t_pos; */
 
 /*texture struct*/
 
@@ -173,9 +173,6 @@ typedef struct s_data
 	t_img_t			img_t[4];
 	t_img_s			img_s;
 	t_mnmap			*mnmap;
-	t_pos			dir;
-	t_pos			ray_dir;
-	t_pos			plane;
 	t_key			key;
 	t_player		player;
 	t_minipl		minipl;
@@ -222,6 +219,7 @@ void	check_error_map(t_data *data);
 char	*get_next_line(int fd);
 
 /* img_to_create */
+void	ft_place_pixel(t_data *data, int ray, int y, int color);
 void	ft_pixel(t_data *data, int color, int i, int j);
 void	put_ceiling_and_floor(t_data *data);
 
@@ -233,7 +231,6 @@ void	fill_in_map(t_data *data, int fd, char *cur_line);
 int		extract_map(t_data *data, char *file);
 
 /* minimap.c */
-void	ft_print_image(t_data *data, void *img, t_pos pos);
 void	ft_put_player(t_data *data);
 void	ft_init_player(t_data *data);
 void	ft_init_minimap(t_data *data);
@@ -284,12 +281,6 @@ int		check_scene_infos(t_data *data, char *file);
 int		ft_tab_size(char **tab);
 void	clear_tab(char **tab);
 size_t	count_line_tab(char **tab);
-
-/* utils_2.c */
-void	ft_place_pixel(t_data *data, int ray, int y, int color);
-void	ft_set_values(t_data *data, double dir_x, double dir_y,
-		double plane_x, double plane_y);
-void	ft_set_vectors(t_data *data, int y, int x);
 
 
 void	raycasting_door(t_data *data);

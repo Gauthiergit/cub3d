@@ -6,17 +6,11 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/13 17:31:17 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:51:21 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-/* void	ft_print_image(t_data *data, void *img, t_pos pos)
-{
-	mlx_put_image_to_window(data->mlx, data->win, img, pos.x * 32,
-		(pos.y * 32 + 532));
-} */
 
 void	ft_put_player(t_data *data)
 {
@@ -30,8 +24,8 @@ void	ft_put_player(t_data *data)
 		while (x <= data->minipl.px_x + data->minipl.radius)
 		{
 			if (pow(x - data->minipl.px_x, 2) + pow(y - data->minipl.px_y, 2)
-				<= pow(data->minipl.radius, 2)) // make it blue point, not pixel.
-				ft_pixel(data, 0x3c00ff, y, x); //Bleu violet player
+				<= pow(data->minipl.radius, 2)) // make it a blue point, not a square pixel.
+				ft_pixel(data, 0x3c00ff, y + data->minipl.map_y, x + data->minipl.map_x); //Bleu violet player
 			x++;
 		}
 		y++;
@@ -59,8 +53,8 @@ void	ft_init_minimap(t_data *data)
 	data->mnmap->height = SCREEN_HEIGHT / 30;
 	data->mnmap->minixo = SCREEN_WIDTH / 40 * 10;
 	data->mnmap->miniyo =  SCREEN_HEIGHT / 40 * 10;
-	data->mnmap->mapxb = data->mnmap->width;
-	data->mnmap->mapyb = data->mnmap->height;
+	// data->mnmap->mapxb = data->mnmap->width;
+	// data->mnmap->mapyb = data->mnmap->height;
 	data->mnmap->mapsx = 18;//7;
 	data->mnmap->mapsy = data->mnmap->mapsx - 1;
 }
@@ -88,48 +82,3 @@ void	ft_print_minimap(t_data *data)
 	ft_put_player(data);
 	free(data->mnmap);
 }
-
-/* void	ft_init_minimap(t_data *data)
-{
-	t_mnmap	*mnmap;
-
-	mnmap = calloc(1, sizeof(t_mnmap));
-	if (!mnmap)
-		exit(1);
-	data->mnmap = mnmap;
-	data->mnmap->height = SCREEN_HEIGHT / 30;
-	data->mnmap->width = SCREEN_WIDTH / 30;
-	data->mnmap->wall = "./texture/wall.xpm";
-	data->mnmap->space = "./texture/space.xpm";
-	data->mnmap->img_wall = mlx_xpm_file_to_image(data->mlx, data->mnmap->wall,
-			&(data->mnmap->width), &(data->mnmap->height));
-	data->mnmap->img_space = mlx_xpm_file_to_image(data->mlx, data->mnmap->space,
-			&(data->mnmap->width), &(data->mnmap->height));
-}
-
-void	ft_print_minimap(t_data *data)
-{
-	t_pos	pos;
-
-	ft_init_minimap(data);
-	pos.y = 0;
-	while (data->scene[pos.y])
-	{
-		pos.x = 0;
-		while (data->scene[pos.y][pos.x])
-		{
-			if (data->scene[pos.y][pos.x] == '1' || data->scene[pos.y][pos.x] == ' ')
-				ft_print_image(data, data->mnmap->img_wall, pos);
-			if (data->scene[pos.y][pos.x] == '0')
-				ft_print_image(data, data->mnmap->img_space, pos);
-			if (data->scene[pos.y][pos.x] == 'N'
-				|| data->scene[pos.y][pos.x] == 'S'
-				|| data->scene[pos.y][pos.x] == 'W'
-				|| data->scene[pos.y][pos.x] == 'E')
-				ft_pixel(data, 0xffff00, pos.x, pos.y);
-			pos.x++;
-		}
-		pos.y++;
-	}
-}
- */

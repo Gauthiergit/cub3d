@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/10 09:18:35 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/14 10:10:39 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	init_player(t_data *data)
 				data->player.px_y = y * SQUARE_SIZE + SQUARE_SIZE / 2;
 				data->player.fov_rd = (FOV * M_PI) / 180;
 				init_angle(data, data->scene[y][x]);
-				ft_set_vectors(data, y, x);// a revoir (minimap);
+				// data->player.map_x = floor(data->player.px_x / SQUARE_SIZE);//x + 0.5;
+				// data->player.map_y = floor(data->player.px_y / SQUARE_SIZE);//y + 0.5;
 			}
 			x++;
 		}
