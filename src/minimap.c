@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/14 10:51:21 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:59:15 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_put_player(t_data *data)
 void	ft_init_player(t_data *data)
 {
 	data->minipl.radius = 4;
-	data->minipl.px_x = data->mnmap->minixo - ((data->mnmap->minixo - data->mnmap->width + 3) / 3);
-	data->minipl.px_y = data->mnmap->minixo - ((data->mnmap->miniyo - data->mnmap->height + 5) / 1.3);
+	data->minipl.px_x = data->mnmap->minixo - ((data->mnmap->minixo - data->mnmap->width + 3) / 2);
+	data->minipl.px_y = data->mnmap->miniyo - ((data->mnmap->miniyo - data->mnmap->height + 5) / 2);
 	data->minipl.map_x = cos(data->player.angle) / 2 - 0.4;
 	data->minipl.map_y = sin(data->player.angle) / 2;
 }

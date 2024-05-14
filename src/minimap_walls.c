@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/13 17:43:32 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:15:43 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_pixel_mnmap(t_data *data, int color)
 		while (j < data->mnmap->width + data->mnmap->mapsx - 1)
 		{
 			if (i < data->mnmap->miniyo - 2 && j < data->mnmap->minixo - 2
-				&& i > data->mnmap->mapyb && j > data->mnmap->mapxb)
+				&& i > data->mnmap->height && j > data->mnmap->width)
 				ft_pixel(data, color, i, j);
 			j++;
 		}

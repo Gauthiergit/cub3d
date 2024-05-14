@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 10:15:27 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:00:43 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
 
 /*screen*/
 
-# define SCREEN_HEIGHT 			600
-# define SCREEN_WIDTH 			800
+# define SCREEN_HEIGHT 			720
+# define SCREEN_WIDTH 			1080
 
 typedef struct s_player
 {
