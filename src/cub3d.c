@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 18:12:08 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/14 16:33:20 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	on_keyrelease(int keysym, t_data *data)
 		data->key.s = 0;
 	else if (keysym == W)// || keysym == 65362)
 		data->key.w = 0;
+	else if (keysym == SPACE)
+		data->key.space = 0;
 	return (0);
 }
 
@@ -63,6 +65,8 @@ int	on_keypress(int keysym, t_data *data)
 		data->key.s = 1;
 	else if (keysym == W)// || keysym == 65362)
 		data->key.w = 1;
+	else if (keysym == SPACE)
+		data->key.space = 1;
 	return (0);
 }
 

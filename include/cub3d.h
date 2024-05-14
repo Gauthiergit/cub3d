@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 14:00:43 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:46:13 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define D 100
 # define S 115
 # define W 119
+# define SPACE 32
 
 /* texture door adresse */
 
@@ -109,6 +110,7 @@ typedef struct s_key
 	int			d;
 	int			right;
 	int			left;
+	int			space;
 }				t_key;
 
 typedef struct s_img_t
@@ -177,6 +179,8 @@ typedef struct s_data
 	t_player		player;
 	t_minipl		minipl;
 	t_ray			ray;
+	double			door_x;
+	double			door_y;
 }				t_data;
 
 /*C 150,255,255
@@ -198,6 +202,13 @@ void	get_texture_nb(t_data *data, int flag);
 void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix);
 float	nor_angle(float angle);
 void	render_wall(t_data *data, int ray);
+
+/* display_door.c */
+void	ft_open_door(t_data *data);
+void	render_door(t_data *data, int ray);
+void	draw_door(t_data *data, int ray, int t_pix, int b_pix);
+void	get_door_x(t_data *data);
+void	init_door(t_data *data);
 
 /* error_2.c */
 void	ft_free_if_null(t_data *data);
@@ -264,6 +275,12 @@ void	raycasting(t_data *data);
 int		dir_step_first(float angle, float *inter, float *step, int is_horizon);
 int		dir_step_second(float angle, int is_horizon);
 
+/* racasting_door.c */
+void	raycasting_door(t_data *data);
+int		door_hit(t_data *data, float x, float y);
+double	get_dist_h_inter_door(t_data *data, float angle);
+double	get_dist_v_inter_door(t_data *data, float angle);
+
 /* texture_init_2.c */
 void	texture_init(t_data *data, char **argv);
 void	extract_text_door(t_data *data);
@@ -281,9 +298,5 @@ int		check_scene_infos(t_data *data, char *file);
 int		ft_tab_size(char **tab);
 void	clear_tab(char **tab);
 size_t	count_line_tab(char **tab);
-
-
-void	raycasting_door(t_data *data);
-void	render_door(t_data *data, int ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:43:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 15:43:13 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/14 17:31:38 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,40 @@ void	render_door(t_data *data, int ray) // render the wall
 	if (t_pix < 0) // check the top pixel
 		t_pix = 0;
 	draw_door(data, ray, t_pix, b_pix);
+}
+
+void	ft_open_door(t_data *data)
+{
+	int	x;
+	int y;
+
+	x = floor(data->player.px_x / SQUARE_SIZE);
+	y = floor(data->player.px_y / SQUARE_SIZE);
+	if (!(data->player.angle > 0 && data->player.angle < M_PI))
+	{
+		if (data->scene[y - 1][x] == 'D')
+			data->scene[y - 1][x] = '0';
+	}
+}
+
+void	init_door(t_data *data)
+{
+	int		y;
+	int		x;
+
+	y = 0;
+	while (data->scene[y])
+	{
+		x = 0;
+		while (data->scene[y][x])
+		{
+			if (data->scene[y][x] == 'D')
+			{
+				data->door_x = x * SQUARE_SIZE;
+				data->door_y = y * SQUARE_SIZE;
+			}
+			x++;
+		}
+		y++;
+	}
 }

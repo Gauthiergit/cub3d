@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:39:02 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 18:13:24 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/14 17:29:25 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	door_hit(t_data *data, float x, float y)
 	{
 		if (data->scene[y_m][x_m] == '1')
 			return (1);
-		else if (data->scene[y_m][x_m] == 'D')
+		else if (data->scene[y_m][x_m] == 'D'
+			&& (x > data->door_x + 1 && x < data->door_x + SQUARE_SIZE - 1)
+			&& (y > data->door_y && y < data->door_y + SQUARE_SIZE))
 		{
 			data->ray.is_door = 1;
 			return (1);
@@ -92,9 +94,9 @@ void	raycasting_door(t_data *data)
 	double	dist_v_inter;
 	int		ray;
 
-	ray = 0;
+	ray = -1;
 	data->ray.ray_ngl = data->player.angle - (data->player.fov_rd / 2);
-	while (ray < SCREEN_WIDTH)
+	while (ray++ < SCREEN_WIDTH)
 	{
 		dist_h_inter = get_dist_h_inter_door(data, data->ray.ray_ngl);
 		dist_v_inter = get_dist_v_inter_door(data, data->ray.ray_ngl);
@@ -112,6 +114,5 @@ void	raycasting_door(t_data *data)
 			render_door(data, ray);
 		data->ray.is_door = 0;
 		data->ray.ray_ngl += (data->player.fov_rd / SCREEN_WIDTH);
-		ray++;
 	}
 }

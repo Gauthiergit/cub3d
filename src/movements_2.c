@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:30:28 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/07 16:49:08 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:57:02 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_init_keys(t_data *data)
 	data->key.d = 0;
 	data->key.s = 0;
 	data->key.w = 0;
+	data->key.space = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 10:10:39 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:42:53 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,10 @@ void	data_init(t_data *data, char **argv)
 	data->F = 0;
 	data->C = 0;
 	if (!extract_map(data, argv[1]))
+	{
 		init_player(data);
+		init_door(data);
+	}
 	texture_init(data, argv);
 	data->ray.ray_ngl = 0.0000;
 	data->ray.distance = 0.0000;
