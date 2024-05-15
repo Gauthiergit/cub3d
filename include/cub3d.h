@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 16:14:39 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 17:23:18 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ void	init_door(t_data *data);
 void	ft_free_if_null(t_data *data);
 int		first_last_line(t_data *data, size_t cur_line);
 int		other_line(t_data *data, size_t cur_line);
+int		other_line_2(t_data *data, size_t line, int i);
 int		check_walls(t_data *data);
 
 /* error.c */

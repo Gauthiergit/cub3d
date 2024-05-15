@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:43:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 16:05:13 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 17:07:19 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,20 @@ void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
 	}
 }
 
-void	render_door(t_data *data, int ray) // render the wall
+void	render_door(t_data *data, int ray)
 {
 	double	b_pix;
 	double	t_pix;
 
-	data->ray.distance *= cos(nor_angle(data->ray.ray_ngl - data->player.angle)); // fix the fisheye
-	data->wall_h = (SQUARE_SIZE / data->ray.distance) * ((SCREEN_WIDTH / 2) / tan(data->player.fov_rd / 2)); // get the wall height
-	b_pix = (SCREEN_HEIGHT / 2) + (data->wall_h / 2); // get the bottom pixel
-	t_pix = (SCREEN_HEIGHT / 2) - (data->wall_h / 2); // get the top pixel
-	if (b_pix > SCREEN_HEIGHT) // check the bottom pixel
+	data->ray.distance *= cos(nor_angle(data->ray.ray_ngl
+				- data->player.angle));
+	data->wall_h = (SQUARE_SIZE / data->ray.distance)
+		* ((SCREEN_WIDTH / 2) / tan(data->player.fov_rd / 2));
+	b_pix = (SCREEN_HEIGHT / 2) + (data->wall_h / 2);
+	t_pix = (SCREEN_HEIGHT / 2) - (data->wall_h / 2);
+	if (b_pix > SCREEN_HEIGHT)
 		b_pix = SCREEN_HEIGHT;
-	if (t_pix < 0) // check the top pixel
+	if (t_pix < 0)
 		t_pix = 0;
 	draw_door(data, ray, t_pix, b_pix);
 }
@@ -59,7 +61,7 @@ void	render_door(t_data *data, int ray) // render the wall
 void	ft_open_door(t_data *data)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = floor(data->player.px_x / SQUARE_SIZE);
 	y = floor(data->player.px_y / SQUARE_SIZE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 16:36:15 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/15 17:03:02 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	extract_textures(t_data *data, char *file)
 	i = 0;
 	if (check_scene_infos(data, file))
 	{
-		ft_free_if_null(data);		
+		ft_free_if_null(data);
 		print_error("Scene details are not correct", data);
 	}
 	while (i < 4)
@@ -86,9 +86,10 @@ void	extract_textures(t_data *data, char *file)
 						&(data->img_t[i].height));
 		if (!data->img_t[i].pt_img)
 			print_error("Fail to load texture", data);
-		data->img_t[i].address = (int *)mlx_get_data_addr(data->img_t[i].pt_img, \
-						&data->img_t[i].bits_per_pixel, &data->img_t[i].size_line, \
-						&data->img_t[i].endian);
+		data->img_t[i].address = (int *)mlx_get_data_addr(
+				data->img_t[i].pt_img, \
+				&data->img_t[i].bits_per_pixel, &data->img_t[i].size_line, \
+				&data->img_t[i].endian);
 		if (!data->img_t[i].address)
 			print_error("Fail to load texture", data);
 		ft_fill_wall_array(data, i);

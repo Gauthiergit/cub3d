@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 16:16:09 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 17:00:24 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	on_destroy(t_data *data)
 	exit(0);
 	return (0);
 }
+
 int	on_keyrelease(int keysym, t_data *data)
 {
 	if (keysym == LEFT)

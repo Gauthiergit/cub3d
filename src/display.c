@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 15:46:22 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 17:10:46 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	get_text_x(t_data *data)
 		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
 } */
 
-void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the wall
+void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix)
 {
 	double	step;
 	double	text_pos_y;
@@ -67,7 +67,8 @@ void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix) // draw the w
 	while (t_pix < b_pix)
 	{
 		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
-		data->color = data->wall[data->texture_number][SQUARE_SIZE * data->text_y + data->text_x];
+		data->color = data->wall[data->texture_number]
+		[SQUARE_SIZE * data->text_y + data->text_x];
 		text_pos_y += step;
 		if (data->ray.flag == 0)
 			data->color = (data->color >> 1) & 8355711;
@@ -110,8 +111,10 @@ void	render_wall(t_data *data, int ray) // render the wall
 	double	b_pix;
 	double	t_pix;
 
-	data->ray.distance *= cos(nor_angle(data->ray.ray_ngl - data->player.angle)); // fix the fisheye
-	data->wall_h = (SQUARE_SIZE / data->ray.distance) * ((SCREEN_WIDTH / 2) / tan(data->player.fov_rd / 2)); // get the wall height
+	data->ray.distance *= cos(nor_angle(data->ray.ray_ngl
+				- data->player.angle));
+	data->wall_h = (SQUARE_SIZE / data->ray.distance)
+		* ((SCREEN_WIDTH / 2) / tan(data->player.fov_rd / 2));
 	b_pix = (SCREEN_HEIGHT / 2) + (data->wall_h / 2); // get the bottom pixel
 	t_pix = (SCREEN_HEIGHT / 2) - (data->wall_h / 2); // get the top pixel
 	if (b_pix > SCREEN_HEIGHT) // check the bottom pixel
