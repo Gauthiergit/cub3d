@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/14 14:15:43 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:21:00 by gwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_pixel_mnmap(t_data *data, int color)
 	while (i < data->mnmap->height + data->mnmap->mapsy - 1)
 	{
 		j = data->mnmap->width;
-		while (j < data->mnmap->width + data->mnmap->mapsx - 1)
+		while (j < data->mnmap->width + data->mnmap->mapsy)
 		{
 			if (i < data->mnmap->miniyo - 2 && j < data->mnmap->minixo - 2
 				&& i > data->mnmap->height && j > data->mnmap->width)
@@ -59,10 +59,10 @@ void	ft_walls(t_data *data)
 	int	j;
 	int	jo;
 
-	i = -4;//-12;
-	while (i < 5)//13)
+	i = -4;
+	while (i < 5)
 	{
-		j = -6;//-18;
+		j = -6;
 		io = (int)data->player.map_y + i;
 		while (j < 7)
 		{
@@ -71,7 +71,7 @@ void	ft_walls(t_data *data)
 			j++;
 			data->mnmap->width += data->mnmap->mapsx;
 		}
-		data->mnmap->width -= data->mnmap->mapsx * (7 - (-6));//(-6);
+		data->mnmap->width -= data->mnmap->mapsx * (7 - (-6));
 		data->mnmap->height += data->mnmap->mapsy;
 		i++;
 	}
