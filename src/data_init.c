@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 17:42:53 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:04:40 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ void	data_init(t_data *data, char **argv)
 	data->ray.distance = 0.0000;
 	data->ray.flag = 0;
 	data->ray.is_door = 0;
+	data->pass_door = 0;
 }

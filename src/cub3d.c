@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 16:33:20 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:16:09 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	on_destroy(t_data *data)
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
 	clear_tab(data->text_tab);
+	clear_list(data->doorlist);
 	//free(data->mnmap);
 	free(data->mlx);
 	exit(0);
@@ -81,6 +82,8 @@ int	game(t_data *data)
 	raycasting_door(data);
 	ft_print_minimap(data);
 	ft_movements(data);
+	floor_is_O(data);
+	ft_close_door(data);
 	//data->frame_time = 16 / 1000.0;
 	//data->move_speed = data->frame_time * 5.0;
 	//data->rotation_speed = data->frame_time * 5.0;

@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:43:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 17:31:38 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:05:13 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,25 @@ void	ft_open_door(t_data *data)
 
 	x = floor(data->player.px_x / SQUARE_SIZE);
 	y = floor(data->player.px_y / SQUARE_SIZE);
-	if (!(data->player.angle > 0 && data->player.angle < M_PI))
-	{
-		if (data->scene[y - 1][x] == 'D')
-			data->scene[y - 1][x] = '0';
-	}
+	if (data->scene[y - 1][x] == 'D')
+		data->scene[y - 1][x] = 'O';
+	else if (data->scene[y + 1][x] == 'D')
+		data->scene[y + 1][x] = 'O';
+	else if (data->scene[y][x - 1] == 'D')
+		data->scene[y][x - 1] = 'O';
+	else if (data->scene[y][x + 1] == 'D')
+		data->scene[y][x + 1] = 'O';
 }
 
 void	init_door(t_data *data)
 {
 	int		y;
 	int		x;
+	t_door	*newdoor;
 
 	y = 0;
+	data->doorlist = NULL;
+	newdoor = NULL;
 	while (data->scene[y])
 	{
 		x = 0;
@@ -83,8 +89,8 @@ void	init_door(t_data *data)
 		{
 			if (data->scene[y][x] == 'D')
 			{
-				data->door_x = x * SQUARE_SIZE;
-				data->door_y = y * SQUARE_SIZE;
+				newdoor = new_door(x * SQUARE_SIZE, y * SQUARE_SIZE);
+				add_door(&data->doorlist, newdoor);
 			}
 			x++;
 		}

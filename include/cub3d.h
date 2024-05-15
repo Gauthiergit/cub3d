@@ -6,7 +6,7 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 17:46:13 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:14:39 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@
 /* texture door adresse */
 
 # define D1_PATH "./texture/exit_c.xpm"
-// # define D2_PATH "./texture/door_2.xpm"
-// # define D3_PATH "./texture/door_3.xpm"
-// # define D4_PATH "./texture/door_4.xpm"
-// # define D5_PATH "./texture/door_5.xpm"
-// # define D6_PATH "./texture/door_6.xpm"
 
 /*screen*/
 
@@ -78,11 +73,12 @@ typedef struct s_ray
  int	is_door;
 }				t_ray;
 
-/* typedef struct s_pos
+typedef struct s_door
 {
-	double		x;
-	double		y;
-}				t_pos; */
+	double			x;
+	double			y;
+	struct s_door 	*next;
+}				t_door;
 
 /*texture struct*/
 
@@ -156,6 +152,8 @@ typedef struct s_data
 	int				text_y;
 	double			cam_x;
 	double			h_x;
+	double			h_y;
+	double			v_x;
 	double			v_y;
 	double			wall_h;
 	double			frame_time;
@@ -179,8 +177,8 @@ typedef struct s_data
 	t_player		player;
 	t_minipl		minipl;
 	t_ray			ray;
-	double			door_x;
-	double			door_y;
+	t_door			*doorlist;
+	int				pass_door;
 }				t_data;
 
 /*C 150,255,255
@@ -234,6 +232,11 @@ void	ft_place_pixel(t_data *data, int ray, int y, int color);
 void	ft_pixel(t_data *data, int color, int i, int j);
 void	put_ceiling_and_floor(t_data *data);
 
+/* lst_utils.c */
+t_door	*new_door(double x, double y);
+void	add_door(t_door **doorlist, t_door *newdoor);
+void	clear_list(t_door *doorlist);
+
 /* map_init.c */
 int		is_map(char *line);
 int		count_line_map(t_data *data, char *file);
@@ -263,6 +266,8 @@ void	ft_move_forward(t_data *data);
 void	ft_rotate_left(t_data *data);
 void	ft_rotate_right(t_data *data);
 void	ft_init_keys(t_data *data);
+void	floor_is_O(t_data *data);
+void	ft_close_door(t_data *data);
 
 /* raycasting_1.c */
 int		wall_hit(t_data *data, float x, float y);
@@ -280,6 +285,7 @@ void	raycasting_door(t_data *data);
 int		door_hit(t_data *data, float x, float y);
 double	get_dist_h_inter_door(t_data *data, float angle);
 double	get_dist_v_inter_door(t_data *data, float angle);
+int		find_door(t_data *data);
 
 /* texture_init_2.c */
 void	texture_init(t_data *data, char **argv);

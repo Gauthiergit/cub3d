@@ -6,11 +6,31 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:39:02 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/14 17:29:25 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/15 15:07:57 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	find_door(t_data *data)
+{
+	t_door *cur;
+
+	cur = data->doorlist;
+	while (cur)
+	{
+		if (data->ray.flag == 1
+			&& (data->h_x >= cur->x && data->h_x <= cur->x + SQUARE_SIZE)
+			&& (data->h_y >= cur->y && data->h_y <= cur->y + SQUARE_SIZE))
+			return (1);
+		else if (data->ray.flag == 0
+			&& (data->v_x >= cur->x && data->v_x <= cur->x + SQUARE_SIZE)
+			&& (data->v_y >= cur->y && data->v_y <= cur->y + SQUARE_SIZE))
+			return (1);
+		cur = cur->next;
+	}
+	return (0);
+}
 
 int	door_hit(t_data *data, float x, float y)
 {
@@ -27,9 +47,7 @@ int	door_hit(t_data *data, float x, float y)
 	{
 		if (data->scene[y_m][x_m] == '1')
 			return (1);
-		else if (data->scene[y_m][x_m] == 'D'
-			&& (x > data->door_x + 1 && x < data->door_x + SQUARE_SIZE - 1)
-			&& (y > data->door_y && y < data->door_y + SQUARE_SIZE))
+		else if (data->scene[y_m][x_m] == 'D')
 		{
 			data->ray.is_door = 1;
 			return (1);
@@ -60,6 +78,7 @@ double	get_dist_h_inter_door(t_data *data, float angle)
 		h_y += y_step;
 	}
 	data->h_x = h_x;
+	data->h_y = h_y;
 	return (dist_ray(data, h_x, h_y));
 }
 
@@ -84,6 +103,7 @@ double	get_dist_v_inter_door(t_data *data, float angle)
 		v_x += x_step;
 		v_y += y_step;
 	}
+	data->v_x = v_x;
 	data->v_y = v_y;
 	return (dist_ray(data, v_x, v_y));
 }
@@ -110,7 +130,7 @@ void	raycasting_door(t_data *data)
 			data->ray.distance = dist_v_inter;
 			data->ray.flag = 0;
 		}
-		if (data->ray.is_door)
+		if (data->ray.is_door && find_door(data))
 			render_door(data, ray);
 		data->ray.is_door = 0;
 		data->ray.ray_ngl += (data->player.fov_rd / SCREEN_WIDTH);
