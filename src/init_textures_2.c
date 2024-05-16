@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_init_2.c                                  :+:      :+:    :+:   */
+/*   init_textures_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:48:54 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:00:21 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:08:36 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	extract_text_door(t_data *data)
-{
-	data->text_door[0].pt_img = mlx_xpm_file_to_image(data->mlx, \
-						D1_PATH, &(data->text_door[0].width), \
-						&(data->text_door[0].height));
-	if (!data->text_door[0].pt_img)
-		print_error("Fail to load texture 0", data);
-}
 
 void	fill_door_array(t_data *data)
 {
@@ -42,6 +33,11 @@ void	fill_door_array(t_data *data)
 
 void	get_text_door_addr(t_data *data)
 {
+	data->text_door[0].pt_img = mlx_xpm_file_to_image(data->mlx, \
+						D1_PATH, &(data->text_door[0].width), \
+						&(data->text_door[0].height));
+	if (!data->text_door[0].pt_img)
+		print_error("Fail to load texture 0", data);
 	data->text_door[0].address = \
 		(int *)mlx_get_data_addr(data->text_door[0].pt_img, \
 		&data->text_door[0].bits_per_pixel, &data->text_door[0].size_line, \

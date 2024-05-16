@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 14:01:41 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:12:31 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,6 @@ int		on_keyrelease(int keysym, t_data *data);
 int		on_keypress(int keysym, t_data *data);
 int		game(t_data *data);
 
-/* data_init.c */
-void	data_init(t_data *data, char **argv);
-void	init_player(t_data *data);
-void	extract_textures(t_data *data, char *file);
-
 /* display.c */
 void	get_texture_nb(t_data *data, int flag);
 void	get_text_x(t_data *data);
@@ -217,17 +212,29 @@ void	ft_place_pixel(t_data *data, int ray, int y, int color);
 void	ft_pixel(t_data *data, int color, int i, int j);
 void	put_ceiling_and_floor(t_data *data);
 
-/* lst_utils.c */
-t_door	*new_door(double x, double y);
-void	add_door(t_door **doorlist, t_door *newdoor);
-void	clear_list(t_door *doorlist);
+/* init_data.c */
+void	data_init(t_data *data, char **argv);
+void	init_player(t_data *data);
+void	extract_textures(t_data *data, char *file);
 
-/* map_init.c */
+/* init_map.c */
 int		is_map(char *line);
 int		count_line_map(t_data *data, char *file);
 void	find_lgst_line(t_data *data, char *file);
 void	fill_in_map(t_data *data, int fd, char *cur_line);
 int		extract_map(t_data *data, char *file);
+
+/* init_texture_1.c */
+void	convert_colors(t_data *data, char **color_tab, char c);
+int		valid_colors(t_data *data, char *line);
+int		valid_texture_we(t_data *data, char *line, char *dup);
+int		valid_texture_ns(t_data *data, char *line);
+int		check_scene_infos(t_data *data, char *file);
+
+/* init_texture_2.c */
+void	texture_init(t_data *data, char **argv);
+void	get_text_door_addr(t_data *data);
+void	fill_door_array(t_data *data);
 
 /* minimap.c */
 void	ft_put_player(t_data *data);
@@ -271,18 +278,10 @@ double	get_dist_h_inter_door(t_data *data, float angle);
 double	get_dist_v_inter_door(t_data *data, float angle);
 int		find_door(t_data *data);
 
-/* texture_init_2.c */
-void	texture_init(t_data *data, char **argv);
-void	extract_text_door(t_data *data);
-void	get_text_door_addr(t_data *data);
-void	fill_door_array(t_data *data);
-
-/* textures_init.c */
-void	convert_colors(t_data *data, char **color_tab, char c);
-int		valid_colors(t_data *data, char *line);
-int		valid_texture_we(t_data *data, char *line, char *dup);
-int		valid_texture_ns(t_data *data, char *line);
-int		check_scene_infos(t_data *data, char *file);
+/* utils_lst.c */
+t_door	*new_door(double x, double y);
+void	add_door(t_door **doorlist, t_door *newdoor);
+void	clear_list(t_door *doorlist);
 
 /* utils.c */
 int		ft_tab_size(char **tab);

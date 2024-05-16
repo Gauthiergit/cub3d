@@ -24,15 +24,16 @@ BLUE = \033[94m
 # Cub3D files
 
 SRCS  = src/cub3d.c \
-		src/data_init.c \
 		src/display_door.c \
 		src/display.c \
 		src/error_2.c \
 		src/error.c \
 		src/get_next_line.c \
 		src/img_to_create.c \
-		src/lst_utils.c \
-		src/map_init.c \
+		src/init_data.c \
+		src/init_map.c \
+		src/init_textures_1.c \
+		src/init_textures_2.c \
 		src/minimap.c \
 		src/minimap_walls.c \
 		src/movements_1.c \
@@ -40,8 +41,7 @@ SRCS  = src/cub3d.c \
 		src/raycasting_1.c \
 		src/raycasting_2.c \
 		src/raycasting_door.c \
-		src/textures_init_1.c \
-		src/textures_init_2.c \
+		src/utils_lst.c \
 		src/utils.c
 
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))
