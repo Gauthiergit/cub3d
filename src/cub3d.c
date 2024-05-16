@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:02:01 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:29:01 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	on_destroy(t_data *data)
 	clear_tab(data->scene);
 	clear_tab(data->text_tab);
 	clear_list(data->doorlist);
-	//free(data->mnmap);
 	free(data->mlx);
 	exit(0);
 	return (0);
@@ -82,9 +81,6 @@ int	game(t_data *data)
 	ft_movements(data);
 	floor_is_open_door(data);
 	ft_close_door(data);
-	//data->frame_time = 16 / 1000.0;
-	//data->move_speed = data->frame_time * 5.0;
-	//data->rotation_speed = data->frame_time * 5.0;
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img_s.pt_img);
 	return (0);

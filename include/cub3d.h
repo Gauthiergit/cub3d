@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:08:03 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:30:26 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 
-# define BUFFER_SIZE 42
-# define SQUARE_SIZE 64
-# define FOV 60
-# define ESC 65307
-# define RIGHT 65363
-# define LEFT 65361
-# define A 97
-# define D 100
-# define S 115
-# define W 119
-# define SPACE 32
+# define BUFFER_SIZE	42
+# define SQUARE_SIZE	64
+# define FOV			60
+# define ESC			65307
+# define RIGHT			65363
+# define LEFT			65361
+# define A				97
+# define D				100
+# define S				115
+# define W				119
+# define SPACE			32
 
 /* texture door adresse */
 
@@ -42,8 +42,8 @@
 
 /*screen*/
 
-# define SCREEN_HEIGHT 			720
-# define SCREEN_WIDTH 			1080
+# define SCREEN_HEIGHT 	720
+# define SCREEN_WIDTH 	1080
 
 /* MINIMAP */
 
@@ -152,9 +152,6 @@ typedef struct s_data
 	double			v_x;
 	double			v_y;
 	double			wall_h;
-	double			frame_time;
-	double			move_speed;
-	double			rotation_speed;
 	char			**text_tab;
 	int				no;
 	int				so;
