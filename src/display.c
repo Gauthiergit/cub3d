@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:19 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:01:11 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:06:37 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,36 +100,5 @@ void	render_wall(t_data *data, int ray)
 		b_pix = SCREEN_HEIGHT;
 	if (t_pix < 0)
 		t_pix = 0;
-	// if (data->ray.is_door)
-	// 	draw_door(data, ray, t_pix, b_pix);
-	// else
 	draw_wall_stripe(data, ray, t_pix, b_pix);
 }
-
-/* void	get_door_x(t_data *data)
-{
-	if (data->ray.flag == 1)
-		data->text_x = fmodf(data->h_x, SQUARE_SIZE);
-	else
-		data->text_x = fmodf(data->v_y, SQUARE_SIZE);
-} */
-
-/* void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
-{
-	double	step;
-	double	text_pos_y;
-
-	step = SQUARE_SIZE / data->wall_h;
-	text_pos_y = (t_pix - SCREEN_HEIGHT / 2 + data->wall_h / 2) * step;
-	get_door_x(data);
-	while (t_pix < b_pix)
-	{
-		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
-		data->color = data->door[0][SQUARE_SIZE * data->text_y + data->text_x];
-		text_pos_y += step;
-		if (data->ray.flag == 0)
-			data->color = (data->color >> 1) & 8355711;
-		ft_place_pixel(data, ray, t_pix, data->color);
-		t_pix++;
-	}
-} */

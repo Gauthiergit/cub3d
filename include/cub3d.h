@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 10:56:35 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:08:03 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define BUFFER_SIZE 42
 # define SQUARE_SIZE 64
 # define FOV 60
-# define H_CAM 32
 # define ESC 65307
 # define RIGHT 65363
 # define LEFT 65361
