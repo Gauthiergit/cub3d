@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:08:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 17:22:57 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:47:20 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_free_if_null(t_data *data)
 {
-	if (data->NO == 0)
+	if (data->no == 0)
 		data->text_tab[0] = ft_strdup("Free");
-	if (data->SO == 0)
+	if (data->so == 0)
 		data->text_tab[1] = ft_strdup("Free");
-	if (data->WE == 0)
+	if (data->we == 0)
 		data->text_tab[2] = ft_strdup("Free");
-	if (data->EA == 0)
+	if (data->ea == 0)
 		data->text_tab[3] = ft_strdup("Free");
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/13 18:09:27 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:58:23 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	wall_hit(t_data *data, float x, float y)
 	return (0);
 }
 
-double dist_ray(t_data *data, float x, float y)
+double	dist_ray(t_data *data, float x, float y)
 {
 	double	dif_x;
 	double	dif_y;
@@ -59,8 +59,8 @@ double	get_dist_h_inter(t_data *data, float angle)
 	h_y = floor(data->player.px_y / SQUARE_SIZE) * SQUARE_SIZE;
 	pixel = dir_step_first(angle, &h_y, &y_step, 1);
 	h_x = data->player.px_x + (h_y - data->player.px_y) / tan(angle);
-	if ((dir_step_second(angle, 1) && x_step > 0) ||
-		(!dir_step_second(angle, 1) && x_step < 0))
+	if ((dir_step_second(angle, 1) && x_step > 0)
+		|| (!dir_step_second(angle, 1) && x_step < 0))
 		x_step *= -1;
 	while (!wall_hit(data, h_x, h_y - pixel))
 	{
@@ -84,8 +84,8 @@ double	get_dist_v_inter(t_data *data, float angle)
 	v_x = floor(data->player.px_x / SQUARE_SIZE) * SQUARE_SIZE;
 	pixel = dir_step_first(angle, &v_x, &x_step, 0);
 	v_y = data->player.px_y + (v_x - data->player.px_x) * tan(angle);
-	if ((dir_step_second(angle, 0) && y_step < 0) ||
-		(!dir_step_second(angle, 0) && y_step > 0))
+	if ((dir_step_second(angle, 0) && y_step < 0)
+		|| (!dir_step_second(angle, 0) && y_step > 0))
 		y_step *= -1;
 	while (!wall_hit(data, v_x - pixel, v_y))
 	{

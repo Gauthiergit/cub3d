@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_door.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:43:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 17:07:19 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:40:13 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_door(t_data *data, int ray, int t_pix, int b_pix)
 	get_door_x(data);
 	while (t_pix < b_pix)
 	{
-		data->text_y = text_pos_y;//& (SQUARE_SIZE - 1);
+		data->text_y = text_pos_y;
 		data->color = data->door[0][SQUARE_SIZE * data->text_y + data->text_x];
 		text_pos_y += step;
 		if (data->ray.flag == 0)

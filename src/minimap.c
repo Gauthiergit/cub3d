@@ -6,12 +6,14 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/14 13:59:15 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:50:42 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+/* if condition with pow is to make it a blue point, not a square pixel.
+	color player = blue/violet) */
 void	ft_put_player(t_data *data)
 {
 	int	x;
@@ -24,8 +26,8 @@ void	ft_put_player(t_data *data)
 		while (x <= data->minipl.px_x + data->minipl.radius)
 		{
 			if (pow(x - data->minipl.px_x, 2) + pow(y - data->minipl.px_y, 2)
-				<= pow(data->minipl.radius, 2)) // make it a blue point, not a square pixel.
-				ft_pixel(data, 0x3c00ff, y + data->minipl.map_y, x + data->minipl.map_x); //Bleu violet player
+				<= pow(data->minipl.radius, 2))
+				ft_pixel(data, 0x3c00ff, y, x);
 			x++;
 		}
 		y++;
@@ -35,8 +37,10 @@ void	ft_put_player(t_data *data)
 void	ft_init_player(t_data *data)
 {
 	data->minipl.radius = 4;
-	data->minipl.px_x = data->mnmap->minixo - ((data->mnmap->minixo - data->mnmap->width + 3) / 2);
-	data->minipl.px_y = data->mnmap->miniyo - ((data->mnmap->miniyo - data->mnmap->height + 5) / 2);
+	data->minipl.px_x = data->mnmap->minixo - ((data->mnmap->minixo - \
+		data->mnmap->width + 3) / 2);
+	data->minipl.px_y = data->mnmap->miniyo - ((data->mnmap->miniyo - \
+		data->mnmap->height + 5) / 2);
 	data->minipl.map_x = cos(data->player.angle) / 2 - 0.4;
 	data->minipl.map_y = sin(data->player.angle) / 2;
 }
@@ -52,13 +56,12 @@ void	ft_init_minimap(t_data *data)
 	data->mnmap->width = SCREEN_WIDTH / 30;
 	data->mnmap->height = SCREEN_HEIGHT / 30;
 	data->mnmap->minixo = SCREEN_WIDTH / 40 * 10;
-	data->mnmap->miniyo =  SCREEN_HEIGHT / 40 * 10;
-	// data->mnmap->mapxb = data->mnmap->width;
-	// data->mnmap->mapyb = data->mnmap->height;
-	data->mnmap->mapsx = 18;//7;
+	data->mnmap->miniyo = SCREEN_HEIGHT / 40 * 10;
+	data->mnmap->mapsx = 18;
 	data->mnmap->mapsy = data->mnmap->mapsx - 1;
 }
 
+/* color for background = Yellow */
 void	ft_print_minimap(t_data *data)
 {
 	int	i;
@@ -72,7 +75,7 @@ void	ft_print_minimap(t_data *data)
 		while (j < data->mnmap->minixo)
 		{
 			if (j % 2 == 0 && i % 2 == 0)
-				ft_pixel(data, 0xffff00, i, j); //Jaune background
+				ft_pixel(data, 0xffff00, i, j);
 			j++;
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:02:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/15 16:33:55 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/16 10:55:00 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	ft_move_left(t_data *data)
 
 	x = roundf(data->player.px_x + cos(data->player.angle - M_PI / 2) * 2.0);
 	y = (int)data->player.px_y;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_x = x;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -28,8 +29,9 @@ void	ft_move_left(t_data *data)
 	}
 	y = roundf(data->player.px_y + sin(data->player.angle - M_PI / 2) * 2.0);
 	x = (int)data->player.px_x;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_y = y;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -44,8 +46,9 @@ void	ft_move_right(t_data *data)
 
 	x = roundf(data->player.px_x + cos(data->player.angle + M_PI / 2) * 2.0);
 	y = (int)data->player.px_y;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_x = x;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -53,8 +56,9 @@ void	ft_move_right(t_data *data)
 	}
 	y = roundf(data->player.px_y + sin(data->player.angle + M_PI / 2) * 2.0);
 	x = (int)data->player.px_x;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_y = y;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -69,8 +73,9 @@ void	ft_move_backwards(t_data *data)
 
 	x = roundf(data->player.px_x + cos(data->player.angle + M_PI) * 2.0);
 	y = (int)data->player.px_y;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_x = x;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -78,8 +83,9 @@ void	ft_move_backwards(t_data *data)
 	}
 	y = roundf(data->player.px_y + sin(data->player.angle + M_PI) * 2.0);
 	x = (int)data->player.px_x;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_y = y;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -94,8 +100,9 @@ void	ft_move_forward(t_data *data)
 
 	x = roundf(data->player.px_x + cos(data->player.angle) * 2.0);
 	y = (int)data->player.px_y;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_x = x;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);
@@ -103,8 +110,9 @@ void	ft_move_forward(t_data *data)
 	}
 	y = roundf(data->player.px_y + sin(data->player.angle) * 2.0);
 	x = (int)data->player.px_x;
-	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != '1'
-		&& data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] != 'D')
+	if (data->scene[(int)floor(y / SQUARE_SIZE)][(int)floor(x / SQUARE_SIZE)] \
+		!= '1' && data->scene[(int)floor(y / SQUARE_SIZE)] \
+		[(int)floor(x / SQUARE_SIZE)] != 'D')
 	{
 		data->player.px_y = y;
 		data->player.map_x = (int)floor(x / SQUARE_SIZE);

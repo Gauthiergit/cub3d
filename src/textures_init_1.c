@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_init.c                                    :+:      :+:    :+:   */
+/*   textures_init_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/06 12:21:26 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:47:58 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	valid_colors(t_data *data, char *line)
 			i++;
 		}
 		if (line[0] == 'F')
-			data->F++;
+			data->f++;
 		else if (line[0] == 'C')
-			data->C++;
+			data->c++;
 		convert_colors(data, color_tab, line[0]);
 		clear_tab(color_tab);
 	}
@@ -68,12 +68,12 @@ int	valid_texture_we(t_data *data, char *line, char *dup)
 {
 	if (line[0] == 'W' && line[1] == 'E')
 	{
-		data->WE++;
+		data->we++;
 		data->text_tab[2] = ft_strtrim(dup, "\n");
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
-		data->EA++;
+		data->ea++;
 		data->text_tab[3] = ft_strtrim(dup, "\n");
 	}
 	free(dup);
@@ -92,12 +92,12 @@ int	valid_texture_ns(t_data *data, char *line)
 		if (line[0] == 'N' && line[1] == 'O')
 		{
 			data->text_tab[0] = ft_strtrim(dup, "\n");
-			return (data->NO++, free(dup), clear_tab(path_tab), 0);
+			return (data->no++, free(dup), clear_tab(path_tab), 0);
 		}
 		else if (line[0] == 'S' && line[1] == 'O')
 		{
 			data->text_tab[1] = ft_strtrim(dup, "\n");
-			return (data->SO++, free(dup), clear_tab(path_tab), 0);
+			return (data->so++, free(dup), clear_tab(path_tab), 0);
 		}
 		else if ((line[0] == 'W' && line[1] == 'E')
 			|| (line[0] == 'E' && line[1] == 'A'))
@@ -118,8 +118,8 @@ int	check_scene_infos(t_data *data, char *file)
 	data->text_tab = ft_calloc(5, sizeof(char *));
 	if (!data->text_tab)
 		return (1);
-	while (data->NO != 1 || data->SO != 1 || data->WE != 1 || data->EA != 1
-		|| data->F != 1 || data->C != 1)
+	while (data->no != 1 || data->so != 1 || data->we != 1 || data->ea != 1
+		|| data->f != 1 || data->c != 1)
 	{
 		line = get_next_line(fd);
 		if (valid_texture_ns(data, line) == 1)
@@ -132,7 +132,7 @@ int	check_scene_infos(t_data *data, char *file)
 	}
 	close(fd);
 	get_next_line(42);
-	if (ft_tab_size(data->text_tab) != 4 || data->F != 1 || data->C != 1)
+	if (ft_tab_size(data->text_tab) != 4 || data->f != 1 || data->c != 1)
 		return (1);
 	return (0);
 }

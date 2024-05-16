@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 17:00:24 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:02:01 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 /*should return an int but exit(0) is required to quit the program properly*/
 int	on_destroy(t_data *data)
 {
-	//ft_destroy_images(data);
-	/* mlx_destroy_image(data->mlx, data->mnmap->img_space);
-	mlx_destroy_image(data->mlx, data->mnmap->img_wall); */
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
@@ -39,9 +36,9 @@ int	on_keyrelease(int keysym, t_data *data)
 		data->key.a = 0;
 	else if (keysym == D)
 		data->key.d = 0;
-	else if (keysym == S)// || keysym == 65364)
+	else if (keysym == S)
 		data->key.s = 0;
-	else if (keysym == W)// || keysym == 65362)
+	else if (keysym == W)
 		data->key.w = 0;
 	else if (keysym == SPACE)
 		data->key.space = 0;
@@ -63,9 +60,9 @@ int	on_keypress(int keysym, t_data *data)
 		data->key.a = 1;
 	else if (keysym == D)
 		data->key.d = 1;
-	else if (keysym == S)// || keysym == 65364)
+	else if (keysym == S)
 		data->key.s = 1;
-	else if (keysym == W)// || keysym == 65362)
+	else if (keysym == W)
 		data->key.w = 1;
 	else if (keysym == SPACE)
 		data->key.space = 1;
@@ -83,7 +80,7 @@ int	game(t_data *data)
 	raycasting_door(data);
 	ft_print_minimap(data);
 	ft_movements(data);
-	floor_is_O(data);
+	floor_is_open_door(data);
 	ft_close_door(data);
 	//data->frame_time = 16 / 1000.0;
 	//data->move_speed = data->frame_time * 5.0;

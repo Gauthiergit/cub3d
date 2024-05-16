@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 17:03:02 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:29:30 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ void	data_init(t_data *data, char **argv)
 	data->lgst_line = 0;
 	data->line_nb = 0;
 	data->text_tab = NULL;
-	data->NO = 0;
-	data->SO = 0;
-	data->WE = 0;
-	data->EA = 0;
-	data->F = 0;
-	data->C = 0;
+	data->no = 0;
+	data->so = 0;
+	data->we = 0;
+	data->ea = 0;
+	data->f = 0;
+	data->c = 0;
 	if (!extract_map(data, argv[1]))
 	{
 		init_player(data);

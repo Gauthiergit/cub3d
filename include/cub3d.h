@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/15 17:23:18 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:56:35 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@
 # define SCREEN_HEIGHT 			720
 # define SCREEN_WIDTH 			1080
 
-typedef struct s_player
+/* MINIMAP */
+
+typedef struct s_mnmap
 {
-	size_t			map_x;
-	size_t			map_y;
-	int				px_x;
-	int				px_y;
-	double			angle;
-	float			fov_rd;
-}					t_player;
+	int			height;
+	int			width;
+	int			minixo;
+	int			miniyo;
+	int			mapsx;
+	int			mapsy;
+	char		*wall;
+	char		*space;
+	void		*img_wall;
+	void		*img_space;
+}				t_mnmap;
 
 typedef struct s_minipl
 {
@@ -63,40 +69,34 @@ typedef struct s_minipl
 	float			px_x;
 	float			px_y;
 	int				radius;
-}					t_minipl;
+}				t_minipl;
+
+/* GAME */
+
+typedef struct s_player
+{
+	size_t			map_x;
+	size_t			map_y;
+	int				px_x;
+	int				px_y;
+	double			angle;
+	float			fov_rd;
+}				t_player;
 
 typedef struct s_ray
 {
- double	ray_ngl;
- double	distance;
- int	flag;
- int	is_door;
+	double			ray_ngl;
+	double			distance;
+	int				flag;
+	int				is_door;
 }				t_ray;
 
 typedef struct s_door
 {
 	double			x;
 	double			y;
-	struct s_door 	*next;
+	struct s_door	*next;
 }				t_door;
-
-/*texture struct*/
-
-typedef struct s_mnmap
-{
-	int			height;
-	int			width;
-	int			minixo;
-	int			miniyo;
-	int			mapxb;
-	int			mapyb;
-	int			mapsx;
-	int			mapsy;
-	char		*wall;
-	char		*space;
-	void		*img_wall;
-	void		*img_space;
-}				t_mnmap;
 
 typedef struct s_key
 {
@@ -109,6 +109,8 @@ typedef struct s_key
 	int			space;
 }				t_key;
 
+/*texture struct*/
+
 typedef struct s_img_t
 {
 	void		*pt_img;
@@ -118,11 +120,7 @@ typedef struct s_img_t
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-}					t_img_t;
-	/* char		*north_air;
-	char 		*south_fire;
-	char		*west_water;
-	char		*east_earth;*/
+}				t_img_t;
 
 /*screen struct*/
 
@@ -137,12 +135,11 @@ typedef struct s_img_s
 	int			endian;
 }				t_img_s;
 
-
 typedef struct s_data
 {
 	void			*mlx;
-	void 			*win;
-	char 			**scene;
+	void			*win;
+	char			**scene;
 	size_t			lgst_line;
 	int				line_nb;
 	unsigned long	floor_hex;
@@ -160,12 +157,12 @@ typedef struct s_data
 	double			move_speed;
 	double			rotation_speed;
 	char			**text_tab;
-	int				NO;
-	int				SO;
-	int				WE;
-	int				EA;
-	int				F;
-	int				C;
+	int				no;
+	int				so;
+	int				we;
+	int				ea;
+	int				f;
+	int				c;
 	int				texture_number;
 	int				wall[4][SQUARE_SIZE * SQUARE_SIZE];
 	int				door[1][SQUARE_SIZE * SQUARE_SIZE];
@@ -181,9 +178,6 @@ typedef struct s_data
 	int				pass_door;
 }				t_data;
 
-/*C 150,255,255
-F 112,141,35*/
-
 /* cub3d.c */
 int		on_destroy(t_data *data);
 int		on_keyrelease(int keysym, t_data *data);
@@ -197,15 +191,16 @@ void	extract_textures(t_data *data, char *file);
 
 /* display.c */
 void	get_texture_nb(t_data *data, int flag);
+void	get_text_x(t_data *data);
 void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix);
 float	nor_angle(float angle);
 void	render_wall(t_data *data, int ray);
 
 /* display_door.c */
-void	ft_open_door(t_data *data);
-void	render_door(t_data *data, int ray);
-void	draw_door(t_data *data, int ray, int t_pix, int b_pix);
 void	get_door_x(t_data *data);
+void	draw_door(t_data *data, int ray, int t_pix, int b_pix);
+void	render_door(t_data *data, int ray);
+void	ft_open_door(t_data *data);
 void	init_door(t_data *data);
 
 /* error_2.c */
@@ -221,9 +216,6 @@ int		check_error_file(int argc, char **argv);
 int		is_valid_char(char **map);
 int		is_double(char **map);
 void	check_error_map(t_data *data);
-
-/* exit.c */
-//void	ft_destroy_images(t_data *data);
 
 /* get_next_line.c */
 char	*get_next_line(int fd);
@@ -267,12 +259,12 @@ void	ft_move_forward(t_data *data);
 void	ft_rotate_left(t_data *data);
 void	ft_rotate_right(t_data *data);
 void	ft_init_keys(t_data *data);
-void	floor_is_O(t_data *data);
+void	floor_is_open_door(t_data *data);
 void	ft_close_door(t_data *data);
 
 /* raycasting_1.c */
 int		wall_hit(t_data *data, float x, float y);
-double 	dist_ray(t_data *data, float x, float y);
+double	dist_ray(t_data *data, float x, float y);
 double	get_dist_h_inter(t_data *data, float angle);
 double	get_dist_v_inter(t_data *data, float angle);
 void	raycasting(t_data *data);
@@ -301,7 +293,7 @@ int		valid_texture_we(t_data *data, char *line, char *dup);
 int		valid_texture_ns(t_data *data, char *line);
 int		check_scene_infos(t_data *data, char *file);
 
-/* utils_1.c */
+/* utils.c */
 int		ft_tab_size(char **tab);
 void	clear_tab(char **tab);
 size_t	count_line_tab(char **tab);

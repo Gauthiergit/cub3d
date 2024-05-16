@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:41:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/14 10:15:46 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:42:18 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_place_pixel(t_data *data, int ray, int y, int color)
 	char	*distance;
 
 	distance = data->img_s.address + \
-			(y * data->img_s.size_line + ray * (data->img_s.bits_per_pixel / 8));
+			(y * data->img_s.size_line + ray * \
+			(data->img_s.bits_per_pixel / 8));
 	*(unsigned int *)distance = color;
 }
 
@@ -36,8 +37,8 @@ void	ft_pixel(t_data *data, int color, int i, int j)
 
 void	put_ceiling_and_floor(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < SCREEN_HEIGHT)

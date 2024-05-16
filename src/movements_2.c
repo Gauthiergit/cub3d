@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:30:28 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/15 16:15:23 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:57:01 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	ft_rotate_left(t_data *data)
 {
-	data->player.angle -= 0.04;//data->rotation_speed;
+	data->player.angle -= 0.04;
 	if (data->player.angle < 0)
 		data->player.angle += 2 * M_PI;
 }
+
 void	ft_rotate_right(t_data *data)
 {
-	data->player.angle += 0.04;//data->rotation_speed;
+	data->player.angle += 0.04;
 	if (data->player.angle > 2 * M_PI)
 		data->player.angle -= 2 * M_PI;
 }
@@ -36,10 +37,10 @@ void	ft_init_keys(t_data *data)
 	data->key.space = 0;
 }
 
-void	floor_is_O(t_data *data)
+void	floor_is_open_door(t_data *data)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = floor(data->player.px_x / SQUARE_SIZE);
 	y = floor(data->player.px_y / SQUARE_SIZE);
@@ -50,7 +51,7 @@ void	floor_is_O(t_data *data)
 void	ft_close_door(t_data *data)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = floor(data->player.px_x / SQUARE_SIZE);
 	y = floor(data->player.px_y / SQUARE_SIZE);

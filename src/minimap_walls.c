@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwen <gwen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/15 16:21:00 by gwen             ###   ########.fr       */
+/*   Updated: 2024/05/16 10:52:31 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	ft_pixel_mnmap(t_data *data, int color)
 	}
 }
 
+/* color of :
+	'1' wall = dark red
+	'0' space = white
+	'D' door = grey
+	NSEW player start = red*/
 void	ft_read_map(t_data *data, int io, int jo)
 {
 	if (io < data->line_nb && 0 <= io && 0 <= jo
@@ -39,14 +44,14 @@ void	ft_read_map(t_data *data, int io, int jo)
 	{
 		if (data->scene[io] && data->scene[io][jo]
 			&& data->scene[io][jo] == '1')
-			ft_pixel_mnmap(data, 0x5d0606); //rouge foncé
+			ft_pixel_mnmap(data, 0x5d0606);
 		else if (data->scene[io][jo] == '0')
-			ft_pixel_mnmap(data, 0xffffff); //blanc
+			ft_pixel_mnmap(data, 0xffffff);
 		else if (data->scene[io][jo] == 'D')
-			ft_pixel_mnmap(data, 0xcc9966); //grey
+			ft_pixel_mnmap(data, 0xcc9966);
 		else if (data->scene[io][jo] == 'N' || data->scene[io][jo] == 'S'
 			|| data->scene[io][jo] == 'W' || data->scene[io][jo] == 'E')
-			ft_pixel_mnmap(data, 0xff0000); //rouge
+			ft_pixel_mnmap(data, 0xff0000);
 		else
 			return ;
 	}
