@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 10:41:26 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:48:53 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	print_error(const char *error, t_data *data)
 	clear_tab(data->scene);
 	if (data->text_tab)
 		clear_tab(data->text_tab);
+	if (data->doorlist)
+		clear_list(data->doorlist);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit(1);
