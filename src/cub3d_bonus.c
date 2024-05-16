@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:49 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:59:03 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 /*should return an int but exit(0) is required to quit the program properly*/
 int	on_destroy(t_data *data)
@@ -19,6 +19,7 @@ int	on_destroy(t_data *data)
 	mlx_destroy_display(data->mlx);
 	clear_tab(data->scene);
 	clear_tab(data->text_tab);
+	clear_list(data->doorlist);
 	free(data->mlx);
 	exit(0);
 	return (0);
@@ -75,7 +76,11 @@ int	game(t_data *data)
 						&data->img_s.endian);
 	put_ceiling_and_floor(data);
 	raycasting(data);
+	raycasting_door(data);
+	ft_print_minimap(data);
 	ft_movements(data);
+	floor_is_open_door(data);
+	ft_close_door(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_s.pt_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img_s.pt_img);
 	return (0);

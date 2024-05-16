@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_textures_2.c                                  :+:      :+:    :+:   */
+/*   init_textures_2_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:48:54 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 15:08:36 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:16:56 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	fill_door_array(t_data *data)
 {
@@ -48,7 +48,7 @@ void	get_text_door_addr(t_data *data)
 	mlx_destroy_image(data->mlx, data->text_door[0].pt_img);
 }
 
-void	texture_init(t_data *data, char **argv)
+void	texture_init_door(t_data *data, char **argv)
 {
 	int	i;
 
@@ -62,6 +62,5 @@ void	texture_init(t_data *data, char **argv)
 	extract_textures(data, argv[1]);
 	data->text_door[0].width = SQUARE_SIZE;
 	data->text_door[0].height = SQUARE_SIZE;
-	extract_text_door(data);
 	get_text_door_addr(data);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 16:33:56 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:34:18 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	print_error(const char *error, t_data *data)
 {
@@ -18,6 +18,8 @@ void	print_error(const char *error, t_data *data)
 	clear_tab(data->scene);
 	if (data->text_tab)
 		clear_tab(data->text_tab);
+	if (data->doorlist)
+		clear_list(data->doorlist);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit(1);
@@ -63,7 +65,7 @@ int	is_valid_char(char **map)
 		j = 0;
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			if (!ft_strchr("01NSEW ", map[i][j]))
+			if (!ft_strchr("01NSEWD ", map[i][j]))
 				return ('e');
 			else
 				count++;
@@ -99,7 +101,7 @@ int	is_double(char **map)
 void	check_error_map(t_data *data)
 {
 	if (is_valid_char(data->scene) == 'e')
-		print_error("Characters allowed are '10NSEW and space'", data);
+		print_error("Characters allowed are '10NSEWD and space'", data);
 	if (is_double(data->scene) == 0)
 		print_error("There is no player position", data);
 	if (is_double(data->scene) > 1)

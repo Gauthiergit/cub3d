@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:41:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/16 10:42:18 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:18:03 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,18 @@ void	put_ceiling_and_floor(t_data *data)
 		}
 		i++;
 	}
+}
+
+void	texture_init(t_data *data, char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		data->img_t[i].width = SQUARE_SIZE;
+		data->img_t[i].height = SQUARE_SIZE;
+		i++;
+	}
+	extract_textures(data, argv[1]);
 }

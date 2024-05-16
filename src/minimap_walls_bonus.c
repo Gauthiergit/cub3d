@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_walls.c                                    :+:      :+:    :+:   */
+/*   minimap_walls_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/16 13:53:48 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:00:02 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	ft_pixel_mnmap(t_data *data, int color)
 {

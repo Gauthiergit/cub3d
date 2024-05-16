@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   init_data_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 16:38:18 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:17:11 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	init_angle(t_data *data, char dir)
 {
@@ -112,8 +112,11 @@ void	data_init(t_data *data, char **argv)
 	data->c = 0;
 	data->doorlist = NULL;
 	if (!extract_map(data, argv[1]))
+	{
 		init_player(data);
-	texture_init(data, argv);
+		init_door(data);
+	}
+	texture_init_door(data, argv);
 	data->ray.ray_ngl = 0.0000;
 	data->ray.distance = 0.0000;
 	data->ray.flag = 0;

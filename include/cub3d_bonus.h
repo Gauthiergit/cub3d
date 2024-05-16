@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 16:31:35 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:37:10 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
@@ -183,6 +183,13 @@ void	draw_wall_stripe(t_data *data, int ray, int t_pix, int b_pix);
 float	nor_angle(float angle);
 void	render_wall(t_data *data, int ray);
 
+/* display_door.c */
+void	get_door_x(t_data *data);
+void	draw_door(t_data *data, int ray, int t_pix, int b_pix);
+void	render_door(t_data *data, int ray);
+void	ft_open_door(t_data *data);
+void	init_door(t_data *data);
+
 /* error_2.c */
 void	ft_free_if_null(t_data *data);
 int		first_last_line(t_data *data, size_t cur_line);
@@ -204,7 +211,6 @@ char	*get_next_line(int fd);
 void	ft_place_pixel(t_data *data, int ray, int y, int color);
 void	ft_pixel(t_data *data, int color, int i, int j);
 void	put_ceiling_and_floor(t_data *data);
-void	texture_init(t_data *data, char **argv);
 
 /* init_data.c */
 void	data_init(t_data *data, char **argv);
@@ -224,6 +230,21 @@ int		valid_colors(t_data *data, char *line);
 int		valid_texture_we(t_data *data, char *line, char *dup);
 int		valid_texture_ns(t_data *data, char *line);
 int		check_scene_infos(t_data *data, char *file);
+
+/* init_texture_2.c */
+void	texture_init_door(t_data *data, char **argv);
+void	get_text_door_addr(t_data *data);
+void	fill_door_array(t_data *data);
+
+/* minimap.c */
+void	ft_put_player(t_data *data);
+void	ft_init_minimap_and_player(t_data *data);
+void	ft_print_minimap(t_data *data);
+
+/* minimap_walls.c */
+void	ft_pixel_mnmap(t_data *data, int color);
+void	ft_read_map(t_data *data, int io, int jo);
+void	ft_walls(t_data *data);
 
 /* movements_1.c */
 void	ft_movements(t_data *data);
@@ -249,6 +270,18 @@ void	raycasting(t_data *data);
 /* raycasting_2.c */
 int		dir_step_first(float angle, float *inter, float *step, int is_horizon);
 int		dir_step_second(float angle, int is_horizon);
+
+/* racasting_door.c */
+void	raycasting_door(t_data *data);
+int		door_hit(t_data *data, float x, float y);
+double	get_dist_h_inter_door(t_data *data, float angle);
+double	get_dist_v_inter_door(t_data *data, float angle);
+int		find_door(t_data *data);
+
+/* utils_lst_bonus.c */
+t_door	*new_door(double x, double y);
+void	add_door(t_door **doorlist, t_door *newdoor);
+void	clear_list(t_door *doorlist);
 
 /* utils.c */
 int		ft_tab_size(char **tab);

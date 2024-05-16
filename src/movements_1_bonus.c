@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements_1.c                                      :+:      :+:    :+:   */
+/*   movements_1_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:02:53 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/16 16:38:32 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:00:06 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	ft_move_left(t_data *data)
 {
@@ -134,4 +134,6 @@ void	ft_movements(t_data *data)
 		ft_rotate_left(data);
 	else if (data->key.right == 1)
 		ft_rotate_right(data);
+	else if (data->key.space == 1)
+		ft_open_door(data);
 }

@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/16 15:07:14 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:38:48 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,3 @@ int	check_scene_infos(t_data *data, char *file)
 		return (1);
 	return (0);
 }
-
-/*data->img->north_air == NULL || data->img->south_fire == NULL
-		|| data->img->west_water == NULL || data->img->east_earth == NULL*/
