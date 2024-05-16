@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:58:12 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:55:23 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	is_double(char **map)
 void	check_error_map(t_data *data)
 {
 	if (is_valid_char(data->scene) == 'e')
-		print_error("Character allowed are '10NSEW and space'", data);
+		print_error("Characters allowed are '10NSEW and space'", data);
 	if (is_double(data->scene) == 0)
 		print_error("There is no player position", data);
 	if (is_double(data->scene) > 1)

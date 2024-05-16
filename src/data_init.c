@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:38 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 10:29:30 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:47:34 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	data_init(t_data *data, char **argv)
 	data->ea = 0;
 	data->f = 0;
 	data->c = 0;
+	data->doorlist = NULL;
 	if (!extract_map(data, argv[1]))
 	{
 		init_player(data);

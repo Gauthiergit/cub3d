@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_door.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:43:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 10:40:13 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:47:22 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	init_door(t_data *data)
 	t_door	*newdoor;
 
 	y = 0;
-	data->doorlist = NULL;
 	newdoor = NULL;
 	while (data->scene[y])
 	{
