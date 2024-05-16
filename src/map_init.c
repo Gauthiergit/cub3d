@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:10:28 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/06 13:45:58 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:06:25 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	fill_in_map(t_data *data, int fd, char *cur_line)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	data->scene[i] = NULL;
 }
 

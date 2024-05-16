@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:28:13 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:48:53 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:58:12 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,16 @@ int	check_error_file(int argc, char **argv)
 	char	*file_type;
 	int		fd;
 
-	fd = open(argv[1], O_RDONLY);
-	if (argc != 2)
+	if (argv[1])
+		fd = open(argv[1], O_RDONLY);
+	if (argc < 2)
 	{
 		printf("Error\nNo scene in parameter (of type .cub)\n");
+		return (1);
+	}
+	if (argc > 2)
+	{
+		printf("Error\nOnly one argument required (of type .cub)\n");
 		return (1);
 	}
 	file_type = ft_strrchr(argv[1], '.');

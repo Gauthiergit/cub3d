@@ -6,12 +6,12 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:38:25 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/16 10:47:58 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:41:02 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
+//erreur color >256
 void	convert_colors(t_data *data, char **color_tab, char c)
 {
 	unsigned long	tmp;
@@ -51,7 +51,7 @@ int	valid_colors(t_data *data, char *line)
 		while (color_tab[i])
 		{
 			if (ft_atoi(color_tab[i]) < 0 || 255 < ft_atoi(color_tab[i]))
-				return (1);
+				return (clear_tab(color_tab), 1);
 			i++;
 		}
 		if (line[0] == 'F')
@@ -66,15 +66,23 @@ int	valid_colors(t_data *data, char *line)
 
 int	valid_texture_we(t_data *data, char *line, char *dup)
 {
-	if (line[0] == 'W' && line[1] == 'E')
+	if (line[0] == 'S' && line[1] == 'O')
 	{
+		if (data->so != 1)
+			data->text_tab[1] = ft_strtrim(dup, "\n");
+		data->so++;
+	}
+	else if (line[0] == 'W' && line[1] == 'E')
+	{
+		if (data->we != 1)
+			data->text_tab[2] = ft_strtrim(dup, "\n");
 		data->we++;
-		data->text_tab[2] = ft_strtrim(dup, "\n");
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
+		if (data->ea != 1)
+			data->text_tab[3] = ft_strtrim(dup, "\n");
 		data->ea++;
-		data->text_tab[3] = ft_strtrim(dup, "\n");
 	}
 	free(dup);
 	return (0);
@@ -85,21 +93,22 @@ int	valid_texture_ns(t_data *data, char *line)
 	char	**path_tab;
 	char	*dup;
 
-	if (line[0] != '\n' && line[2] == ' ' && line[3] == '.')
+	if (line[0] != '\n' && line[2] == ' ' && line[3] == '.'
+		&& ((line[0] == 'N' && line[1] == 'O')
+			|| (line[0] == 'S' && line[1] == 'O')
+			|| (line[0] == 'W' && line[1] == 'E')
+			|| (line[0] == 'E' && line[1] == 'A')))
 	{
 		path_tab = ft_split(line, ' ');
 		dup = ft_strdup(path_tab[1]);
 		if (line[0] == 'N' && line[1] == 'O')
 		{
-			data->text_tab[0] = ft_strtrim(dup, "\n");
+			if (data->no != 1)
+				data->text_tab[0] = ft_strtrim(dup, "\n");
 			return (data->no++, free(dup), clear_tab(path_tab), 0);
 		}
-		else if (line[0] == 'S' && line[1] == 'O')
-		{
-			data->text_tab[1] = ft_strtrim(dup, "\n");
-			return (data->so++, free(dup), clear_tab(path_tab), 0);
-		}
-		else if ((line[0] == 'W' && line[1] == 'E')
+		else if ((line[0] == 'S' && line[1] == 'O')
+			|| (line[0] == 'W' && line[1] == 'E')
 			|| (line[0] == 'E' && line[1] == 'A'))
 			return (clear_tab(path_tab), valid_texture_we(data, line, dup));
 	}

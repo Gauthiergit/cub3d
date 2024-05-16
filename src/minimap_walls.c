@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:12:36 by gwen              #+#    #+#             */
-/*   Updated: 2024/05/16 10:52:31 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:53:48 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ void	ft_pixel_mnmap(t_data *data, int color)
 	}
 }
 
-/* color of :
-	'1' wall = dark red
-	'0' space = white
-	'D' door = grey
-	NSEW player start = red*/
+/* color of : 	'1' wall = dark red ; '0' space = white ; 'D' door = grey
+				NSEW player start = red */
 void	ft_read_map(t_data *data, int io, int jo)
 {
 	if (io < data->line_nb && 0 <= io && 0 <= jo
@@ -57,6 +54,7 @@ void	ft_read_map(t_data *data, int io, int jo)
 	}
 }
 
+/* Numbers a related to the design (as the space between squares of the map) */
 void	ft_walls(t_data *data)
 {
 	int	i;

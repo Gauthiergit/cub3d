@@ -6,27 +6,27 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:13:16 by gdetourn          #+#    #+#             */
-/*   Updated: 2024/05/16 10:50:42 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:51:02 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* if condition with pow is to make it a blue point, not a square pixel.
+/* "if" condition with pow is to make a blue point, not a square pixel.
 	color player = blue/violet) */
 void	ft_put_player(t_data *data)
 {
 	int	x;
 	int	y;
 
-	y = data->minipl.px_y - data->minipl.radius;
-	while (y <= data->minipl.px_y + data->minipl.radius)
+	y = data->mnmap->px_y - data->mnmap->radius;
+	while (y <= data->mnmap->px_y + data->mnmap->radius)
 	{
-		x = data->minipl.px_x - data->minipl.radius;
-		while (x <= data->minipl.px_x + data->minipl.radius)
+		x = data->mnmap->px_x - data->mnmap->radius;
+		while (x <= data->mnmap->px_x + data->mnmap->radius)
 		{
-			if (pow(x - data->minipl.px_x, 2) + pow(y - data->minipl.px_y, 2)
-				<= pow(data->minipl.radius, 2))
+			if (pow(x - data->mnmap->px_x, 2) + pow(y - data->mnmap->px_y, 2)
+				<= pow(data->mnmap->radius, 2))
 				ft_pixel(data, 0x3c00ff, y, x);
 			x++;
 		}
@@ -34,18 +34,7 @@ void	ft_put_player(t_data *data)
 	}
 }
 
-void	ft_init_player(t_data *data)
-{
-	data->minipl.radius = 4;
-	data->minipl.px_x = data->mnmap->minixo - ((data->mnmap->minixo - \
-		data->mnmap->width + 3) / 2);
-	data->minipl.px_y = data->mnmap->miniyo - ((data->mnmap->miniyo - \
-		data->mnmap->height + 5) / 2);
-	data->minipl.map_x = cos(data->player.angle) / 2 - 0.4;
-	data->minipl.map_y = sin(data->player.angle) / 2;
-}
-
-void	ft_init_minimap(t_data *data)
+void	ft_init_minimap_and_player(t_data *data)
 {
 	t_mnmap	*mnmap;
 
@@ -59,15 +48,22 @@ void	ft_init_minimap(t_data *data)
 	data->mnmap->miniyo = SCREEN_HEIGHT / 40 * 10;
 	data->mnmap->mapsx = 18;
 	data->mnmap->mapsy = data->mnmap->mapsx - 1;
+	data->mnmap->radius = 4.5;
+	data->mnmap->px_x = data->mnmap->minixo - ((data->mnmap->minixo - \
+		data->mnmap->width + 3) / 2);
+	data->mnmap->px_y = data->mnmap->miniyo - ((data->mnmap->miniyo - \
+		data->mnmap->height + 5) / 2);
 }
 
-/* color for background = Yellow */
+/* print the BG minimap, walls, spaces, doors and 
+	put the player onto the start position.
+	Color for background = Yellow */
 void	ft_print_minimap(t_data *data)
 {
 	int	i;
 	int	j;
 
-	ft_init_minimap(data);
+	ft_init_minimap_and_player(data);
 	i = data->mnmap->height;
 	while (i < data->mnmap->miniyo)
 	{
@@ -80,7 +76,6 @@ void	ft_print_minimap(t_data *data)
 		}
 		i++;
 	}
-	ft_init_player(data);
 	ft_walls(data);
 	ft_put_player(data);
 	free(data->mnmap);

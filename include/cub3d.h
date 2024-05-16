@@ -6,7 +6,7 @@
 /*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:36:20 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 11:30:26 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:01:41 by gdetourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 # define BUFFER_SIZE	42
 # define SQUARE_SIZE	64
 # define FOV			60
+
+/* SCREEN */
+
+# define SCREEN_HEIGHT 	720
+# define SCREEN_WIDTH 	1080
+
+/* KEYBOARD */
+
 # define ESC			65307
 # define RIGHT			65363
 # define LEFT			65361
@@ -40,11 +48,6 @@
 
 # define D1_PATH "./texture/exit_c.xpm"
 
-/*screen*/
-
-# define SCREEN_HEIGHT 	720
-# define SCREEN_WIDTH 	1080
-
 /* MINIMAP */
 
 typedef struct s_mnmap
@@ -55,22 +58,54 @@ typedef struct s_mnmap
 	int			miniyo;
 	int			mapsx;
 	int			mapsy;
-	char		*wall;
-	char		*space;
-	void		*img_wall;
-	void		*img_space;
+	float		px_x;
+	float		px_y;
+	double		radius;
 }				t_mnmap;
 
-typedef struct s_minipl
-{
-	float			map_x;
-	float			map_y;
-	float			px_x;
-	float			px_y;
-	int				radius;
-}				t_minipl;
-
 /* GAME */
+
+/* keyboard struct */
+
+typedef struct s_key
+{
+	int			w;
+	int			s;
+	int			a;
+	int			d;
+	int			right;
+	int			left;
+	int			space;
+}				t_key;
+
+/* texture struct */
+
+typedef struct s_img_t
+{
+	void		*pt_img;
+	int			*address;
+	int			height;
+	int			width;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+}				t_img_t;
+
+/* image on the screen struct */
+
+typedef struct s_img_s
+{
+	void		*pt_img;
+	char		*address;
+	int			height;
+	int			width;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+
+}				t_img_s;
+
+/* Raycasting */
 
 typedef struct s_player
 {
@@ -97,43 +132,6 @@ typedef struct s_door
 	struct s_door	*next;
 }				t_door;
 
-typedef struct s_key
-{
-	int			w;
-	int			s;
-	int			a;
-	int			d;
-	int			right;
-	int			left;
-	int			space;
-}				t_key;
-
-/*texture struct*/
-
-typedef struct s_img_t
-{
-	void		*pt_img;
-	int			*address;
-	int			height;
-	int			width;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-}				t_img_t;
-
-/*screen struct*/
-
-typedef struct s_img_s
-{
-	void		*pt_img;
-	char		*address;
-	int			height;
-	int			width;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-}				t_img_s;
-
 typedef struct s_data
 {
 	void			*mlx;
@@ -146,7 +144,6 @@ typedef struct s_data
 	unsigned long	color;
 	int				text_x;
 	int				text_y;
-	double			cam_x;
 	double			h_x;
 	double			h_y;
 	double			v_x;
@@ -168,7 +165,6 @@ typedef struct s_data
 	t_mnmap			*mnmap;
 	t_key			key;
 	t_player		player;
-	t_minipl		minipl;
 	t_ray			ray;
 	t_door			*doorlist;
 	int				pass_door;
@@ -235,8 +231,7 @@ int		extract_map(t_data *data, char *file);
 
 /* minimap.c */
 void	ft_put_player(t_data *data);
-void	ft_init_player(t_data *data);
-void	ft_init_minimap(t_data *data);
+void	ft_init_minimap_and_player(t_data *data);
 void	ft_print_minimap(t_data *data);
 
 /* minimap_walls.c */
