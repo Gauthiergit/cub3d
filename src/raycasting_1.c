@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdetourn <gdetourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:11:17 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/05/16 10:58:23 by gdetourn         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:04:11 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ int	wall_hit(t_data *data, float x, float y)
 	{
 		if (data->scene[y_m][x_m] == '1')
 			return (1);
-/* 		else if (data->scene[y_m][x_m] == 'D')
-		{
-			data->ray.is_door = 1;
-			return (1);
-		} */
 	}
 	return (0);
 }
@@ -102,9 +97,9 @@ void	raycasting(t_data *data)
 	double	dist_v_inter;
 	int		ray;
 
-	ray = 0;
+	ray = -1;
 	data->ray.ray_ngl = data->player.angle - (data->player.fov_rd / 2);
-	while (ray < SCREEN_WIDTH)
+	while (ray++ < SCREEN_WIDTH)
 	{
 		dist_h_inter = get_dist_h_inter(data, data->ray.ray_ngl);
 		dist_v_inter = get_dist_v_inter(data, data->ray.ray_ngl);
@@ -122,6 +117,5 @@ void	raycasting(t_data *data)
 			render_wall(data, ray);
 		data->ray.is_door = 0;
 		data->ray.ray_ngl += (data->player.fov_rd / SCREEN_WIDTH);
-		ray++;
 	}
 }
